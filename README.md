@@ -17,13 +17,13 @@ Yason Bedoshvili
 Abdelraouf Boumedal
 Saad Khan
 Cindy Khin
-Yulia Kosharych
+Yulia Kosharych (GitHub: @yulia99)
 Mehdi Samy Refik
 
 ## Technologies
 
 HTML
-CSS
-Bootstrap
-Javascript
-SQL
+CSS 
+Bootstrap 
+Javascript 
+SQL 
