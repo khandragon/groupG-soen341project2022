@@ -26,3 +26,4 @@ HTML
 CSS
 Bootstrap
 Javascript
+SQL
