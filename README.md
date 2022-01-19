@@ -18,7 +18,7 @@ Abdelraouf Boumedal
 Saad Khan
 Cindy Khin
 Yulia Kosharych (GitHub: @yulia99)
-Mehdi Samy Refik
+Mehdi Samy Refik (GitHub: @SamRfk)
 
 ## Technologies
 
