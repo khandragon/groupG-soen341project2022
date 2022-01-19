@@ -16,7 +16,7 @@ Daniel Soldera
 Yason Bedoshvili (GitHub: @Yason287)
 Abdelraouf Boumedal
 Saad Khan (GitHub: @khandragon)
-Cindy Khin
+Cindy Khin (GitHub: @cindykhin)
 Yulia Kosharych (GitHub: @yulia99)
 Mehdi Samy Refik (GitHub: @SamRfk)
 
