@@ -15,7 +15,7 @@ As conventional shopping becomes more dangerous due to the pandemic, the need to
 Daniel Soldera
 Yason Bedoshvili (GitHub: @Yason287)
 Abdelraouf Boumedal
-Saad Khan
+Saad Khan (GitHub: @khandragon)
 Cindy Khin
 Yulia Kosharych (GitHub: @yulia99)
 Mehdi Samy Refik (GitHub: @SamRfk)
@@ -23,7 +23,7 @@ Mehdi Samy Refik (GitHub: @SamRfk)
 ## Technologies
 
 HTML
-CSS 
-Bootstrap 
-Javascript 
-SQL 
+CSS
+Bootstrap
+Javascript
+SQL
