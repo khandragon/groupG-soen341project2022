@@ -13,7 +13,7 @@ As conventional shopping becomes more dangerous due to the pandemic, the need to
 ## Team Members
 
 Daniel Soldera
-Yason Bedoshvili
+Yason Bedoshvili (GitHub: @Yason287)
 Abdelraouf Boumedal
 Saad Khan
 Cindy Khin
