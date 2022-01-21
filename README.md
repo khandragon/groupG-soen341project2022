@@ -12,12 +12,12 @@ As conventional shopping becomes less popular among the internet users, the need
 
 ## Team Members
 
-* Daniel Soldera
-* Yason Bedoshvili (GitHub: @Yason287)
+* Saad Khan (GitHub: @khandragon) Role: Project Manager
+* Daniel Soldera (GitHub: @Dinferno-lol)
+* Yason Bedoshvili (GitHub: @Yason287) Frontend Development and Testing
 * Abdelraouf Boumedal
-* Saad Khan (GitHub: @khandragon)
-* Cindy Khin (GitHub: @cindykhin)
-* Yulia Kosharych (GitHub: @yulia99)
+* Cindy Khin (GitHub: @cindykhin) Backend Develoment and Testing 
+* Yulia Kosharych (GitHub: @yulia99) Role: UI and Meetings Organizer
 * Mehdi Samy Refik (GitHub: @SamRfk)
 
 ## Technologies
@@ -27,3 +27,6 @@ As conventional shopping becomes less popular among the internet users, the need
 * Bootstrap
 * Javascript
 * SQL
+* React
+* No.Js
+* MongoDB
