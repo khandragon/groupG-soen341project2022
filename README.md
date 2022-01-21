@@ -14,7 +14,7 @@ As conventional shopping becomes less popular among the internet users, the need
 
 * Daniel Soldera
 * Yason Bedoshvili (GitHub: @Yason287)
-* Abdelraouf Boumedal
+* Abdelraouf Boumedal (Github: @Eggsaminator)
 * Saad Khan (GitHub: @khandragon)
 * Cindy Khin (GitHub: @cindykhin)
 * Yulia Kosharych (GitHub: @yulia99)
