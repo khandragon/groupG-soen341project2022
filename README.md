@@ -14,9 +14,9 @@ As conventional shopping becomes less popular among the internet users, the need
 
 * Saad Khan (GitHub: @khandragon) Role: Project Manager
 * Daniel Soldera (GitHub: @Dinferno-lol)
-* Yason Bedoshvili (GitHub: @Yason287) Frontend Development and Testing
-* Abdelraouf Boumedal
-* Cindy Khin (GitHub: @cindykhin) Backend Develoment and Testing 
+* Yason Bedoshvili (GitHub: @Yason287) Role: Frontend Development and Testing
+* Abdelraouf Boumedal (Github: @Eggsaminator)
+* Cindy Khin (GitHub: @cindykhin) Role: Backend Develoment and Testing 
 * Yulia Kosharych (GitHub: @yulia99) Role: UI and Meetings Organizer
 * Mehdi Samy Refik (GitHub: @SamRfk)
 
