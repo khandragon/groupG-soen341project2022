@@ -25,6 +25,7 @@ function Home(props) {
       <p>Hello Users</p>
       {/* {practice()} */}
       <Button onClick={onButtonClick}>Click</Button>
+      <Button variant="secondary">Secondary</Button>{' '}
     </div>
   );
 }
