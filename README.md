@@ -18,7 +18,7 @@ As conventional shopping becomes less popular among the internet users, the need
 * Abdelraouf Boumedal (Github: @Eggsaminator)
 * Cindy Khin (GitHub: @cindykhin) Role: Backend Develoment and Testing 
 * Yulia Kosharych (GitHub: @yulia99) Role: UI and Meetings Organizer
-* Mehdi Samy Refik (GitHub: @SamRfk)
+* Mehdi Samy Refik (GitHub: @SamRfk) Role: Frontend Development
 
 ## Technologies
 
@@ -28,5 +28,5 @@ As conventional shopping becomes less popular among the internet users, the need
 * Javascript
 * SQL
 * React
-* No.Js
+* Node.js
 * MongoDB
