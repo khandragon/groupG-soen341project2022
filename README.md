@@ -21,12 +21,12 @@ As conventional shopping becomes less popular among the internet users, the need
 ## Team Members
 
 * Saad Khan (GitHub: @khandragon) Role: Project Manager
-* Daniel Soldera (GitHub: @Dinferno-lol)
+* Daniel Soldera (GitHub: @Dinferno-lol) Role: UI, UX and Frontend Development
 * Yason Bedoshvili (GitHub: @Yason287) Role: Frontend Development and Testing
-* Abdelraouf Boumedal (Github: @Eggsaminator)
+* Abdelraouf Boumedal (Github: @Eggsaminator) Role: Backend and Database Development
 * Cindy Khin (GitHub: @cindykhin) Role: Backend Develoment and Testing 
 * Yulia Kosharych (GitHub: @yulia99) Role: UI and Meetings Organizer
-* Mehdi Samy Refik (GitHub: @SamRfk) Role: Frontend Development
+* Mehdi Samy Refik (GitHub: @SamRfk) Role: Frontend Development and Submission Reviewer
 
 ## Technologies
 
