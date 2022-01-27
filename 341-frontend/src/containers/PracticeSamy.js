@@ -6,16 +6,22 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 
 const PracticeSamy = () => {
+
+    const arr = [1, 2, 3, 4, 5];
+
     return (
     <div>
         <b>Testing Component</b>
         <Alert  variant="dark" style={{ width: "42rem" }}>
             <ListGroup>
-                <ListGroupItem variant="primary">Name 1</ListGroupItem>
-                <ListGroupItem variant="primary">Name 2</ListGroupItem>
-                <ListGroupItem variant="primary">Name 3</ListGroupItem>
-                <ListGroupItem variant="primary">Name 4</ListGroupItem>
-                <ListGroupItem variant="primary">Name 5</ListGroupItem>
+                {arr.map((val) => {
+                    return (
+                        <> 
+                            <ListGroupItem variant="primary">Name {val}</ListGroupItem>
+                            <br />
+                        </>
+                    );
+                })}
             </ListGroup>
         </Alert>
     </div>
