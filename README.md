@@ -14,7 +14,7 @@ As conventional shopping becomes less popular among the internet users, the need
 
 * Cart System
 * Profile System with 2 Options (Personal or Business)
-* Admin Privalages System
+* Admin Privileges System
 * User Posted Items
 * Accepts Credit and Debit Cards for Purchases
 
