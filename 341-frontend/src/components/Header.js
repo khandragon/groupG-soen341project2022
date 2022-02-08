@@ -3,6 +3,7 @@ import { Nav, Col, Row, Image } from "react-bootstrap";
 import "../styles/components/Header.css";
 import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
+import IconButton from "./Buttons/IconButton";
 
 function Header(props) {
   const items = [
@@ -19,19 +20,11 @@ function Header(props) {
   items.forEach((item) => {
     if (item === "Profile") {
       menuItems.push(
-        <div className="iconBtn">
-          <a href={item}>
-            <BsFillPersonFill size={30} />
-          </a>
-        </div>
+        <IconButton link={item} btn={<BsFillPersonFill size={30} />} />
       );
     } else if (item === "Cart") {
       menuItems.push(
-        <div className="iconBtn">
-          <a href={item}>
-            <BsFillCartFill size={30} />
-          </a>
-        </div>
+        <IconButton link={item} btn={<BsFillCartFill size={30} />} />
       );
     } else {
       menuItems.push(<Nav.Link href={item}>{item}</Nav.Link>);
