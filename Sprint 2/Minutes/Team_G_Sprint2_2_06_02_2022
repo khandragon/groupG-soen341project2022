@@ -1,0 +1,41 @@
+Meeting Subject: Sprint 2
+Meeting Location: Discord
+Meeting Date: February 6th, 2022
+Team: G
+Minutes Facilitator: Yulia Kosharych
+Meeting Participants:  
+
+        Daniel Soldera (DS)
+        Yason Bedoshvili (YB)
+        Saad Khan (SK)
+        Cindy Khin (CK)
+        Yulia Kosharych (YK)
+        Mehdi Samy Refik (SR)
+        Abdelraouf Boumedal (AB)
+
+Discussions:
+
+The following points were discussed during this meeting
+
+- Milestones for Sprint 2 and core features to be developed in sprint 2
+- Division of tasks for sprint 2
+- New meeting time
+
+Conclusions:
+
+The following conslusions were made following the discussion
+
+- The new meting time will be Wednesday at 11:45 and Friday during the tutorial for those who can't attend
+- YK will continue working on the UI 
+- Backend, frontend and database teams will work on sprint 2 as follows:
+- 1. Get data for Database (CK + AB)
+- 2. Create Profile Page (YB)
+- 3. Create Book Page (DS)
+- 4. Create Inventory Page (SR)
+- 4. Create Header Bar	(SK)
+- 5. Finish Database Book Table	(CK)
+- 6. Finish Database Profile and Login Tables (AB)
+
+Actions for next meeting:
+
+- Each team member to continue torking on the tasks assigned to them by SK
