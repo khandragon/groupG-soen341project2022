@@ -1,0 +1,30 @@
+.personal {
+  text-decoration: underline;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 37%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.row1 {
+  background-color: #fdd65d33;
+}
+
+.row2 {
+  background-color: #fdd65d66;
+}
+
+.row3 {
+  background-color: #fdd65d99;
+}
+
+.profText {
+  position: initial;
+  bottom: 20%;
+  right: 40;
+  width: 60%;
+}
