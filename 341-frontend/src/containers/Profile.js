@@ -18,22 +18,12 @@ function Profile(props) {
         {profInfo.map((val, i) => {
           return (
             <>
-              <label>
-                <h4>
-                  <p>
-                    {val}
-                    <ProfileStyle
-                      inp={
-                        <input
-                          className={"row" + (i + 1)}
-                          type="text"
-                          size="40"
-                        />
-                      }
-                    />
-                  </p>
-                </h4>
-              </label>
+              <ProfileStyle
+                val={val}
+                inp={
+                  <input className={"row" + (i + 1)} type="text" size="40" />
+                }
+              />
               <br />
             </>
           );
