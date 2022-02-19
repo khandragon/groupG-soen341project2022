@@ -5,12 +5,14 @@ import About from "./containers/About.js";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Header from "./components/Header";
 import Profile from "./containers/Profile.js";
+import ProfileBusiness from "./containers/ProfileBusiness.js";
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "about", element: <About /> },
     { path: "profile", element: <Profile /> },
+    { path: "profileBusiness", element: <ProfileBusiness /> },
   ]);
   return routes;
 };
@@ -18,7 +20,7 @@ const App = () => {
 const AppWrapper = () => {
   return (
     <Router>
-      <Header/>
+      <Header />
       <App />
     </Router>
   );
