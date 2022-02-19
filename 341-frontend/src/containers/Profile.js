@@ -27,20 +27,26 @@ function Profile(props) {
     phone_number: "Phone Number",
     email: "Email",
   };
+  let profItems = [];
+  Object.entries(profInfo).forEach(([key, value], i) => {
+    profItems.push(
+      <>
+        <ProfileStyle
+          val={value}
+          inp={<input className={"row" + (i + 1)} type="text" size="40" />}
+        />
+        <br />
+      </>
+    );
+  });
   return (
     <div>
       <p className="personal">
         <h3>Your Personal Profile</h3>
       </p>
       <form>
-        {Object.entries(profInfo).forEach(([key, value], i) => {
-          <>
-            <ProfileStyle
-              val={value}
-              inp={<input className={"row" + (i + 1)} type="text" size="40" />}
-            />
-            <br />
-          </>;
+        {profItems.map((val, i) => {
+          return val;
         })}
         ;
         <br />
