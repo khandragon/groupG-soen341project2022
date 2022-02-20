@@ -1,0 +1,132 @@
+.personal {
+  text-decoration: underline;
+  text-align: center;
+}
+.personalP {
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 37%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px;
+}
+
+input[type="password"] {
+  width: 37%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px;
+}
+
+.row1 {
+  background-color: #fdd65d33;
+}
+
+.row2 {
+  background-color: #fdd65d66;
+}
+
+.row3 {
+  background-color: #fdd65d99;
+}
+
+.row4 {
+  background-color: #fdd65dcc;
+}
+
+.row5 {
+  background-color: #fdd65d;
+}
+
+.row6 {
+  background-color: #fdd65d;
+}
+
+.profBox {
+  position: sticky;
+  left: 43%;
+}
+
+.profText {
+  position: relative;
+  left: 17%;
+}
+h4 {
+  display: inline;
+}
+hr {
+  position: relative;
+  width: 70%;
+  left: 15%;
+  color: #1b1b1a;
+  border: 1px solid #000000;
+}
+
+button.rightButton[type="submit"] {
+  width: 20%;
+  color: black;
+  float: right;
+  background: linear-gradient(
+    91.34deg,
+    #fdd65d 1.88%,
+    rgba(253, 214, 93, 0) 86.52%
+  );
+  padding: 0.75%;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+button.leftButton[type="button"] {
+  width: 20%;
+  color: black;
+  float: left;
+  background: linear-gradient(
+    91.34deg,
+    #fdd65d 1.88%,
+    rgba(253, 214, 93, 0) 86.52%
+  );
+  padding: 0.75%;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.profile-buttons {
+  padding-left: 18%;
+  width: 80%;
+}
+
+.personalFC {
+  position: absolute;
+  top: 40%;
+  left: 33%;
+}
+.personalFB {
+  position: absolute;
+  bottom: 3%;
+  left: 38%;
+}
+.personalFR {
+  position: absolute;
+  bottom: 3%;
+  right: 8%;
+}
+hr.business {
+  position: relative;
+  width: 70%;
+  left: 15%;
+  border: 3px dotted dashed black;
+}
+textarea {
+  position: relative;
+  width: 70%;
+  height: 120px;
+  left: 15%;
+  border-left: none;
+  border-right: none;
+  border-top: thin dashed;
+  border-bottom: thin dashed;
+  padding-bottom: 5%;
+}
