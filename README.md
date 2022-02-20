@@ -38,3 +38,4 @@ As conventional shopping becomes less popular among the internet users, the need
 * React
 * Node.js
 * MongoDB
+* Figma
