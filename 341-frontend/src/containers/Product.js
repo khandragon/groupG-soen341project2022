@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import AddCartButton from "../components/Buttons/AddCartButton";
+import "../styles/components/CenterImage.css";
 
 function Product(props) {
   var Test = {
@@ -17,15 +18,21 @@ function Product(props) {
 
   return (
     <div>
-      <h1 className="title">
+      <h1 className="title" style={{ textAlign: "center" }}>
         <ul>{Test.title}</ul>
       </h1>
-      <h2>By: {Test.sellerName}</h2>
-      <h2>Category: {Test.category}</h2>
-      <Image src={Test.imgUrl} className="product photo"></Image>
-      <h>Product Description:</h>
-      <p className="description">{Test.description}</p>
-
+      <h2 style={{ textAlign: "center" }}>By: {Test.sellerName}</h2>
+      <h2 style={{ textAlign: "center" }}>Category: {Test.category}</h2>
+      <Image src={Test.imgUrl} className="productphoto"></Image>
+      <hr></hr>
+      <h style={{ textAlign: "left", margin: "100px" }}>
+        <b>Product Description:</b>
+      </h>
+      <div class="col-md-8 text-left">
+        <p className="description" style={{ margin: "10px 100px 20px" }}>
+          {Test.description}
+        </p>
+      </div>
       <AddCartButton link={Test.id} />
     </div>
   );

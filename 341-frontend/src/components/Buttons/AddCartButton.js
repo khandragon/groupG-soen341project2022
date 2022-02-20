@@ -8,7 +8,13 @@ function AddCartButton(props) {
     console.log("To cart with ID: " + props.itemID);
     //navigate("/cart");
   }
-  return <Button onClick={onButtonClick}>Add to Cart</Button>;
+  return (
+    <div class="col-md-12 text-center">
+      <Button onClick={onButtonClick} color="orange" size="lg">
+        Add to Cart
+      </Button>
+    </div>
+  );
 }
 
 export default AddCartButton;
