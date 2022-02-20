@@ -10,7 +10,7 @@ const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "about", element: <About /> },
-    { path: "inventory", element: <Inventory />}
+    { path: "products", element: <Inventory /> },
   ]);
   return routes;
 };
@@ -18,7 +18,7 @@ const App = () => {
 const AppWrapper = () => {
   return (
     <Router>
-      <Header/>
+      <Header />
       <App />
     </Router>
   );
