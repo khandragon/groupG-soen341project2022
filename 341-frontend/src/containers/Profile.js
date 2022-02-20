@@ -1,15 +1,10 @@
 import React from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
-import { Button } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
-import ProfileBusiness from "./ProfileBusiness";
+import { Button } from "react-bootstrap";
 
 function Profile(props) {
-  /* function onButtonClick() {
-    console.log("clicked button");
-  }*/
-
   const tempProfile = {
     username: "mbugge0",
     email: "mbugge0@gizmodo.com",
@@ -27,6 +22,7 @@ function Profile(props) {
     phone_number: "Phone Number",
     email: "Email",
   };
+
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
@@ -39,6 +35,7 @@ function Profile(props) {
       </>
     );
   });
+
   return (
     <div>
       <p className="personal">
@@ -68,20 +65,15 @@ function Profile(props) {
             </>
           );
         })}
-        <hr></hr>
-        <button type="submit">
-          <h4>Save</h4>
-        </button>
-        <button class="leftButton" type="button">
-          <h4>Order History</h4>
-        </button>
-        <footer>
-          <a href="./containers/ProfileBusiness.js">
-            <h3 className="personalFC">Switch to Business Account</h3>
-          </a>
-          <h3 className="personalFB">CONTACT US</h3>
-          <h3 className="personalFR">Log Out</h3>
-        </footer>
+        <hr />
+        <div className="profile-buttons">
+          <Button className="leftButton" type="button">
+            <h4>Order History</h4>
+          </Button>
+          <Button className="rightButton" type="submit">
+            <h4>Save</h4>
+          </Button>
+        </div>
       </form>
     </div>
   );

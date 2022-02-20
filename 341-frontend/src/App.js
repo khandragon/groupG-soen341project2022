@@ -6,6 +6,7 @@ import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Header from "./components/Header";
 import Profile from "./containers/Profile.js";
 import ProfileBusiness from "./containers/ProfileBusiness.js";
+import Footer from "./components/Footer";
 
 const App = () => {
   let routes = useRoutes([
@@ -22,6 +23,7 @@ const AppWrapper = () => {
     <Router>
       <Header />
       <App />
+      <Footer />
     </Router>
   );
 };

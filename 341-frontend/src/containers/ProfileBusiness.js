@@ -1,13 +1,9 @@
 import React from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
-import { Button } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
 
 function ProfileBusiness(props) {
-  /* function onButtonClick() {
-    console.log("clicked button");
-  }*/
   const profBusn = ["Name", "City", "Address", "Phone Number", "Email"];
   return (
     <div>

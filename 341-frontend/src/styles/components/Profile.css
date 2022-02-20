@@ -10,14 +10,14 @@ input[type="text"] {
   width: 37%;
   padding: 12px 20px;
   margin: 8px 0;
-  box-sizing: border-box;
+  border: 1px;
 }
 
 input[type="password"] {
   width: 37%;
   padding: 12px 20px;
   margin: 8px 0;
-  box-sizing: border-box;
+  border: 1px;
 }
 
 .row1 {
@@ -64,47 +64,40 @@ hr {
   border: 1px solid #000000;
 }
 
-button[type="submit"] {
-  position: absolute;
-  width: 333px;
-  height: 64.35px;
-  left: 60%;
-  top: 180%;
-
+button.rightButton[type="submit"] {
+  width: 20%;
+  color: black;
+  float: right;
   background: linear-gradient(
     91.34deg,
     #fdd65d 1.88%,
     rgba(253, 214, 93, 0) 86.52%
   );
+  padding: 0.75%;
   border: 1px solid #000000;
   box-sizing: border-box;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 button.leftButton[type="button"] {
-  position: absolute;
-  width: 333px;
-  height: 64.35px;
-  left: 15%;
-  top: 180%;
-
+  width: 20%;
+  color: black;
+  float: left;
   background: linear-gradient(
     91.34deg,
     #fdd65d 1.88%,
     rgba(253, 214, 93, 0) 86.52%
   );
+  padding: 0.75%;
   border: 1px solid #000000;
   box-sizing: border-box;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-footer {
-  position: absolute;
-  width: 1440px;
-  height: 274px;
-  left: 1px;
-  top: 200%;
 
-  background: linear-gradient(180deg, rgba(13, 180, 190, 0) 0%, #0db4be 100%);
+.profile-buttons {
+  padding-left: 18%;
+  width: 80%;
 }
+
 .personalFC {
   position: absolute;
   top: 40%;
