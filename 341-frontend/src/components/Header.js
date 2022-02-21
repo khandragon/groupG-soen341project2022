@@ -33,7 +33,9 @@ function Header(props) {
 
   return (
     <div className="main-header">
-      <Image src={logo} className="header-item"></Image>
+      <Nav.Link href={"/"}>
+        <Image src={logo} className="header-item"></Image>
+      </Nav.Link>
       <Row className="d-flex justify-content-center">
         <Col xs lg="1"></Col>
         <Col lg="8" className="header-list">
