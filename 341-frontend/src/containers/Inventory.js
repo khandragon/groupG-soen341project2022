@@ -15,6 +15,7 @@ function Inventory(prods) {
     category: "Historical Fiction",
     imgUrl:
       "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1553383690l/2657.jpg",
+    isbn: "54545454545454",
   };
 
   const arr = [test, test, test, test, test, test, test, test];
@@ -23,7 +24,7 @@ function Inventory(prods) {
     <div>
       <Row xs={3} md={3} id="hash">
         <Col id="title">
-          <h1>OUR PRODUCTS</h1>
+          <h1 class="inventory-title">OUR PRODUCTS</h1>
         </Col>
         <Col id="search">
           <SearchBarProducts></SearchBarProducts>
@@ -38,6 +39,7 @@ function Inventory(prods) {
                 text={value.description}
                 header={value.sellerName}
                 imgUrl={value.imgUrl}
+                isbn={value.isbn}
               ></ProductCard>
             </Col>
           );

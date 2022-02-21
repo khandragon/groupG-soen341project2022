@@ -13,11 +13,11 @@ import Footer from "./components/Footer";
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
-    { path: "about", element: <About /> },
-    { path: "products", element: <Inventory /> },
-    { path: "product", element: <Product /> },
-    { path: "profile", element: <Profile /> },
-    { path: "profileBusiness", element: <ProfileBusiness /> },
+    { path: "/About", element: <About /> },
+    { path: "/Products", element: <Inventory /> },
+    { path: "/Product/:productID", element: <Product /> },
+    { path: "/Profile", element: <Profile /> },
+    { path: "/ProfileBusiness", element: <ProfileBusiness /> },
   ]);
   return routes;
 };

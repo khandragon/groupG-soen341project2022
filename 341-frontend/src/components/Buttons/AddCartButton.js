@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "../../styles/components/BigButton.css";
 
 function AddCartButton(props) {
   function onButtonClick() {

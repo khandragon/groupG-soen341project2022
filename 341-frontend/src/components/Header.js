@@ -20,14 +20,14 @@ function Header(props) {
   items.forEach((item) => {
     if (item === "Profile") {
       menuItems.push(
-        <IconButton link={item} btn={<BsFillPersonFill size={30} />} />
+        <IconButton link={"/" + item} btn={<BsFillPersonFill size={30} />} />
       );
     } else if (item === "Cart") {
       menuItems.push(
-        <IconButton link={item} btn={<BsFillCartFill size={30} />} />
+        <IconButton link={"/" + item} btn={<BsFillCartFill size={30} />} />
       );
     } else {
-      menuItems.push(<Nav.Link href={item}>{item}</Nav.Link>);
+      menuItems.push(<Nav.Link href={"/" + item}>{item}</Nav.Link>);
     }
   });
 
