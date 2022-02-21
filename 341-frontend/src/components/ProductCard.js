@@ -7,7 +7,7 @@ function ProductCard(props) {
   const navigate = useNavigate();
 
   function clickItem(e) {
-    navigate("/Product/" + props.isbn);
+    navigate("/Products/" + props.isbn);
   }
 
   return (
