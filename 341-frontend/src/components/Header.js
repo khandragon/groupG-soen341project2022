@@ -20,20 +20,22 @@ function Header(props) {
   items.forEach((item) => {
     if (item === "Profile") {
       menuItems.push(
-        <IconButton link={item} btn={<BsFillPersonFill size={30} />} />
+        <IconButton link={"/" + item} btn={<BsFillPersonFill size={30} />} />
       );
     } else if (item === "Cart") {
       menuItems.push(
-        <IconButton link={item} btn={<BsFillCartFill size={30} />} />
+        <IconButton link={"/" + item} btn={<BsFillCartFill size={30} />} />
       );
     } else {
-      menuItems.push(<Nav.Link href={item}>{item}</Nav.Link>);
+      menuItems.push(<Nav.Link href={"/" + item}>{item}</Nav.Link>);
     }
   });
 
   return (
     <div className="main-header">
-      <Image src={logo} className="header-item"></Image>
+      <Nav.Link href={"/"}>
+        <Image src={logo} className="header-item"></Image>
+      </Nav.Link>
       <Row className="d-flex justify-content-center">
         <Col xs lg="1"></Col>
         <Col lg="8" className="header-list">
