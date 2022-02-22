@@ -1,16 +1,11 @@
 const axios = require("axios");
-const api = "http://localhost:27017/api/accounts/";
+const api = "http://localhost:8000/api/accounts/";
 
 async function getAccountInformation(username) {
-  try {
-    const response = await axios.get(api + username).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  return await axios.get(api + username).then((res) => {
+    console.log(res.data.data);
+    return res.data.data;
+  });
 }
 
 async function updateAccountInformation(updatedAccount) {

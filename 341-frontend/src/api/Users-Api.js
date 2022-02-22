@@ -1,5 +1,5 @@
 const axios = require("axios");
-const api = "http://localhost:27017/api/user/";
+const api = "http://localhost:8000/api/user/";
 
 async function createUser(user) {
   try {

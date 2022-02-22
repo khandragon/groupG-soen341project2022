@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
@@ -6,9 +6,23 @@ import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 
 function Profile(props) {
-  function makeCall(e) {
-    console.log(getAccountInformation("mbugge0"));
-  }
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    business: false,
+    full_name: "",
+    business_name: null,
+    address: "",
+    phone_number: "",
+    cartID: 0,
+  });
+
+  useEffect(() => {
+    getAccountInformation("mbugge0").then((res) => {
+      setUser(res);
+      console.log(res);
+    });
+  }, []);
 
   const tempProfile = {
     username: "mbugge0",
@@ -23,8 +37,10 @@ function Profile(props) {
 
   const passInfo = ["Old Password", "New Password", "Confirm New Password"];
   const profInfo = {
+    username: "Username",
     full_name: "Full Name",
     phone_number: "Phone Number",
+    address: "Address",
     email: "Email",
   };
 
@@ -35,7 +51,14 @@ function Profile(props) {
         <ProfileStyle
           val={value}
           key={key}
-          inp={<input className={"row" + (i + 1)} type="text" size="40" />}
+          inp={
+            <input
+              className={"row" + (i + 1)}
+              type="text"
+              size="40"
+              value={user[key]}
+            />
+          }
         />
         <br />
       </>
@@ -59,6 +82,7 @@ function Profile(props) {
             <>
               <ProfileStyle
                 val={val}
+                key={i}
                 inp={
                   <input
                     className={"row" + (i + 4)}
@@ -73,7 +97,7 @@ function Profile(props) {
         })}
         <hr />
         <div className="profile-buttons">
-          <Button className="leftButton" type="button" onClick={makeCall}>
+          <Button className="leftButton" type="button">
             <h4>Order History</h4>
           </Button>
           <Button className="rightButton" type="submit">

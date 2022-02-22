@@ -1,28 +1,14 @@
 const axios = require("axios");
-const api = "http://localhost:27017/api/products/";
+const api = "http://localhost:8000/api/products/";
 
 async function getAllProducts() {
-  try {
-    const response = await axios.get(api).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.get(api);
+  return response.data.data;
 }
 
 async function getProductByIsbn(isbn) {
-  try {
-    const response = await axios.get(api + isbn).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.get(api + isbn);
+  return response.data.data;
 }
 
 async function updateProductByIsbn(isbn) {
