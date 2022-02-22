@@ -1,4 +1,4 @@
-const User = require("../schemas/user-model");
+const Users = require("../schemas/user-model");
 
 createUser = (req, res) => {
   const body = req.body;
@@ -10,7 +10,7 @@ createUser = (req, res) => {
     });
   }
 
-  const user = new User(body);
+  const user = new Users(body);
 
   if (!user) {
     return res.status(400).json({ success: false, error: err });
@@ -43,7 +43,7 @@ updateUser = async (req, res) => {
     });
   }
 
-  User.findOne({ username: req.params.username }, (err, user) => {
+  Users.findOne({ username: req.params.username }, (err, user) => {
     if (err) {
       return res.status(404).json({
         err,
@@ -72,7 +72,7 @@ updateUser = async (req, res) => {
 
 getUserByUsername = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.params.username });
+    const user = await Users.findOne({ username: req.params.username });
     return res.status(200).json({ success: true, data: user });
   } catch (e) {
     console.log(e);

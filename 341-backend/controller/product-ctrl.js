@@ -1,10 +1,8 @@
-const Product = require("../schemas/products-model");
-const Account = require("../schemas/account-model");
+const Products = require("../schemas/products-model");
+
 getProductInformation = async (req, res) => {
   try {
-    console.log("isbn is " + req.params.isbn);
-    const product = await Product.findOne({ isbn: req.params.isbn });
-    console.log(product);
+    const product = await Products.findOne({ isbn: req.params.isbn });
     return res.status(200).json({ success: true, data: product });
   } catch (e) {
     console.log(e);
@@ -16,9 +14,7 @@ getProductInformation = async (req, res) => {
 
 getAllProducts = async (req, res) => {
   try {
-    const accounts = await Account.find({});
-    const products = await Product.find({});
-    console.log(accounts);
+    const products = await Products.find({});
     return res.status(200).json({ success: true, data: products });
   } catch (e) {
     console.log(e);
@@ -30,7 +26,7 @@ getAllProducts = async (req, res) => {
 
 updateProductInformation = async (req, res) => {
   try {
-    const product = await Product.findOne({ username: req.params.isbn });
+    const product = await Products.findOne({ username: req.params.isbn });
 
     const body = req.body;
 

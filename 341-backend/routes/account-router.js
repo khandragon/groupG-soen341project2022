@@ -4,7 +4,7 @@ const accountCtrl = require("../controller/account-ctrl");
 
 const router = express.Router();
 
-router.get("/account/:username", accountCtrl.getAccountInformation);
-router.put("/account/:username", accountCtrl.updateAccountInformation);
+router.get("/accounts/:username", accountCtrl.getAccountInformation);
+router.put("/accounts/:username", accountCtrl.updateAccountInformation);
 
 module.exports = router;

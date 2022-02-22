@@ -15,4 +15,4 @@ const Accounts = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("accounts", Accounts);
+module.exports = mongoose.model("Accounts", Accounts, "Accounts");
