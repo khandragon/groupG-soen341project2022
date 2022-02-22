@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const db = require("./db");
 const userRouter = require("../routes/user-router");
+const accountRouter = require("../routes/account-router");
+const productsRouter = require("../routes/products-router");
 
 const app = express();
 const apiPort = 27017;
@@ -19,5 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", userRouter);
+app.use("/api", accountRouter);
+app.use("/api", productsRouter);
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
