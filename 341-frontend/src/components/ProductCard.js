@@ -1,15 +1,28 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "../styles/Inventory.css";
+import { useNavigate } from "react-router-dom";
 
-function ProductCard(prods) {
+function ProductCard(props) {
+  const navigate = useNavigate();
+
+  function clickItem(e) {
+    navigate("/Products/" + props.isbn);
+  }
+
   return (
-    <Card className="card-color" border="white">
-      <Card.Img variant="top" src={prods.imgUrl} />
+    <Card
+      className="card-color"
+      border="white"
+      tag="a"
+      style={{ cursor: "pointer" }}
+      onClick={clickItem}
+    >
+      <Card.Img variant="top" src={props.imgUrl} />
       <Card.Body>
-        <Card.Title>{prods.title}</Card.Title>
-        <Card.Text>{prods.text}</Card.Text>
-        <Card.Header>{prods.header}</Card.Header>
+        <Card.Title>{props.title}</Card.Title>
+        <Card.Text>{props.text}</Card.Text>
+        <Card.Header>{props.header}</Card.Header>
       </Card.Body>
     </Card>
   );
