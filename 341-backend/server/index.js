@@ -1,21 +1,23 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const PORT = process.env.PORT || 27017;
-const app = express();
+const bodyParser = require("body-parser");
 const cors = require("cors");
+
+const db = require("./db");
+const userRouter = require("../routes/user-router");
+
+const app = express();
+const apiPort = 27017;
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+app.use("/api", userRouter);
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
