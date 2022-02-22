@@ -3,8 +3,13 @@ import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
+import { getAccountInformation } from "../api/Accounts-Api";
 
 function Profile(props) {
+  function makeCall(e) {
+    console.log(getAccountInformation("mbugge0"));
+  }
+
   const tempProfile = {
     username: "mbugge0",
     email: "mbugge0@gizmodo.com",
@@ -29,6 +34,7 @@ function Profile(props) {
       <>
         <ProfileStyle
           val={value}
+          key={key}
           inp={<input className={"row" + (i + 1)} type="text" size="40" />}
         />
         <br />
@@ -67,7 +73,7 @@ function Profile(props) {
         })}
         <hr />
         <div className="profile-buttons">
-          <Button className="leftButton" type="button">
+          <Button className="leftButton" type="button" onClick={makeCall}>
             <h4>Order History</h4>
           </Button>
           <Button className="rightButton" type="submit">
