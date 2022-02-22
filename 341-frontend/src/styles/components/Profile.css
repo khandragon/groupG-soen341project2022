@@ -64,12 +64,12 @@ hr {
   border: 1px solid #000000;
 }
 
-button.rightButton[type="submit"] {
+button.rightButton[type="button"] {
   width: 20%;
   color: black;
   float: right;
   background: linear-gradient(
-    91.34deg,
+    -91.34deg,
     #fdd65d 1.88%,
     rgba(253, 214, 93, 0) 86.52%
   );

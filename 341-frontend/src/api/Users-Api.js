@@ -2,39 +2,23 @@ const axios = require("axios");
 const api = "http://localhost:8000/api/user/";
 
 async function createUser(user) {
-  try {
-    await axios.post(api, user).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  return await axios.post(api, user).then((res) => {
+    return res.data.data;
+  });
 }
 
-async function updateUser(user) {
-  try {
-    await axios.put(api, user).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+async function updateUser(username, user) {
+  console.log(user);
+  return await axios.put(api + username, user).then((res) => {
+    return res.data.data;
+  });
 }
 
 async function getUserByUsername(username) {
-  try {
-    await axios.put(api + username).then(function (result) {
-      console.log(result);
-      return result;
-    });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+  return await axios.get(api + username).then((res) => {
+    console.log(res.data.data);
+    return res.data.data;
+  });
 }
 
 export { createUser, getUserByUsername, updateUser };
