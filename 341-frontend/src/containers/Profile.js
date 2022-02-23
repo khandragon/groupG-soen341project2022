@@ -44,12 +44,13 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    getAccountInformation("mbugge0").then((res) => {
+    const loggedIn = localStorage.getItem("LoggedIn");
+    getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
       console.log(res);
     });
 
-    getUserByUsername("mbugge0").then((res) => {
+    getUserByUsername(loggedIn).then((res) => {
       setUser(res);
       console.log(res);
     });
@@ -61,12 +62,6 @@ function Profile(props) {
     phone_number: "Phone Number",
     address: "Address",
     email: "Email",
-  };
-
-  const passInfo = {
-    password: "Old Password",
-    newPassword: "New Password",
-    newPassword2: "Confirm New Password",
   };
 
   let profItems = [];

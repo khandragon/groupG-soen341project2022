@@ -45,8 +45,40 @@ updateAccountInformation = async (req, res) => {
       .json({ success: false, msg: "something went wrong" });
   }
 };
+createAccountInformation = async (req, res) => {
+  const body = req.body;
 
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide account information",
+    });
+  }
+
+  const account = new Accounts(body);
+
+  if (!account) {
+    return res.status(400).json({ success: false, error: err });
+  }
+
+  account
+    .save()
+    .then(() => {
+      return res.status(201).json({
+        success: true,
+        id: account.username,
+        message: "Account created!",
+      });
+    })
+    .catch((error) => {
+      return res.status(400).json({
+        error,
+        message: "account not created!",
+      });
+    });
+};
 module.exports = {
   getAccountInformation,
   updateAccountInformation,
+  createAccountInformation,
 };
