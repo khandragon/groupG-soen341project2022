@@ -1,11 +1,15 @@
-import React from "react";
-import { Nav, Col, Row, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Nav, Col, Row, Image, Button } from "react-bootstrap";
 import "../styles/components/Header.css";
 import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
 
 function Header(props) {
+  const [loggedIn, setUserLoggedIn] = useState(
+    localStorage.getItem("LoggedIn")
+  );
+
   const items = [
     "About",
     "Brands",
@@ -16,23 +20,45 @@ function Header(props) {
     "Cart",
   ];
 
+  function logoutUser() {
+    localStorage.removeItem("LoggedIn");
+    setUserLoggedIn(false);
+    window.location.reload();
+  }
+
   let menuItems = [];
   items.forEach((item) => {
     if (item === "Profile") {
+      const status = loggedIn ? item : "Login";
       menuItems.push(
-        <IconButton link={"/" + item} btn={<BsFillPersonFill size={30} />} />
+        <IconButton
+          key={status}
+          link={"/" + status}
+          btn={<BsFillPersonFill size={30} />}
+        />
       );
     } else if (item === "Cart") {
       menuItems.push(
-        <IconButton link={"/" + item} btn={<BsFillCartFill size={30} />} />
+        <IconButton
+          key={item}
+          link={"/" + item}
+          btn={<BsFillCartFill size={30} />}
+        />
       );
     } else {
-      menuItems.push(<Nav.Link href={"/" + item}>{item}</Nav.Link>);
+      menuItems.push(
+        <Nav.Link key={item} href={"/" + item}>
+          {item}
+        </Nav.Link>
+      );
     }
   });
 
   return (
     <div className="main-header">
+      {loggedIn ? <p>Hello {loggedIn}</p> : <a href="/Login">Login</a>}
+      {loggedIn ? <Button onClick={logoutUser}>Logout</Button> : <></>}
+
       <Nav.Link href={"/"}>
         <Image src={logo} className="header-item"></Image>
       </Nav.Link>

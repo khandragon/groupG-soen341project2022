@@ -14,7 +14,6 @@ async function getProductByIsbn(isbn) {
 async function updateProductByIsbn(isbn) {
   try {
     const response = await axios.put(api + isbn).then(function (result) {
-      console.log(result);
       return result;
     });
     console.log(response);

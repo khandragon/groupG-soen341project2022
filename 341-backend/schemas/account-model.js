@@ -9,8 +9,8 @@ const Accounts = new Schema(
     full_name: { type: String, required: true },
     buisness_name: { type: String },
     address: { type: String, required: true },
-    phone_number: { type: String, required: true },
-    cartID: { type: Number, required: true },
+    phone_number: { type: String },
+    cartID: { type: Number, auto: true },
   },
   { timestamps: true }
 );

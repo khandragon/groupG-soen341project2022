@@ -9,11 +9,15 @@ import Product from "./containers/Product";
 import Profile from "./containers/Profile.js";
 import ProfileBusiness from "./containers/ProfileBusiness.js";
 import Footer from "./components/Footer";
+import Login from "./containers/Login";
+import Register from "./containers/Register";
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "/About", element: <About /> },
+    { path: "/Login", element: <Login /> },
+    { path: "/Register", element: <Register /> },
     { path: "/Products", element: <Inventory /> },
     { path: "/Products/:productID", element: <Product /> },
     { path: "/Profile", element: <Profile /> },

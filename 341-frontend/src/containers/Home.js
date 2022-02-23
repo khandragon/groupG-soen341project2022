@@ -6,7 +6,6 @@ function Home(props) {
   const navigate = useNavigate();
 
   function onButtonClick() {
-    console.log("to about");
     navigate("/about");
   }
 

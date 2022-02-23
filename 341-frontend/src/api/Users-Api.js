@@ -8,7 +8,6 @@ async function createUser(user) {
 }
 
 async function updateUser(username, user) {
-  console.log(user);
   return await axios.put(api + username, user).then((res) => {
     return res.data.data;
   });
@@ -16,7 +15,6 @@ async function updateUser(username, user) {
 
 async function getUserByUsername(username) {
   return await axios.get(api + username).then((res) => {
-    console.log(res.data.data);
     return res.data.data;
   });
 }
