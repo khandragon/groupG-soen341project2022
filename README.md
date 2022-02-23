@@ -17,6 +17,7 @@ As conventional shopping becomes less popular among the internet users, the need
 * Admin Privileges System
 * Products Upload System
 * Payment System
+* Product Browsing
 
 ## Team Members
 
