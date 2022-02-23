@@ -3,9 +3,7 @@ import "../styles/About.css";
 import { Button } from "react-bootstrap";
 
 function About(props) {
-  function onButtonClick() {
-    console.log("clicked button");
-  }
+  function onButtonClick() {}
 
   return (
     <div>

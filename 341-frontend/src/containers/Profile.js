@@ -28,14 +28,10 @@ function Profile(props) {
   const [newPassword2, setNewPassword2] = useState("");
 
   function changePasswordClick(e) {
-    console.log(currentPassword);
-    console.log(newPassword);
-    console.log(newPassword2);
     console.log(
       currentPassword === user.password && newPassword2 === newPassword
     );
     if (currentPassword === user.password && newPassword2 === newPassword) {
-      console.log("changing");
       updateUser(user.username, {
         username: user.username,
         password: newPassword2,

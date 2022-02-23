@@ -18,8 +18,6 @@ function Register(props) {
   const navigate = useNavigate();
 
   function RegisterUser() {
-    console.log("clicked button");
-    console.log(password);
     try {
       createNewUserAccount({
         username: username,

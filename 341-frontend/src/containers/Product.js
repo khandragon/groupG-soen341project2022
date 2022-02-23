@@ -6,7 +6,6 @@ import "../styles/components/CenterImage.css";
 
 function Product(props) {
   const urlIsbn = window.location.href.split("/").pop();
-  console.log(urlIsbn);
   const [product, setProduct] = useState([
     {
       _id: "",

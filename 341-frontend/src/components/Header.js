@@ -21,7 +21,6 @@ function Header(props) {
   ];
 
   function logoutUser() {
-    console.log("bye");
     localStorage.removeItem("LoggedIn");
     setUserLoggedIn(false);
     window.location.reload();
