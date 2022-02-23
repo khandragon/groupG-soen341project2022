@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Inventory.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SearchBarProducts from "../components/Buttons/SearchBarProducts";
 import ProductCard from "../components/ProductCard";
 import Pagination from "react-bootstrap/Pagination";
+import { getAllProducts } from "../api/Products-Api";
 
 function Inventory(prods) {
+  const [inventory, setInventory] = useState([
+    {
+      _id: "",
+      title: "",
+      sellerName: "",
+      description: "",
+      category: "",
+      imgUrl: "",
+      Price: 0,
+      ShippingCost: "",
+      Sale: null,
+      isbn: "",
+      updatedAt: "",
+    },
+  ]);
+
+  useEffect(() => {
+    getAllProducts().then((res) => {
+      setInventory(res);
+      console.log(res);
+    });
+  }, []);
+
   var test = {
     title: "To Kill a Mockingbird",
     sellerName: "Harper Lee",
@@ -18,7 +42,7 @@ function Inventory(prods) {
     isbn: "54545454545454",
   };
 
-  const arr = [test, test, test, test, test, test, test, test];
+  const inventoryItems = [test, test, test, test, test, test, test, test];
 
   return (
     <div>
@@ -31,7 +55,7 @@ function Inventory(prods) {
         </Col>
       </Row>
       <Row xs={1} md={2} className="g-4 card-holder">
-        {arr.map((value) => {
+        {inventory.map((value) => {
           return (
             <Col>
               <ProductCard

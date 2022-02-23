@@ -1,26 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
+import { getAccountInformation } from "../api/Accounts-Api";
+import { getUserByUsername, updateUser } from "../api/Users-Api";
 
 function Profile(props) {
-  const tempProfile = {
-    username: "mbugge0",
-    email: "mbugge0@gizmodo.com",
-    business: false,
-    full_name: "Cameron Bussen",
-    business_name: null,
-    address: "42 School Alley",
-    phone_number: "2989887772",
-    cartID: 44715,
-  };
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
-  const passInfo = ["Old Password", "New Password", "Confirm New Password"];
+  const [account, setAccount] = useState({
+    username: "",
+    email: "",
+    business: false,
+    full_name: "",
+    business_name: null,
+    address: "",
+    phone_number: "",
+    cartID: 0,
+  });
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPassword2, setNewPassword2] = useState("");
+
+  function changePasswordClick(e) {
+    console.log(currentPassword);
+    console.log(newPassword);
+    console.log(newPassword2);
+    console.log(
+      currentPassword === user.password && newPassword2 === newPassword
+    );
+    if (currentPassword === user.password && newPassword2 === newPassword) {
+      console.log("changing");
+      updateUser(user.username, {
+        username: user.username,
+        password: newPassword2,
+      });
+    }
+  }
+
+  useEffect(() => {
+    getAccountInformation("mbugge0").then((res) => {
+      setAccount(res);
+      console.log(res);
+    });
+
+    getUserByUsername("mbugge0").then((res) => {
+      setUser(res);
+      console.log(res);
+    });
+  }, []);
+
   const profInfo = {
+    username: "Username",
     full_name: "Full Name",
     phone_number: "Phone Number",
+    address: "Address",
     email: "Email",
+  };
+
+  const passInfo = {
+    password: "Old Password",
+    newPassword: "New Password",
+    newPassword2: "Confirm New Password",
   };
 
   let profItems = [];
@@ -29,7 +75,15 @@ function Profile(props) {
       <>
         <ProfileStyle
           val={value}
-          inp={<input className={"row" + (i + 1)} type="text" size="40" />}
+          key={key}
+          inp={
+            <input
+              className={"row" + (i + 1)}
+              type="text"
+              size="40"
+              value={account[key]}
+            />
+          }
         />
         <br />
       </>
@@ -48,29 +102,52 @@ function Profile(props) {
         ;
         <br />
         <h3 className="personalP">Reset Your Password</h3>
-        {passInfo.map((val, i) => {
-          return (
-            <>
-              <ProfileStyle
-                val={val}
-                inp={
-                  <input
-                    className={"row" + (i + 4)}
-                    type="password"
-                    size="40"
-                  />
-                }
-              />
-              <br />
-            </>
-          );
-        })}
+        <ProfileStyle
+          val={"Current Password"}
+          inp={
+            <input
+              className={"row4"}
+              type="password"
+              size="40"
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+          }
+        />
+        <br />
+        <ProfileStyle
+          val={"New Password"}
+          inp={
+            <input
+              className={"row5"}
+              type="password"
+              size="40"
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          }
+        />
+        <br />
+        <ProfileStyle
+          val={"Confirm New Password"}
+          inp={
+            <input
+              className={"row6"}
+              type="password"
+              size="40"
+              onChange={(e) => setNewPassword2(e.target.value)}
+            />
+          }
+        />
+        <br />
         <hr />
         <div className="profile-buttons">
           <Button className="leftButton" type="button">
             <h4>Order History</h4>
           </Button>
-          <Button className="rightButton" type="submit">
+          <Button
+            className="rightButton"
+            type="button"
+            onClick={changePasswordClick}
+          >
             <h4>Save</h4>
           </Button>
         </div>
