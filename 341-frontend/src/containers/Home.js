@@ -11,8 +11,7 @@ function Home(props) {
 
   return (
     <div>
-      <p>Hello Users</p>
-      <Button onClick={onButtonClick}>Click</Button>
+      <p>Welcome to Localize</p>
     </div>
   );
 }
