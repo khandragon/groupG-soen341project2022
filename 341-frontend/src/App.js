@@ -11,6 +11,8 @@ import ProfileBusiness from "./containers/ProfileBusiness.js";
 import Footer from "./components/Footer";
 import Login from "./containers/Login";
 import Register from "./containers/Register";
+import ProfileType from "./containers/ProfileType";
+import CreateEditProduct from "./containers/CreateEditProduct";
 import Cart from "./containers/Cart";
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
     { path: "/Products/:productID", element: <Product /> },
     { path: "/Profile", element: <Profile /> },
     { path: "/ProfileBusiness", element: <ProfileBusiness /> },
+    { path: "/ProfileType", element: <ProfileType /> },
+    { path: "/CreateEditProduct", element: <CreateEditProduct /> },
     { path: "/Cart", element: <Cart />}
   ]);
   return routes;
