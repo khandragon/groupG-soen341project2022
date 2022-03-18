@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SearchBarProducts from "../components/Buttons/SearchBarProducts";
 import ProductCard from "../components/ProductCard";
-import Pagination from "react-bootstrap/Pagination";
 import { getAllProducts } from "../api/Products-Api";
+import InventoryPagination from "../components/InventoryPagination";
 
 function Inventory(prods) {
   const [inventory, setInventory] = useState([
@@ -24,28 +24,21 @@ function Inventory(prods) {
     },
   ]);
 
+  const [displayInventory, setDisplayInventory] = useState([]);
+
   useEffect(() => {
     getAllProducts().then((res) => {
-      setInventory(res);
+      const items = res;
+      setInventory(items);
+      setDisplayInventory(items.slice(0, 8));
       console.log(res);
     });
   }, []);
 
-  var test = {
-    title: "To Kill a Mockingbird",
-    sellerName: "Harper Lee",
-    description:
-      "The unforgettable novel of a childhood in a sleepy Southern town and the crisis of conscience that rocked it. 'To Kill A Mockingbird' became both an instant bestseller and a critical success when it was first published in 1960. It went on to win the Pulitzer Prize in 1961 and was later made into an Academy Award-winning film, also a classic.\n\nCompassionate, dramatic, and dee",
-    category: "Historical Fiction",
-    imgUrl:
-      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1553383690l/2657.jpg",
-    isbn: "54545454545454",
-  };
-
-  const inventoryItems = [test, test, test, test, test, test, test, test];
+  var pageNb = Math.ceil(inventory.length / 8.0);
 
   return (
-    <div>
+    <div class="text-truncate">
       <Row xs={3} md={3} id="hash">
         <Col id="title">
           <h1 class="inventory-title">OUR PRODUCTS</h1>
@@ -54,8 +47,8 @@ function Inventory(prods) {
           <SearchBarProducts></SearchBarProducts>
         </Col>
       </Row>
-      <Row xs={1} md={2} className="g-4 card-holder">
-        {inventory.map((value) => {
+      <Row id="cardsrow" xs={1} md={2} className="g-4 card-holder">
+        {displayInventory.map((value) => {
           return (
             <Col>
               <ProductCard
@@ -69,19 +62,11 @@ function Inventory(prods) {
           );
         })}
       </Row>
-      <Pagination size="lg">
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item active>{1}</Pagination.Item>
-        <Pagination.Item>{2}</Pagination.Item>
-        <Pagination.Item>{3}</Pagination.Item>
-        <Pagination.Ellipsis />
-        <Pagination.Item>{18}</Pagination.Item>
-        <Pagination.Item>{19}</Pagination.Item>
-        <Pagination.Item>{20}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-      </Pagination>
+      <InventoryPagination
+        size={pageNb}
+        inventory={inventory}
+        setDisplay={setDisplayInventory}
+      ></InventoryPagination>
     </div>
   );
 }
