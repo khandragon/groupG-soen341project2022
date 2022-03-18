@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Image } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -12,12 +11,12 @@ function CreateEditProduct(props) {
   const [imgUrl, setImgUrl] = useState("");
   const [price, setPrice] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
-  const [isbn, setIsbn] = useState("");
   const [sale, setSale] = useState(null);
   var today = new Date();
   var updatedAt =
     today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
 
+  var pageType = "create";
   const navigate = useNavigate();
 
   function CreateItem() {
@@ -28,7 +27,18 @@ function CreateEditProduct(props) {
     console.log(imgUrl);
     console.log(price);
     console.log(shippingCost);
-    console.log(isbn);
+    console.log(sale);
+    console.log(updatedAt);
+    navigate("/Home");
+  }
+  function EditItem() {
+    console.log(_id);
+    console.log(sellerName);
+    console.log(description);
+    console.log(category);
+    console.log(imgUrl);
+    console.log(price);
+    console.log(shippingCost);
     console.log(sale);
     console.log(updatedAt);
     navigate("/Home");
@@ -36,6 +46,11 @@ function CreateEditProduct(props) {
 
   return (
     <div>
+      {pageType === "create" ? (
+        <h1 style={{ textAlign: "center" }}>Create Product</h1>
+      ) : (
+        <h1 style={{ textAlign: "center" }}>Edit Product</h1>
+      )}
       <ProfileStyle
         val={"Seller Name"}
         key={"Seller Name"}
@@ -89,19 +104,6 @@ function CreateEditProduct(props) {
         }
       />
       <ProfileStyle
-        val={"ISBN"}
-        key={"ISBN"}
-        inp={
-          <input
-            className={"row4"}
-            type="text"
-            size="40"
-            value={isbn}
-            onChange={(e) => setIsbn(e.target.value)}
-          />
-        }
-      />
-      <ProfileStyle
         val={"Image URL"}
         key={"Image URL"}
         inp={
@@ -142,7 +144,11 @@ function CreateEditProduct(props) {
       />
       <br></br>
       <div style={{ textAlign: "center" }}>
-        <Button onClick={CreateItem}>Create New Item</Button>
+        {pageType === "create" ? (
+          <Button onClick={CreateItem}>Create New Item</Button>
+        ) : (
+          <Button onClick={EditItem}>Edit Item</Button>
+        )}
       </div>
     </div>
   );
