@@ -1,56 +1,80 @@
 import React, { useState } from "react";
 
 function OrderHistory(props) {
-  //test data: Where is the function for this???
   const orders = [
     {
-      number: "1234",
-      placedOn: "02/02/2022",
-      price: "34.79",
-      status: "Delivered",
+      username: "1234",
+      productISBN: "547645684-84",
+      payed: "34.79",
+      orderedDate: "07/10/2022",
+      arrivalDate: "03/03/2023",
     },
 
     {
-      number: "5678",
-      placedOn: "29/01/2022",
-      price: "83.56",
-      status: "Processing",
+      username: "1244",
+      productISBN: "8743354256-84",
+      payed: "34.79",
+      orderedDate: "03/03/2022",
+      arrivalDate: "07/10/2022",
     },
   ];
+  //This function sorts the orders by the ordered date.
+  function compare(a, b) {
+    if (a.orderedDate < b.orderedDate) {
+      return -1;
+    }
+    if (a.orderedDate > b.orderedDate) {
+      return 1;
+    }
+    return 0;
+  }
+
+  orders.sort(compare);
+
   return (
     <div class="container">
       <div class="row">
         <div class="col"></div>
         <div class="col">
-          <p>Order #</p>
+          <p>Username</p>
         </div>
         <div class="col">
-          <p>Placed On</p>
+          <p>Isbn</p>
         </div>
         <div class="col">
           <p>Price(CAD)</p>
         </div>
         <div class="col">
-          <p>Status</p>
+          <p>Ordered Date</p>
+        </div>
+        <div class="col">
+          <p>Arival Date</p>
         </div>
       </div>
-      {orders.map((order, index) => (
-        <div class="row">
-          <div class="col">{index + 1}</div>
-          <div class="col">
-            <p>{order.number}</p>
+      {orders ? (
+        orders.map((order, index) => (
+          <div class="row">
+            <div class="col">{index + 1}</div>
+            <div class="col">
+              <p>{order.username}</p>
+            </div>
+            <div class="col">
+              <p>{order.productISBN}</p>
+            </div>
+            <div class="col">
+              <p>{order.payed}</p>
+            </div>
+            <div class="col">
+              <p>{order.orderedDate}</p>
+            </div>
+            <div class="col">
+              <p>{order.arrivalDate}</p>
+            </div>
           </div>
-          <div class="col">
-            <p>{order.placedOn}</p>
-          </div>
-          <div class="col">
-            <p>{order.price}</p>
-          </div>
-          <div class="col">
-            <p>{order.status}</p>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>Empty, No Orders</p>
+      )}
     </div>
   );
 }
