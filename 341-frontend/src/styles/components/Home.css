@@ -1,0 +1,136 @@
+.rectangle2 {
+  position: relative;
+  width: 95%;
+  height: 40%;
+  left: 4%;
+  top: 20%;
+
+  background: linear-gradient(
+    98.82deg,
+    #fdd65d 6.96%,
+    rgba(245, 224, 115, 0) 90.17%
+  );
+}
+
+.Quebec {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+.OurFam {
+  position: relative;
+  text-align: center;
+}
+
+.inventory-title {
+  font-family: Saira;
+  padding-right: 20%;
+}
+.card {
+  padding-top: 5%;
+}
+.card-img-top {
+  width: 100%;
+  height: 25vw;
+  object-fit: scale-down;
+}
+
+.card-img-bottom {
+  width: 100%;
+  height: 15vw;
+  object-fit: scale-down;
+}
+
+.card-title {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.card-body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-header {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.col {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+#hash {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.col:nth-of-type(1) > .card-color {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 162, 173, 0.81) 0%,
+    rgba(0, 162, 173, 0) 100%
+  ) !important;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+.col:nth-of-type(2) > .card-color {
+  background: linear-gradient(
+    180deg,
+    #fdd65d 29.69%,
+    rgba(255, 201, 61, 0) 100%
+  ) !important;
+}
+.col:nth-of-type(4) > .card-color {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 162, 173, 0.81) 0%,
+    rgba(0, 162, 173, 0) 100%
+  ) !important;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  transform: rotate(179.74deg) !important;
+}
+.col:nth-of-type(3) > .card-color {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 201, 61, 0) 0%,
+    #fdd65d 100%
+  ) !important;
+}
+
+@media (min-width: 400px) {
+  .row {
+    max-width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    align-items: center;
+    align-content: center;
+  }
+}
+
+@media (min-width: 576px) {
+  .row {
+    max-width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    align-items: center;
+    align-content: center;
+  }
+}
+.rectangle8 {
+  position: relative;
+  width: 95%;
+  height: 40%;
+  left: 4%;
+  top: 20%;
+  text-align: center;
+
+  background: linear-gradient(
+    259.92deg,
+    #f3b592 7.71%,
+    rgba(243, 181, 146, 0) 82.88%
+  );
+}
