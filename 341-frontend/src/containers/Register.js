@@ -15,25 +15,44 @@ function Register(props) {
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [registerError, setRegisterError] = useState(false);
+  const [emptyError, setEmptyError] = useState(false);
+
   const navigate = useNavigate();
+
+  function checkEmpty() {
+    if (
+      username !== "" &&
+      firstname !== "" &&
+      email !== "" &&
+      phone !== "" &&
+      password !== ""
+    ) {
+      setEmptyError(false);
+      return true;
+    }
+    setEmptyError(true);
+    return false;
+  }
 
   function RegisterUser() {
     try {
-      createNewUserAccount({
-        username: username,
-        email: email,
-        business: false,
-        full_name: firstname + " " + lastname,
-        address: address,
-        phone: phone,
-      }).then((res) => {
-        createUser({
+      if (checkEmpty()) {
+        createNewUserAccount({
           username: username,
-          password: password,
+          email: email,
+          business: false,
+          full_name: firstname + " " + lastname,
+          address: address,
+          phone: phone,
+        }).then((res) => {
+          createUser({
+            username: username,
+            password: password,
+          });
         });
-      });
-      setRegisterError(false);
-      navigate("/Login");
+        setRegisterError(false);
+        navigate("/Login");
+      }
     } catch {
       setRegisterError(true);
     }
@@ -42,7 +61,7 @@ function Register(props) {
   return (
     <div>
       <ProfileStyle
-        val={"Username"}
+        val={"Username*"}
         key={"Username"}
         inp={
           <input
@@ -53,9 +72,9 @@ function Register(props) {
             onChange={(e) => setUsername(e.target.value)}
           />
         }
-      />{" "}
+      />
       <ProfileStyle
-        val={"First Name"}
+        val={"First Name*"}
         key={"First Name"}
         inp={
           <input
@@ -81,7 +100,7 @@ function Register(props) {
         }
       />
       <ProfileStyle
-        val={"Email"}
+        val={"Email*"}
         key={"Email"}
         inp={
           <input
@@ -107,7 +126,7 @@ function Register(props) {
         }
       />
       <ProfileStyle
-        val={"Phone Number"}
+        val={"Phone Number*"}
         key={"Phone Number"}
         inp={
           <input
@@ -120,7 +139,7 @@ function Register(props) {
         }
       />
       <ProfileStyle
-        val={"Password"}
+        val={"Password*"}
         key={"Password"}
         inp={
           <input
@@ -131,10 +150,17 @@ function Register(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
         }
-      />{" "}
+      />
       {registerError ? (
         <Alert className="loginError" variant={"danger"}>
           ERROR: PLEASE DOUBLE CHECK THE FIELDS FOR TYPOS OR MISSING INFORMATION
+        </Alert>
+      ) : (
+        <></>
+      )}
+      {emptyError ? (
+        <Alert className="loginError" variant={"danger"}>
+          ERROR: PLEASE MAKE SURE REQUIRED FIELDS ARE ALL FILLED OUT
         </Alert>
       ) : (
         <></>
@@ -144,7 +170,7 @@ function Register(props) {
       </div>
       <Button className="loginBtn" type="button" onClick={RegisterUser}>
         <h4>Register</h4>
-      </Button>{" "}
+      </Button>
     </div>
   );
 }
