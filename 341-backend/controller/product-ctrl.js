@@ -1,4 +1,5 @@
 const Products = require("../schemas/products-model");
+const { deleteBusinessLink } = require("./businessProducts-ctrl");
 
 getProductInformation = async (req, res) => {
   try {
@@ -57,9 +58,65 @@ updateProductInformation = async (req, res) => {
       .json({ success: false, msg: "something went wrong" });
   }
 };
+createProductInformation = async (req, res) => {
+  const body = req.body;
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide product information",
+    });
+  }
+
+  var isbnRnd = ""+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+ Math.floor(Math.random()*9) + "-" + Math.floor(Math.random()*9);
+  let match = await Products.findOne({ isbn: isbnRnd });
+  while(!(match == null))
+  {
+  var isbnRnd = ""+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+ Math.floor(Math.random()*9) + "-" + Math.floor(Math.random()*9);
+  match = await Products.findOne({ isbn: isbnRnd });
+  }
+  body.isbn = isbnRnd;
+
+  const product = new Products(body);
+
+  if (!product) {
+    return res.status(400).json({ success: false, error: err });
+  }
+  
+  product
+    .save()
+    .then(() => {
+      return res.status(201).json({
+        success: true,
+        id: isbnRnd,
+        message: "Account created!",
+      });
+    })
+    .catch((error) => {
+      return res.status(400).json({
+        error,
+        message: "account not created!",
+      });
+    });
+    
+};
+
+deleteProduct = async (req,res) => {
+  try{
+      Products.deleteOne({isbn:req.params.isbn});
+  }catch(e){
+      console.log(e);
+      return res
+          .status(500)
+          .json({ success: false, msg: "something went wrong" });
+  }
+};
+
 
 module.exports = {
   getAllProducts,
   getProductInformation,
   updateProductInformation,
+  createProductInformation,
+  deleteProduct,
 };

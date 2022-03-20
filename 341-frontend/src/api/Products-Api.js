@@ -22,4 +22,19 @@ async function updateProductByIsbn(isbn) {
   }
 }
 
-export { getAllProducts, getProductByIsbn, updateProductByIsbn };
+async function createNewProduct(product){
+  const response = await axios.post(api,product).then(function (result) {
+    return result;
+  });
+  return response;
+}
+
+async function deleteProduct(isbn){
+  let response = await axios.delete(api + isbn).then(function (result) {
+    return result;
+  });
+  //deleteBusinessLink(isbn);
+  return response;
+}
+
+export { getAllProducts, getProductByIsbn, updateProductByIsbn, createNewProduct };

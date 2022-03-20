@@ -11,6 +11,17 @@ getAccountInformation = async (req, res) => {
       .json({ success: false, msg: "something went wrong" });
   }
 };
+getAllAccounts = async (req, res) => {
+  try {
+    const accounts = await Accounts.find({});
+    return res.status(200).json({ success: true, data: accounts });
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ success: false, msg: "something went wrong" });
+  }
+};
 
 updateAccountInformation = async (req, res) => {
   try {
@@ -24,6 +35,7 @@ updateAccountInformation = async (req, res) => {
         error: "You must provide a body to update",
       });
     }
+    
     account.username = body.username;
     account.email = body.email;
     account.business = body.business;
@@ -81,4 +93,5 @@ module.exports = {
   getAccountInformation,
   updateAccountInformation,
   createAccountInformation,
+  getAllAccounts,
 };
