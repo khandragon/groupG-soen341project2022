@@ -1,5 +1,5 @@
 const axios = require("axios");
-const api = "http://localhost:8000/api/carts/";
+const api = "http://localhost:8000/api/orders/";
 
 async function getOrders(username) {
   const response = await axios.get(api + username);

@@ -6,6 +6,9 @@ const db = require("./db");
 const userRouter = require("../routes/user-router");
 const accountRouter = require("../routes/account-router");
 const productsRouter = require("../routes/products-router");
+const ordersRouter = require("../routes/orders-router");
+const businessProductsRouter = require("../routes/businessProducts-router");
+const cartsRouter = require("../routes/carts-router");
 
 const app = express();
 const apiPort = 8000;
@@ -35,5 +38,8 @@ app.get("/", (req, res) => {
 app.use("/api", userRouter);
 app.use("/api", accountRouter);
 app.use("/api", productsRouter);
+app.use("/api", ordersRouter);
+app.use("/api", businessProductsRouter);
+app.use("/api", cartsRouter);
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
