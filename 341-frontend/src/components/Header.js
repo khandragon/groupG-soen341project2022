@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, Col, Row, Image, Button } from "react-bootstrap";
 import "../styles/components/Header.css";
 import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
+import { getAccountInformation } from "../api/Accounts-Api";
+import { useNavigate } from "react-router-dom";
 
 function Header(props) {
+  const navigate = useNavigate();
+
   const [loggedIn, setUserLoggedIn] = useState(
     localStorage.getItem("LoggedIn")
   );
+
+  const [account, setAccount] = useState({
+    username: "",
+    email: "",
+    business: false,
+    full_name: "",
+    business_name: null,
+    address: "",
+    phone_number: "",
+    cartID: 0,
+  });
+
+  useEffect(() => {
+    if (loggedIn) {
+      const loggedIn = localStorage.getItem("LoggedIn");
+      getAccountInformation(loggedIn).then((res) => {
+        setAccount(res);
+      });
+    }
+  }, []);
 
   const items = [
     "Home",
@@ -24,13 +48,16 @@ function Header(props) {
   function logoutUser() {
     localStorage.removeItem("LoggedIn");
     setUserLoggedIn(false);
-    window.location.reload();
+    navigate("/");
   }
 
   let menuItems = [];
   items.forEach((item) => {
     if (item === "Profile") {
-      const status = loggedIn ? item : "Login";
+      let status = loggedIn ? item : "Login";
+      if (loggedIn && account.business) {
+        status = "ProfileBusiness";
+      }
       menuItems.push(
         <IconButton
           key={status}
