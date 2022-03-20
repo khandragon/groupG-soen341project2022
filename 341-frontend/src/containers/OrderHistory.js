@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { getOrders } from "../api/Orders-Api";
-
+//This page shows the order history, it receivs the info from the database and ppresents it to the user.
+//User must be logged in to access this page
 function OrderHistory(props) {
+  //test data
   const orders = [
     {
       username: "1234",
@@ -80,6 +82,7 @@ function OrderHistory(props) {
         <p>Empty, No Orders</p>
       )}
     </div>
+    //There is also a setup to ensure that there are orders that exist, if none it displays a short message.
   );
 }
 

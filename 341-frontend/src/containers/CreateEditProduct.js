@@ -3,6 +3,7 @@ import ProfileStyle from "../components/ProfileStyle";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+//This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
   const [_id, set_id] = useState("");
   const [sellerName, setSellerName] = useState("");
@@ -18,7 +19,7 @@ function CreateEditProduct(props) {
 
   var pageType = "create";
   const navigate = useNavigate();
-
+  //These functions add or edit the product in the database respectively.
   function CreateItem() {
     console.log(_id);
     console.log(sellerName);
@@ -43,7 +44,7 @@ function CreateEditProduct(props) {
     console.log(updatedAt);
     navigate("/Home");
   }
-
+  //page type is a variable obtained based on how they arrive to the page, it determines how it functions since the two are so similar.
   return (
     <div>
       {pageType === "create" ? (

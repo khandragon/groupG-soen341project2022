@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import { Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+//This page is displayed when the user first creates an account, it lets them pick which account type to use.
 function ProfileType(props) {
   const navigate = useNavigate();
   function onButtonClick() {
@@ -12,7 +12,7 @@ function ProfileType(props) {
   function onButtonClick2() {
     navigate("/Register");
   }
-
+  //This page includes a description of each type, and a button that leads to each page.
   return (
     <div class="row">
       <h1 style={{ textAlign: "center" }}>Select Profile Type</h1>
