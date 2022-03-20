@@ -24,7 +24,6 @@ function Home(props) {
   useEffect(() => {
     getAllProducts().then((res) => {
       setInventory(res.slice(0, 4));
-      console.log(res);
     });
   }, []);
 
@@ -48,6 +47,7 @@ function Home(props) {
           return (
             <Col>
               <ProductCard
+                key={value.title}
                 title={value.title}
                 text={value.description}
                 header={value.sellerName}

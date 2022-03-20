@@ -56,7 +56,6 @@ function Profile(props) {
   }, []);
 
   const profInfo = {
-    username: "Username",
     full_name: "Full Name",
     phone_number: "Phone Number",
     address: "Address",
@@ -137,7 +136,7 @@ function Profile(props) {
           <Button
             className="leftButton"
             type="button"
-            onClick={navigate("/OrderHistory")}
+            onClick={() => navigate("/OrderHistory")}
           >
             <h4>Order History</h4>
           </Button>
