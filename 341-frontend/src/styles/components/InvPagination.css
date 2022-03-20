@@ -1,12 +1,13 @@
-.page-link {
-    background-color: linear-gradient(to right, #fdd65d, white) !important;
+.pagination a {
+  background: linear-gradient(to right, #0db4be, white) !important;
+  border: 1px solid #0db4be;
 }
 
-a {
-    background-color: linear-gradient(to right, #fdd65d, white) !important;
-
+.pagination a:hover {
+  background: linear-gradient(to right, white, #0db4be) !important;
+  border: 1px solid #0db4be;
 }
 
-li {
-    background-color: linear-gradient(to right, #fdd65d, white) !important;
+.pagination span {
+  background-color: black;
 }
