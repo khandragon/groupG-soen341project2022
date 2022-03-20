@@ -14,6 +14,7 @@ import Register from "./containers/Register";
 import ProfileType from "./containers/ProfileType";
 import CreateEditProduct from "./containers/CreateEditProduct";
 import Cart from "./containers/Cart";
+import OrderHistory from "./containers/OrderHistory";
 
 const App = () => {
   let routes = useRoutes([
@@ -27,7 +28,8 @@ const App = () => {
     { path: "/ProfileBusiness", element: <ProfileBusiness /> },
     { path: "/ProfileType", element: <ProfileType /> },
     { path: "/CreateEditProduct", element: <CreateEditProduct /> },
-    { path: "/Cart", element: <Cart />}
+    { path: "/Cart", element: <Cart /> },
+    { path: "/OrderHistory", element: <OrderHistory /> },
   ]);
   return routes;
 };
