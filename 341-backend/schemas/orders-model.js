@@ -6,8 +6,8 @@ const Orders = new Schema(
     username: { type: String, required: true },
     productISBN: { type: String, required: true},
     payed: { type: Number, required: true},
-    orderedDate: { type: Date, default: Date.now },
-    arrivalDate: { type: Date, required: true },
+    orderedDate: { type: String, required: true },
+    arrivalDate: { type: String, required: true },
   },
   { timestamps: true }
 );
