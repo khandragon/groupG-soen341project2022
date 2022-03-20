@@ -1,0 +1,24 @@
+[
+    {
+        "username": "mbugge0",
+        "productISBN": "617200289-8",
+        "payed": 39.99,
+        "orderedDate": "8/8/2021",
+        "arrivalDate": "1/18/2022"
+    },
+    {
+        "username": "mbugge0",
+        "productISBN": "617200289-7",
+        "payed": 50.4,
+        "orderedDate": "12/1/2021",
+        "arrivalDate": "2/18/2022"
+    },
+    {
+        "username": "mbugge0",
+        "productISBN": "617200287-7",
+        "payed": 79.99,
+        "orderedDate": "8/6/2021",
+        "arrivalDate": "10/20/2021"
+    }
+    
+]
