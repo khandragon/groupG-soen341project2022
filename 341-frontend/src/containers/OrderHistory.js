@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getOrders } from "../api/Orders-Api";
 
 function OrderHistory(props) {
   const orders = [
@@ -18,6 +19,9 @@ function OrderHistory(props) {
       arrivalDate: "07/10/2022",
     },
   ];
+
+  /*const orders = getOrders(localStorage.getItem("LoggedIn"));
+  console.log(orders);*/
   //This function sorts the orders by the ordered date.
   function compare(a, b) {
     if (a.orderedDate < b.orderedDate) {
