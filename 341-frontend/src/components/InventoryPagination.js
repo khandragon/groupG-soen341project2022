@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import "../styles/components/InvPagination.css";
 
 function InventoryPagination(props) {
   const [activePage, setActivePage] = useState(0);
