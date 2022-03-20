@@ -1,6 +1,10 @@
 const axios = require("axios");
 const api = "http://localhost:8000/api/user/";
-
+/**
+ * 
+ * @param {*} user 
+ * @returns 
+ */
 async function createUser(user) {
   return await axios.post(api, user).then((res) => {
     return res.data.data;
