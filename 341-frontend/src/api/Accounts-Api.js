@@ -1,5 +1,3 @@
-import { createUser } from "./Users-Api";
-
 const axios = require("axios");
 const api = "http://localhost:8000/api/accounts/";
 
@@ -25,7 +23,7 @@ async function createNewUserAccount(account) {
   return response;
 }
 
-async function getAllAccounts(){
+async function getAllAccounts() {
   const response = await axios.get(api).then(function (result) {
     return result;
   });
@@ -36,5 +34,5 @@ export {
   getAccountInformation,
   updateAccountInformation,
   createNewUserAccount,
-  getAllAccounts
+  getAllAccounts,
 };
