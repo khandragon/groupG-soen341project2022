@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { getOrders } from "../api/Orders-Api";
 //This page shows the order history, it receivs the info from the database and ppresents it to the user.
 //User must be logged in to access this page
 function OrderHistory(props) {
   //test data
-  const orders = [
-    {
-      username: "1234",
-      productISBN: "547645684-84",
-      payed: "34.79",
-      orderedDate: "07/10/2022",
-      arrivalDate: "03/03/2023",
-    },
+  // const orders = [
+  //   {
+  //     username: "1234",
+  //     productISBN: "547645684-84",
+  //     payed: "34.79",
+  //     orderedDate: "07/10/2022",
+  //     arrivalDate: "03/03/2023",
+  //   },
 
-    {
-      username: "1244",
-      productISBN: "8743354256-84",
-      payed: "34.79",
-      orderedDate: "03/03/2022",
-      arrivalDate: "07/10/2022",
-    },
-  ];
+  //   {
+  //     username: "1244",
+  //     productISBN: "8743354256-84",
+  //     payed: "34.79",
+  //     orderedDate: "03/03/2022",
+  //     arrivalDate: "07/10/2022",
+  //   },
+  // ];
 
-  /*const orders = getOrders(localStorage.getItem("LoggedIn"));
-  console.log(orders);*/
+  const orders = getOrders(localStorage.getItem("LoggedIn"));
+  console.log(orders);
   //This function sorts the orders by the ordered date.
   function compare(a, b) {
     if (a.orderedDate < b.orderedDate) {

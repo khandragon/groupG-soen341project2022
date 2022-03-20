@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProductCard from "../components/ProductCard";
-import { useNavigate } from "react-router-dom";
 import "../styles/components/Home.css";
 import { getAllProducts } from "../api/Products-Api";
 
 function Home(props) {
-  const navigate = useNavigate();
   const [inventory, setInventory] = useState([
     {
       _id: "",
@@ -29,10 +27,6 @@ function Home(props) {
       console.log(res);
     });
   }, []);
-
-  function onButtonClick() {
-    navigate("/about");
-  }
 
   return (
     <div>

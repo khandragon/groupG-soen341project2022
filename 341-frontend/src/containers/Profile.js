@@ -5,8 +5,11 @@ import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getUserByUsername, updateUser } from "../api/Users-Api";
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -131,7 +134,11 @@ function Profile(props) {
         <br />
         <hr />
         <div className="profile-buttons">
-          <Button className="leftButton" type="button">
+          <Button
+            className="leftButton"
+            type="button"
+            onClick={navigate("/OrderHistory")}
+          >
             <h4>Order History</h4>
           </Button>
           <Button

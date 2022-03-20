@@ -11,6 +11,7 @@ function Header(props) {
   );
 
   const items = [
+    "Home",
     "About",
     "Brands",
     "Products",
@@ -44,6 +45,12 @@ function Header(props) {
           link={"/" + item}
           btn={<BsFillCartFill size={30} />}
         />
+      );
+    } else if (item === "Home") {
+      menuItems.push(
+        <Nav.Link key={item} href={"/"}>
+          {item}
+        </Nav.Link>
       );
     } else {
       menuItems.push(
