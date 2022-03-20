@@ -25,8 +25,16 @@ async function createNewUserAccount(account) {
   return response;
 }
 
+async function getAllAccounts(){
+  const response = await axios.get(api).then(function (result) {
+    return result;
+  });
+  return response;
+}
+
 export {
   getAccountInformation,
   updateAccountInformation,
   createNewUserAccount,
+  getAllAccounts
 };

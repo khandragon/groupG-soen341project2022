@@ -1,4 +1,13 @@
 [
+  { "username": "Localize",
+    "email": "Localize@local.ize",
+    "business": true,
+    "full_name": "Localize",
+    "business_name": "Localize",
+    "address": "Ichigo Sasazuka Bldg. 2-26-2 Sasazuka Shibuya-ku, Tokyo 151-0073 Japan42 School Alley",
+    "phone_number": "1510732262",
+    "cartID": 10000
+  },
   {
     "username": "mbugge0",
     "email": "mbugge0@gizmodo.com",
