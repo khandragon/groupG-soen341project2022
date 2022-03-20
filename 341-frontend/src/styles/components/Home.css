@@ -91,7 +91,7 @@
     rgba(0, 162, 173, 0) 100%
   ) !important;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-  transform: rotate(179.74deg) !important;
+  /* transform: rotate(179.74deg) !important; */
 }
 .col:nth-of-type(3) > .card-color {
   background: linear-gradient(
