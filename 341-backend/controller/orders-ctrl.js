@@ -2,7 +2,6 @@ const Orders = require("../schemas/orders-model");
 
 getOrders = async (req, res) => {
   try {
-    console.log(req.params);
     const orders = await Orders.find({ username: req.params.username });
     return res.status(200).json({ success: true, data: orders });
   } catch (e) {
