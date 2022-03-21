@@ -6,11 +6,10 @@ async function getOrders(username) {
   return response.data.data;
 }
 
-async function placeOrder(username,order) {
-  const response = await axios.put(api + username , order).then(function (result) {
+async function placeOrder(username, order) {
+  return await axios.put(api + username, order).then(function (result) {
     return result;
-  });;
+  });
 }
 
-
-export { getOrders, placeOrder};
+export { getOrders, placeOrder };

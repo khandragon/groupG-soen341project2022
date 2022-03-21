@@ -31,7 +31,6 @@ function Inventory(prods) {
       const items = res;
       setInventory(items);
       setDisplayInventory(items.slice(0, 8));
-      console.log(res);
     });
   }, []);
 

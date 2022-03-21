@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 
 //This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
-  const [_id, set_id] = useState("");
   const [sellerName, setSellerName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -21,7 +20,6 @@ function CreateEditProduct(props) {
   const navigate = useNavigate();
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
-    console.log(_id);
     console.log(sellerName);
     console.log(description);
     console.log(category);
@@ -30,10 +28,9 @@ function CreateEditProduct(props) {
     console.log(shippingCost);
     console.log(sale);
     console.log(updatedAt);
-    navigate("/Home");
+    navigate("/");
   }
   function EditItem() {
-    console.log(_id);
     console.log(sellerName);
     console.log(description);
     console.log(category);
@@ -42,7 +39,7 @@ function CreateEditProduct(props) {
     console.log(shippingCost);
     console.log(sale);
     console.log(updatedAt);
-    navigate("/Home");
+    navigate("/");
   }
   //page type is a variable obtained based on how they arrive to the page, it determines how it functions since the two are so similar.
   return (

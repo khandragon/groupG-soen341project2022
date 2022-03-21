@@ -1,3 +1,5 @@
-.text-heading {
-  color: red;
+.about-text {
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
 }

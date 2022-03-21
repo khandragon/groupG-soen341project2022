@@ -6,17 +6,21 @@ async function getCart(cartID) {
   return response.data.data;
 }
 
-async function addToCart(cartID,isbn) {
-  const response = await axios.put(api + cartID, "_" + isbn).then(function (result) {
-    return result;
-  });;
-}
-
-async function removeFromCart(cartID,isbn) {
-  try {
-    const response = await axios.delete(api + cartID, "_" + isbn).then(function (result) {
+async function addToCart(cartID, isbn) {
+  const response = await axios
+    .put(api, { cartID: cartID, isbn: isbn })
+    .then(function (result) {
       return result;
     });
+}
+
+async function removeFromCart(cartID, isbn) {
+  try {
+    const response = await axios
+      .delete(api, { data: { cartID: cartID, isbn: isbn } })
+      .then(function (result) {
+        return result;
+      });
     console.log(response);
   } catch (error) {
     console.error(error);
@@ -24,14 +28,14 @@ async function removeFromCart(cartID,isbn) {
 }
 
 async function clearCart(cartID) {
-    try {
-      const response = await axios.delete(api + cartID).then(function (result) {
-        return result;
-      });
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const response = await axios.delete(api + cartID).then(function (result) {
+      return result;
+    });
+    console.log(response);
+  } catch (error) {
+    console.error(error);
   }
+}
 
 export { getCart, addToCart, removeFromCart, clearCart };
