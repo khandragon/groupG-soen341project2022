@@ -17,9 +17,7 @@ addToCart = async (req, res) => {
     console.log(req.body);
 
     const cart = await Carts.findOne({ cartID: req.body.cartID });
-    console.log(cart);
     cart.productsByIsbn.push(req.body.isbn);
-    console.log(cart.productsByIsbn);
     cart.save();
     return res.status(200).json({
       success: true,
@@ -36,12 +34,16 @@ addToCart = async (req, res) => {
 
 removeFromCart = async (req, res) => {
   try {
-    const cart = await Carts.findOne({ cartID: req.params.cartID });
+    console.log(req.body);
 
-    const index = cart.productsByIsbn.indexOf(req.params.isbn);
-    const removedIsbn = carts.productsByIsbn[index];
-    cart.productsByIsbn = cart.productsByIsbn.splice(index, 1);
+    const cart = await Carts.findOne({ cartID: req.body.cartID });
+    console.log(cart);
 
+    const index = cart.productsByIsbn.indexOf(req.body.isbn);
+    const removedIsbn = cart.productsByIsbn[index];
+    cart.productsByIsbn.splice(index, 1);
+    console.log(cart);
+    cart.save();
     return res.status(200).json({
       success: true,
       message: "product removed successfully",

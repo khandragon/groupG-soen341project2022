@@ -28,28 +28,28 @@ function Cart(prods) {
     localStorage.getItem("LoggedIn")
   );
 
-  useEffect(() => {
-    if (loggedIn) {
-      getAccountInformation(loggedIn).then((res) => {
-        setAccount(res);
-        getCart(res.cartID).then((res) => {
-          let cart = [];
-          getMultipleProductsByIsbn(res.productsByIsbn).then((res) => {
-            setCart(res);
-          });
+  function loadData() {
+    getAccountInformation(loggedIn).then((res) => {
+      setAccount(res);
+      getCart(res.cartID).then((res) => {
+        let cart = [];
+        getMultipleProductsByIsbn(res.productsByIsbn).then((res) => {
+          setCart(res);
         });
       });
+    });
+  }
+
+  useEffect(() => {
+    if (loggedIn) {
+      loadData();
     }
   }, []);
 
-  //   var test = {
-  //     name: "To Kill a Mockingbird",
-  //     id: "563179",
-  //     quantity: "2",
-  //     unit_price: 12.5, // Double or integer value, not a string
-  //   };
+  function onDelete() {
+    loadData().then(() => window.location.reload());
+  }
 
-  //   const cartTest = [test, test, test, test, test, test, test, test, test];
   var sum = 0;
 
   cart.map((item) => {
@@ -65,9 +65,11 @@ function Cart(prods) {
       {cart.map((testObject) => {
         return (
           <CartRow
+            onDelete={onDelete}
+            cartID={account.cartID}
             key={testObject.title}
             name={testObject.title}
-            id={testObject.isbn}
+            isbn={testObject.isbn}
             unit_price={testObject.Price}
           ></CartRow>
         );

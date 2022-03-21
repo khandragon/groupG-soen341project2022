@@ -17,7 +17,7 @@ async function addToCart(cartID, isbn) {
 async function removeFromCart(cartID, isbn) {
   try {
     const response = await axios
-      .delete(api + cartID, "_" + isbn)
+      .delete(api, { data: { cartID: cartID, isbn: isbn } })
       .then(function (result) {
         return result;
       });
