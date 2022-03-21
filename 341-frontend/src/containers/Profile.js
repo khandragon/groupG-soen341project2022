@@ -65,7 +65,7 @@ function Profile(props) {
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
-      <>
+      <div key={key}>
         <ProfileStyle
           val={value}
           key={key}
@@ -79,7 +79,7 @@ function Profile(props) {
           }
         />
         <br />
-      </>
+      </div>
     );
   });
 

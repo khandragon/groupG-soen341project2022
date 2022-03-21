@@ -45,9 +45,8 @@ function Home(props) {
       <Row xs={1} md={2} className="g-4 card-holder">
         {inventory.map((value) => {
           return (
-            <Col>
+            <Col key={value.title}>
               <ProductCard
-                key={value.title}
                 title={value.title}
                 text={value.description}
                 header={value.sellerName}

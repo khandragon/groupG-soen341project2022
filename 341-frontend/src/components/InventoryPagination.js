@@ -20,6 +20,7 @@ function InventoryPagination(props) {
       var stringId = "pagination" + (i + 1);
       paginationItems[i] = (
         <Pagination.Item
+          key={stringId}
           id={stringId}
           active={i === activePage ? true : false}
           onClick={() => pageClicked(i + 1)}

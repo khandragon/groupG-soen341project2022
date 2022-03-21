@@ -37,10 +37,10 @@ function Inventory(prods) {
   var pageNb = Math.ceil(inventory.length / 8.0);
 
   return (
-    <div class="text-truncate">
+    <div className="text-truncate">
       <Row xs={3} md={3} id="hash">
         <Col id="title">
-          <h1 class="inventory-title">OUR PRODUCTS</h1>
+          <h1 className="inventory-title">OUR PRODUCTS</h1>
         </Col>
         <Col id="search">
           <SearchBarProducts></SearchBarProducts>
@@ -49,7 +49,7 @@ function Inventory(prods) {
       <Row id="cardsrow" xs={1} md={2} className="g-4 card-holder">
         {displayInventory.map((value) => {
           return (
-            <Col>
+            <Col key={value.title}>
               <ProductCard
                 title={value.title}
                 text={value.description}
