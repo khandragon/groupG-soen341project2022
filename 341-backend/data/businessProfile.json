@@ -1,0 +1,50 @@
+[
+    { "username": "Localize",
+      "business_name": "Localize",
+      "city": "Tokyo",
+      "address": "Ichigo Sasazuka Bldg. 2-26-2 Sasazuka Shibuya-ku, Tokyo 151-0073 Japan42 School Alley",
+      "phone_number": "1510732262",
+      "email": "Localize@local.ize"
+    },
+    {
+      "username": "graye1",
+      "business_name": "Tanoodle",
+      "city": "Washington",
+      "address": "5 Onsgard Alley",
+      "phone_number": "9306445638",
+      "email": "graye1@issuu.com"
+    },
+    {
+      "username": "gsalliss6",
+      "business_name": "Tagfeed",
+      "city": "Montreal",
+      "address": "40053 Bobwhite Street",
+      "phone_number": "5268365470",
+      "email": "gsalliss6@360.cn"
+    },
+    {
+      "username": "dtellett7",
+      "business_name": "Rhynyx",
+      "city": "Montreal",
+      "address": "9 Sutherland Drive",
+      "phone_number": "7084675131",
+      "email": "dtellett7@twitpic.com"
+    },
+    {
+      "username": "mkirkbright8",
+      "business_name": "Skimia",
+      "city": "Sydney",
+      "address": "77003 Kipling Alley",
+      "phone_number": "6862173784",
+      "email": "mkirkbright8@privacy.gov.au"
+    },
+    {
+      "username": "paust9",
+      "business_name": "Pixope",
+      "city": "London",
+      "address": "7546 Rowland Hill",
+      "phone_number": "4625277828",
+      "email": "paust9@google.com.br"
+    }
+  ]
+  
