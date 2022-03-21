@@ -11,6 +11,21 @@ async function getProductByIsbn(isbn) {
   return response.data.data;
 }
 
+async function getMultipleProductsByIsbn(isbnList) {
+  let products = [];
+
+  for (const isbn of isbnList) {
+    const response = await axios.get(api + isbn);
+    products.push(response.data.data);
+  }
+
+  // isbnList.forEach((isbn) => {
+  //   const response = await axios.get(api + isbn);
+  //   products.push(response.data.data);
+  // });
+  return products;
+}
+
 async function updateProductByIsbn(isbn) {
   try {
     const response = await axios.put(api + isbn).then(function (result) {
@@ -40,6 +55,7 @@ async function createNewProduct(product) {
 export {
   getAllProducts,
   getProductByIsbn,
+  getMultipleProductsByIsbn,
   updateProductByIsbn,
   createNewProduct,
 };

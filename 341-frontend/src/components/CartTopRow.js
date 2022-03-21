@@ -4,20 +4,19 @@ import Col from "react-bootstrap/Col";
 import "../styles/Cart.css";
 
 function CartTopRow(props) {
+  const cartArr = ["Name", "ID", "Unit Price", ""];
 
-    const cartArr = ["Name", "ID", "Quantity", "Unit Price", ""];
-
-    return (
-        <Row class = "top-row">
-            {cartArr.map((value) => {
-                return (
-                    <Col>
-                        <h2 class = "column-titles">{value}</h2>
-                    </Col>
-                );
-            })}
-        </Row>
-    );
+  return (
+    <Row className="top-row">
+      {cartArr.map((value) => {
+        return (
+          <Col key={value}>
+            <h2 className="column-titles">{value}</h2>
+          </Col>
+        );
+      })}
+    </Row>
+  );
 }
 
 export default CartTopRow;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
+import { getAccountInformation } from "../api/Accounts-Api";
 import { getProductByIsbn } from "../api/Products-Api";
 import AddCartButton from "../components/Buttons/AddCartButton";
 import "../styles/components/CenterImage.css";
@@ -22,7 +23,25 @@ function Product(props) {
     },
   ]);
 
+  const [account, setAccount] = useState({
+    username: "",
+    email: "",
+    business: false,
+    full_name: "",
+    business_name: null,
+    address: "",
+    phone_number: "",
+    cartID: 0,
+  });
+
   useEffect(() => {
+    const loggedIn = localStorage.getItem("LoggedIn");
+
+    if (loggedIn) {
+      getAccountInformation(loggedIn).then((res) => {
+        setAccount(res);
+      });
+    }
     getProductByIsbn(urlIsbn).then((res) => {
       setProduct(res);
       console.log(res);
@@ -57,7 +76,7 @@ function Product(props) {
           {product.description}
         </p>
       </div>
-      <AddCartButton link={product.id} />
+      <AddCartButton isbn={product.isbn} cartID={account.cartID} />
     </div>
   );
 }

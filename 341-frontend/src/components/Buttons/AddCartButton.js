@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { addToCart } from "../../api/Carts-Api";
 
 function AddCartButton(props) {
   function onButtonClick() {
-    console.log("To cart with ID: " + props.itemID);
+    addToCart(props.cartID, props.isbn);
   }
 
   return (
