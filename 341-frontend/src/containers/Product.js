@@ -67,7 +67,13 @@ function Product(props) {
       <h2 style={{ textAlign: "center" }}>By: {product.sellerName}</h2>
       <h2 style={{ textAlign: "center" }}>Category: {product.category}</h2>
       <Image src={product.imgUrl} className="productphoto"></Image>
+
       <hr></hr>
+      <h1
+        style={{ textAlign: "left", marginTop: "20px", marginLeft: "100px " }}
+      >
+        <b>Price: $ {product.Price}</b>
+      </h1>
       <h style={{ textAlign: "left", margin: "100px" }}>
         <b>Product Description:</b>
       </h>

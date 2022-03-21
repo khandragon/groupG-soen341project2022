@@ -5,10 +5,7 @@ import CartTopRow from "../components/CartTopRow";
 import "../styles/Cart.css";
 import { getCart } from "../api/Carts-Api";
 import { getAccountInformation } from "../api/Accounts-Api";
-import {
-  getMultipleProductsByIsbn,
-  getProductByIsbn,
-} from "../api/Products-Api";
+import { getMultipleProductsByIsbn } from "../api/Products-Api";
 
 function Cart(prods) {
   const [cart, setCart] = useState([]);

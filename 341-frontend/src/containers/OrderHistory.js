@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getOrders } from "../api/Orders-Api";
 //This page shows the order history, it receivs the info from the database and ppresents it to the user.
 //User must be logged in to access this page
 function OrderHistory(props) {
+  const [orders, setOrders] = useState([]);
+
+  const [loggedIn, setUserLoggedIn] = useState(
+    localStorage.getItem("LoggedIn")
+  );
+  useEffect(() => {
+    if (loggedIn) {
+      getOrders(loggedIn).then((res) => {
+        setOrders(res);
+      });
+    }
+  }, []);
+
   //test data
   // const orders = [
   //   {
@@ -22,20 +35,19 @@ function OrderHistory(props) {
   //   },
   // ];
 
-  const orders = getOrders(localStorage.getItem("LoggedIn"));
   console.log(orders);
   //This function sorts the orders by the ordered date.
-  function compare(a, b) {
-    if (a.orderedDate < b.orderedDate) {
-      return -1;
-    }
-    if (a.orderedDate > b.orderedDate) {
-      return 1;
-    }
-    return 0;
-  }
+  // function compare(a, b) {
+  //   if (a.orderedDate < b.orderedDate) {
+  //     return -1;
+  //   }
+  //   if (a.orderedDate > b.orderedDate) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
 
-  orders.sort(compare);
+  // orders.sort(compare);
 
   return (
     <div class="container">

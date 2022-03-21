@@ -4,21 +4,24 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import "../styles/Cart.css";
 import { removeFromCart } from "../api/Carts-Api";
+import { useNavigate } from "react-router-dom";
 
 function CartRow(props) {
+  const navigate = useNavigate();
+
   function removeItem() {
     removeFromCart(props.cartID, props.isbn).then(props.onDelete());
   }
 
   return (
     <Row>
-      <Col>
+      <Col onClick={() => navigate("../Products/" + props.isbn)}>
         <h2>{props.name}</h2>
       </Col>
-      <Col>
+      <Col onClick={() => navigate("../Products/" + props.isbn)}>
         <h2>{props.isbn}</h2>
       </Col>
-      <Col>
+      <Col onClick={() => navigate("../Products/" + props.isbn)}>
         <h2>{props.unit_price}</h2>
       </Col>
       <Col>
