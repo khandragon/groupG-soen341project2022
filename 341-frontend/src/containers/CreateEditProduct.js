@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button, Modal } from "react-bootstrap";
 
@@ -11,11 +11,20 @@ function CreateEditProduct(props) {
   const [imgUrl, setImgUrl] = useState("");
   const [price, setPrice] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
-  const [sale, setSale] = useState(null);
+  const [sale, setSale] = useState(0);
   var today = new Date();
   var updatedAt =
     today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
 
+  useEffect(() => {
+    setTitle(props.itemInfo.title);
+    setDescription(props.itemInfo.description);
+    setCategory(props.itemInfo.category);
+    setImgUrl(props.itemInfo.imgUrl);
+    setPrice(props.itemInfo.price);
+    setShippingCost(props.itemInfo.shippingCost);
+    setSale(props.itemInfo.sale);
+  }, [props.itemInfo]);
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
     console.log(title);

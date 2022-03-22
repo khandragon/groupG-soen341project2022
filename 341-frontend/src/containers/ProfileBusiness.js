@@ -65,7 +65,7 @@ function ProfileBusiness(props) {
 
   return (
     <div>
-      <h3 className="personal">Your Personal Profile </h3>
+      <h3 className="personal">Your Buisness Profile </h3>
       <form>
         {profItems.map((val, i) => {
           return val;
