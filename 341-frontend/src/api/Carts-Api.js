@@ -7,11 +7,9 @@ async function getCart(cartID) {
 }
 
 async function addToCart(cartID, isbn) {
-  const response = await axios
-    .put(api, { cartID: cartID, isbn: isbn })
-    .then(function (result) {
-      return result;
-    });
+  await axios.put(api, { cartID: cartID, isbn: isbn }).then(function (result) {
+    return result;
+  });
 }
 
 async function removeFromCart(cartID, isbn) {

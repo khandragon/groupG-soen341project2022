@@ -46,7 +46,7 @@ function Product(props) {
       setProduct(res);
       console.log(res);
     });
-  }, []);
+  }, [urlIsbn]);
 
   // var Test = {
   //   title: "1984",
@@ -74,10 +74,10 @@ function Product(props) {
       >
         <b>Price: $ {product.Price}</b>
       </h1>
-      <h style={{ textAlign: "left", margin: "100px" }}>
+      <h4 style={{ textAlign: "left", margin: "100px" }}>
         <b>Product Description:</b>
-      </h>
-      <div class="col-md-8 text-left">
+      </h4>
+      <div className="col-md-8 text-left">
         <p className="description" style={{ margin: "10px 100px 20px" }}>
           {product.description}
         </p>

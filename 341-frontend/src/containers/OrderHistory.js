@@ -9,10 +9,9 @@ function OrderHistory(props) {
 
   const [orders, setOrders] = useState([]);
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
   useEffect(() => {
+    const loggedIn = localStorage.getItem("LoggedIn");
+
     if (loggedIn) {
       getOrders(loggedIn).then((res) => {
         setOrders(res);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonGroup, Modal, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { BsTrashFill, BsWrench } from "react-icons/bs";
 import { getBusinessProducts } from "../api/BusinessProducts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
@@ -17,7 +17,7 @@ function BuisnessProducts(props) {
     imgUrl: "",
     Price: 0,
     ShippingCost: "",
-    Sale: null,
+    Sale: 0,
     isbn: "",
     updatedAt: "",
   });
@@ -44,15 +44,13 @@ function BuisnessProducts(props) {
     },
   ]);
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
-
   useEffect(() => {
     getBuisnessData();
   }, []);
 
   function getBuisnessData() {
+    const loggedIn = localStorage.getItem("LoggedIn");
+
     getBusinessProducts(loggedIn).then((res) => {
       const isbnList = res.map((item) => item.productISBN);
       console.log(isbnList);
@@ -93,7 +91,7 @@ function BuisnessProducts(props) {
         </thead>
         <tbody>
           {products.map((item, index) => (
-            <tr key={index}>
+            <tr key={item.title}>
               <td>{index}</td>
               <td key={index}>{item.title}</td>
               <td key={index}>{item.isbn}</td>

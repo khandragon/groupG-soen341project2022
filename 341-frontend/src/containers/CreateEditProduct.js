@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProfileStyle from "../components/ProfileStyle";
-import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 
 //This is the page the user is taken to when trying to edit or create a product.
@@ -17,8 +16,6 @@ function CreateEditProduct(props) {
   var updatedAt =
     today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
 
-  var pageType = "create";
-  const navigate = useNavigate();
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
     console.log(title);
@@ -258,7 +255,7 @@ function CreateEditProduct(props) {
             <Button variant="secondary" onClick={props.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={props.handleClose}>
+            <Button variant="primary" onClick={() => EditItem()}>
               Save Changes
             </Button>
           </Modal.Footer>

@@ -4,16 +4,10 @@ import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
-import { getUserByUsername, updateUser } from "../api/Users-Api";
 import { useNavigate } from "react-router-dom";
 
 function ProfileBusiness(props) {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
 
   const [account, setAccount] = useState({
     username: "",
@@ -34,10 +28,6 @@ function ProfileBusiness(props) {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
-    });
-
-    getUserByUsername(loggedIn).then((res) => {
-      setUser(res);
     });
   }, []);
 

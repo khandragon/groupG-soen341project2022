@@ -11,7 +11,7 @@ function AddCartButton(props) {
   }
 
   return (
-    <div class="col-md-12 text-center">
+    <div className="col-md-12 text-center">
       <Alert
         show={show}
         onClose={() => setShow(false)}
