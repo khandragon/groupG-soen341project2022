@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button, Modal } from "react-bootstrap";
+import { createNewProduct, updateProductByIsbn } from "../api/Products-Api";
 
 //This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
-  console.log(props.itemInfo);
   const [title, setTitle] = useState("");
+  const [sellerName, setSellerName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -18,35 +19,50 @@ function CreateEditProduct(props) {
 
   useEffect(() => {
     setTitle(props.itemInfo.title);
+    setSellerName(props.itemInfo.sellerName);
     setDescription(props.itemInfo.description);
     setCategory(props.itemInfo.category);
     setImgUrl(props.itemInfo.imgUrl);
-    setPrice(props.itemInfo.price);
-    setShippingCost(props.itemInfo.shippingCost);
-    setSale(props.itemInfo.sale);
+    setPrice(props.itemInfo.Price);
+    setShippingCost(props.itemInfo.ShippingCost);
+    setSale(props.itemInfo.Sale ? props.itemInfo.Sale : 0);
   }, [props.itemInfo]);
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
-    console.log(title);
-    console.log(description);
-    console.log(category);
-    console.log(imgUrl);
-    console.log(price);
-    console.log(shippingCost);
-    console.log(sale);
-    console.log(updatedAt);
-    props.handleClose();
+    const createdData = {
+      title: title,
+      sellerName: sellerName,
+      description: description,
+      imgUrl: imgUrl,
+      category: category,
+      Price: price,
+      ShippingCost: shippingCost,
+      Sale: sale,
+    };
+    const username = localStorage.getItem("LoggedIn");
+
+    createNewProduct(createdData, username).then(() => {
+      props.handleClose();
+      window.location.reload();
+    });
   }
   function EditItem() {
-    console.log(title);
-    console.log(description);
-    console.log(category);
-    console.log(imgUrl);
-    console.log(price);
-    console.log(shippingCost);
-    console.log(sale);
-    console.log(updatedAt);
-    props.handleClose();
+    const editedData = {
+      title: title,
+      sellerName: sellerName,
+      description: description,
+      imgUrl: imgUrl,
+      category: category,
+      Price: price,
+      ShippingCost: shippingCost,
+      Sale: sale,
+      isbn: props.itemInfo.isbn,
+    };
+
+    updateProductByIsbn(props.itemInfo.isbn, editedData).then(() => {
+      props.handleClose();
+      window.location.reload();
+    });
   }
   //page type is a variable obtained based on how they arrive to the page, it determines how it functions since the two are so similar.
   return (
@@ -69,6 +85,19 @@ function CreateEditProduct(props) {
                   size="20"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                />
+              }
+            />
+            <ProfileStyle
+              val={"Seller Name"}
+              key={"Seller Name"}
+              inp={
+                <input
+                  className={"row4"}
+                  type="text"
+                  size="20"
+                  value={sellerName}
+                  onChange={(e) => setSellerName(e.target.value)}
                 />
               }
             />
@@ -178,6 +207,19 @@ function CreateEditProduct(props) {
                   size="20"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                />
+              }
+            />
+            <ProfileStyle
+              val={"Seller Name"}
+              key={"Seller Name"}
+              inp={
+                <input
+                  className={"row4"}
+                  type="text"
+                  size="20"
+                  value={sellerName}
+                  onChange={(e) => setSellerName(e.target.value)}
                 />
               }
             />

@@ -23,7 +23,6 @@ function BuisnessProducts(props) {
   });
 
   const handleClose = () => {
-    console.log("hi");
     setShow(false);
   };
   const handleShow = () => setShow(true);
