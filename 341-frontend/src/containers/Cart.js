@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CartRow from "../components/CartRow";
 import CartBottomRow from "../components/CartBottomRow";
 import CartTopRow from "../components/CartTopRow";
@@ -21,35 +21,31 @@ function Cart(prods) {
     cartID: 0,
   });
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
+  const loggedIn = localStorage.getItem("LoggedIn");
 
-  function loadData() {
+  const loadData = useCallback(() => {
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
       getCart(res.cartID).then((res) => {
-        let cart = [];
         getMultipleProductsByIsbn(res.productsByIsbn).then((res) => {
           setCart(res);
         });
       });
     });
-  }
+  }, [loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
       loadData();
     }
-  }, []);
+  }, [loggedIn, loadData]);
 
   function onDelete() {
     loadData().then(() => window.location.reload());
   }
 
   var sum = 0;
-
-  cart.map((item) => {
+  cart.forEach((item) => {
     sum += item.Price;
     sum = Math.round(sum * 100) / 100;
   });

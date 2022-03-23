@@ -1,3 +1,5 @@
+import { addBusinessProduct } from "./BusinessProducts-Api";
+
 const axios = require("axios");
 const api = "http://localhost:8000/api/products/";
 
@@ -18,30 +20,28 @@ async function getMultipleProductsByIsbn(isbnList) {
     const response = await axios.get(api + isbn);
     products.push(response.data.data);
   }
-
-  // isbnList.forEach((isbn) => {
-  //   const response = await axios.get(api + isbn);
-  //   products.push(response.data.data);
-  // });
   return products;
 }
 
-async function updateProductByIsbn(isbn) {
+async function updateProductByIsbn(isbn, product) {
   try {
-    const response = await axios.put(api + isbn).then(function (result) {
+    await axios.put(api + isbn, product).then(function (result) {
       return result;
     });
-    console.log(response);
   } catch (error) {
     console.error(error);
   }
 }
 
-async function createNewProduct(product) {
-  const response = await axios.post(api, product).then(function (result) {
-    return result;
+async function createNewProduct(product, username) {
+  await axios.post(api, product).then((result) => {
+    const data = {
+      username: username,
+      productISBN: result.data.id,
+    };
+    console.log(data);
+    addBusinessProduct(data);
   });
-  return response;
 }
 
 // async function deleteProduct(isbn){

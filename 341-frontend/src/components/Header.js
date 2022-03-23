@@ -27,12 +27,11 @@ function Header(props) {
 
   useEffect(() => {
     if (loggedIn) {
-      const loggedIn = localStorage.getItem("LoggedIn");
       getAccountInformation(loggedIn).then((res) => {
         setAccount(res);
       });
     }
-  }, []);
+  }, [loggedIn]);
 
   const items = [
     "Home",

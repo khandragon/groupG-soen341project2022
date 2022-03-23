@@ -10,7 +10,6 @@ function InventoryPagination(props) {
     var sliceIdx = (item - 1) * 8;
     var sliceIdx2 = sliceIdx + 8;
     props.setDisplay(props.inventory.slice(sliceIdx, sliceIdx2));
-    console.log(item);
   }
 
   var paginationItems = [props.size];
@@ -20,6 +19,7 @@ function InventoryPagination(props) {
       var stringId = "pagination" + (i + 1);
       paginationItems[i] = (
         <Pagination.Item
+          key={stringId}
           id={stringId}
           active={i === activePage ? true : false}
           onClick={() => pageClicked(i + 1)}

@@ -4,16 +4,10 @@ import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
-import { getUserByUsername, updateUser } from "../api/Users-Api";
 import { useNavigate } from "react-router-dom";
 
 function ProfileBusiness(props) {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
 
   const [account, setAccount] = useState({
     username: "",
@@ -34,12 +28,6 @@ function ProfileBusiness(props) {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
-      console.log(res);
-    });
-
-    getUserByUsername(loggedIn).then((res) => {
-      setUser(res);
-      console.log(res);
     });
   }, []);
 
@@ -57,7 +45,7 @@ function ProfileBusiness(props) {
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
-      <>
+      <div key={key}>
         <ProfileStyle
           val={value}
           key={key}
@@ -71,15 +59,13 @@ function ProfileBusiness(props) {
           }
         />
         <br />
-      </>
+      </div>
     );
   });
 
   return (
     <div>
-      <p className="personal">
-        <h3>Your Personal Profile</h3>
-      </p>
+      <h3 className="personal">Your Buisness Profile </h3>
       <form>
         {profItems.map((val, i) => {
           return val;
@@ -96,7 +82,7 @@ function ProfileBusiness(props) {
           <Button
             className="leftButton"
             type="button"
-            onClick={() => navigate("/CreateEditProduct")}
+            onClick={() => navigate("/BuisnessProducts")}
           >
             <h4>Products</h4>
           </Button>
