@@ -13,9 +13,9 @@ function CreateEditProduct(props) {
   const [price, setPrice] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
   const [sale, setSale] = useState(0);
-  var today = new Date();
-  var updatedAt =
-    today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
+  //var today = new Date();
+  // var updatedAt =
+  //   today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
 
   useEffect(() => {
     setTitle(props.itemInfo.title);

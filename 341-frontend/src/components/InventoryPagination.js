@@ -10,7 +10,6 @@ function InventoryPagination(props) {
     var sliceIdx = (item - 1) * 8;
     var sliceIdx2 = sliceIdx + 8;
     props.setDisplay(props.inventory.slice(sliceIdx, sliceIdx2));
-    console.log(item);
   }
 
   var paginationItems = [props.size];

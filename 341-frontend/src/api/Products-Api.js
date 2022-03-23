@@ -25,11 +25,9 @@ async function getMultipleProductsByIsbn(isbnList) {
 
 async function updateProductByIsbn(isbn, product) {
   try {
-    const response = await axios
-      .put(api + isbn, product)
-      .then(function (result) {
-        return result;
-      });
+    await axios.put(api + isbn, product).then(function (result) {
+      return result;
+    });
   } catch (error) {
     console.error(error);
   }
