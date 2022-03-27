@@ -24,33 +24,47 @@ function Inventory(prods) {
     },
   ]);
 
+  const [pageNb, setPageNb] = useState(0);
   const [displayInventory, setDisplayInventory] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getAllProducts().then((res) => {
       const items = res;
       setInventory(items);
       setDisplayInventory(items.slice(0, 8));
-      console.log(res);
+      setPageNb(Math.ceil(items.length / 8.0));
     });
   }, []);
 
-  var pageNb = Math.ceil(inventory.length / 8.0);
+  function searchItems() {
+    const filteredList = inventory.filter(
+      (item) =>
+        item.title.toLowerCase().includes(search) ||
+        item.description.toLowerCase().includes(search)
+    );
+    setDisplayInventory(filteredList.slice(0, 8));
+    setPageNb(Math.ceil(filteredList.length / 8.0));
+  }
 
   return (
-    <div class="text-truncate">
+    <div className="text-truncate">
       <Row xs={3} md={3} id="hash">
         <Col id="title">
-          <h1 class="inventory-title">OUR PRODUCTS</h1>
+          <h1 className="inventory-title">OUR PRODUCTS</h1>
         </Col>
         <Col id="search">
-          <SearchBarProducts></SearchBarProducts>
+          <SearchBarProducts
+            value={search}
+            onType={setSearch}
+            onBtnClick={() => searchItems()}
+          ></SearchBarProducts>
         </Col>
       </Row>
       <Row id="cardsrow" xs={1} md={2} className="g-4 card-holder">
         {displayInventory.map((value) => {
           return (
-            <Col>
+            <Col key={value.title}>
               <ProductCard
                 title={value.title}
                 text={value.description}

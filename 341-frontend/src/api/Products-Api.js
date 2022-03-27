@@ -1,3 +1,5 @@
+import { addBusinessProduct } from "./BusinessProducts-Api";
+
 const axios = require("axios");
 const api = "http://localhost:8000/api/products/";
 
@@ -11,30 +13,49 @@ async function getProductByIsbn(isbn) {
   return response.data.data;
 }
 
-async function updateProductByIsbn(isbn) {
+async function getMultipleProductsByIsbn(isbnList) {
+  let products = [];
+
+  for (const isbn of isbnList) {
+    const response = await axios.get(api + isbn);
+    products.push(response.data.data);
+  }
+  return products;
+}
+
+async function updateProductByIsbn(isbn, product) {
   try {
-    const response = await axios.put(api + isbn).then(function (result) {
+    await axios.put(api + isbn, product).then(function (result) {
       return result;
     });
-    console.log(response);
   } catch (error) {
     console.error(error);
   }
 }
 
-async function createNewProduct(product){
-  const response = await axios.post(api,product).then(function (result) {
-    return result;
+async function createNewProduct(product, username) {
+  await axios.post(api, product).then((result) => {
+    const data = {
+      username: username,
+      productISBN: result.data.id,
+    };
+    console.log(data);
+    addBusinessProduct(data);
   });
-  return response;
 }
 
-async function deleteProduct(isbn){
-  let response = await axios.delete(api + isbn).then(function (result) {
-    return result;
-  });
-  //deleteBusinessLink(isbn);
-  return response;
-}
+// async function deleteProduct(isbn){
+//   let response = await axios.delete(api + isbn).then(function (result) {
+//     return result;
+//   });
+//   //deleteBusinessLink(isbn);
+//   return response;
+// }
 
-export { getAllProducts, getProductByIsbn, updateProductByIsbn, createNewProduct };
+export {
+  getAllProducts,
+  getProductByIsbn,
+  getMultipleProductsByIsbn,
+  updateProductByIsbn,
+  createNewProduct,
+};

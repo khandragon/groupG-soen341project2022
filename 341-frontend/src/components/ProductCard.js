@@ -10,7 +10,7 @@ function ProductCard(props) {
     navigate("/Products/" + props.isbn);
   }
 
-  return props.cardStyle == "homepage" ? (
+  return props.cardStyle === "homepage" ? (
     <Card
       className="card-color"
       border="red"

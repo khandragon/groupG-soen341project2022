@@ -1,13 +1,26 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Alert, Button } from "react-bootstrap";
+import { addToCart } from "../../api/Carts-Api";
 
 function AddCartButton(props) {
+  const [show, setShow] = useState(false);
+
   function onButtonClick() {
-    console.log("To cart with ID: " + props.itemID);
+    addToCart(props.cartID, props.isbn);
+    setShow(true);
   }
 
   return (
-    <div class="col-md-12 text-center">
+    <div className="col-md-12 text-center">
+      <Alert
+        show={show}
+        onClose={() => setShow(false)}
+        dismissible
+        transition
+        variant="success"
+      >
+        <Alert.Heading>Added to Cart</Alert.Heading>
+      </Alert>
       <Button onClick={onButtonClick} color="orange" size="lg">
         Add to Cart
       </Button>

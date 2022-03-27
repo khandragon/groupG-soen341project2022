@@ -5,8 +5,11 @@ import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getUserByUsername, updateUser } from "../api/Users-Api";
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -53,7 +56,6 @@ function Profile(props) {
   }, []);
 
   const profInfo = {
-    username: "Username",
     full_name: "Full Name",
     phone_number: "Phone Number",
     address: "Address",
@@ -63,7 +65,7 @@ function Profile(props) {
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
-      <>
+      <div key={key}>
         <ProfileStyle
           val={value}
           key={key}
@@ -77,7 +79,7 @@ function Profile(props) {
           }
         />
         <br />
-      </>
+      </div>
     );
   });
 
@@ -131,7 +133,11 @@ function Profile(props) {
         <br />
         <hr />
         <div className="profile-buttons">
-          <Button className="leftButton" type="button">
+          <Button
+            className="leftButton"
+            type="button"
+            onClick={() => navigate("/OrderHistory")}
+          >
             <h4>Order History</h4>
           </Button>
           <Button

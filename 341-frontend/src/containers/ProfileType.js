@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/Login.css";
-import { Alert, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 //This page is displayed when the user first creates an account, it lets them pick which account type to use.
 function ProfileType(props) {

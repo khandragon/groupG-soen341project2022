@@ -68,50 +68,72 @@ createProductInformation = async (req, res) => {
     });
   }
 
-  var isbnRnd = ""+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+ Math.floor(Math.random()*9) + "-" + Math.floor(Math.random()*9);
+  var isbnRnd =
+    "" +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    Math.floor(Math.random() * 9) +
+    "-" +
+    Math.floor(Math.random() * 9);
   let match = await Products.findOne({ isbn: isbnRnd });
-  while(!(match == null))
-  {
-  var isbnRnd = ""+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+Math.floor(Math.random()*9)+ Math.floor(Math.random()*9) + "-" + Math.floor(Math.random()*9);
-  match = await Products.findOne({ isbn: isbnRnd });
+  while (!(match == null)) {
+    var isbnRnd =
+      "" +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      Math.floor(Math.random() * 9) +
+      "-" +
+      Math.floor(Math.random() * 9);
+    match = await Products.findOne({ isbn: isbnRnd });
   }
   body.isbn = isbnRnd;
 
   const product = new Products(body);
 
   if (!product) {
+    console.log(product);
     return res.status(400).json({ success: false, error: err });
   }
-  
+
   product
     .save()
     .then(() => {
       return res.status(201).json({
         success: true,
         id: isbnRnd,
-        message: "Account created!",
+        message: "Product created!",
       });
     })
     .catch((error) => {
       return res.status(400).json({
         error,
-        message: "account not created!",
+        message: "Product not created!",
       });
     });
-    
 };
 
-deleteProduct = async (req,res) => {
-  try{
-      Products.deleteOne({isbn:req.params.isbn});
-  }catch(e){
-      console.log(e);
-      return res
-          .status(500)
-          .json({ success: false, msg: "something went wrong" });
+deleteProduct = async (req, res) => {
+  try {
+    Products.deleteOne({ isbn: req.params.isbn });
+  } catch (e) {
+    console.log(e);
+    return res
+      .status(500)
+      .json({ success: false, msg: "something went wrong" });
   }
 };
-
 
 module.exports = {
   getAllProducts,
