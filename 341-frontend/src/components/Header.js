@@ -39,7 +39,6 @@ function Header(props) {
     "Brands",
     "Products",
     "Sale",
-    "Blog",
     "Profile",
     "Cart",
   ];
