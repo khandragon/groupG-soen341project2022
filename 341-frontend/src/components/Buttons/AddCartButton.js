@@ -21,7 +21,12 @@ function AddCartButton(props) {
       >
         <Alert.Heading>Added to Cart</Alert.Heading>
       </Alert>
-      <Button onClick={onButtonClick} color="orange" size="lg">
+      <Button
+        className="sideButton"
+        onClick={onButtonClick}
+        color="orange"
+        size="lg"
+      >
         Add to Cart
       </Button>
     </div>

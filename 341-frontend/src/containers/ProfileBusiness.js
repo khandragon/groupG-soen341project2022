@@ -87,6 +87,13 @@ function ProfileBusiness(props) {
             <h4>Products</h4>
           </Button>
           <Button
+            className="leftButton"
+            type="button"
+            onClick={() => navigate("/OrderHistory")}
+          >
+            <h4>Order History</h4>
+          </Button>
+          <Button
             className="rightButton"
             type="button"
             onClick={changeBuisnessInformation}
