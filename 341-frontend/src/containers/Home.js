@@ -21,12 +21,33 @@ function Home(props) {
       updatedAt: "",
     },
   ]);
+
+  const [choiceMonth, setChoiceMonth] = useState([
+    {
+      _id: "",
+      title: "",
+      sellerName: "",
+      description: "",
+      category: "",
+      imgUrl: "",
+      Price: 0,
+      ShippingCost: "",
+      Sale: null,
+      isbn: "",
+      updatedAt: "",
+    },
+  ]);
   useEffect(() => {
     getAllProducts().then((res) => {
       setInventory(res.slice(0, 4));
+      setChoiceMonth([
+        res[Math.floor(Math.random() * res.length + 1)],
+        res[Math.floor(Math.random() * res.length + 1)],
+      ]);
     });
   }, []);
 
+  console.log(choiceMonth);
   return (
     <div>
       <h3 className="rectangle2">
@@ -59,15 +80,26 @@ function Home(props) {
         })}
       </Row>
       <br></br>
-      <h3 className="rectangle8">
-        CUSTOMER CHOICE OF THE MONTH <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-      </h3>
+      <div className="rectangle8">
+        <h3>CUSTOMER CHOICE OF THE MONTH</h3>
+        <Row xs={1} md={2} className="g-4 card-holder">
+          {choiceMonth.map((value) => {
+            console.log(value);
+            return (
+              <Col key={value.title}>
+                <ProductCard
+                  title={value.title}
+                  text={value.description}
+                  header={value.sellerName}
+                  imgUrl={value.imgUrl}
+                  isbn={value.isbn}
+                  cardStyle="homepage"
+                ></ProductCard>
+              </Col>
+            );
+          })}
+        </Row>
+      </div>
     </div>
   );
 }
