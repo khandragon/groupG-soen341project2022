@@ -52,7 +52,6 @@ function BuisnessProducts(props) {
 
     getBusinessProducts(loggedIn).then((res) => {
       const isbnList = res.map((item) => item.productISBN);
-      console.log(isbnList);
       getMultipleProductsByIsbn(isbnList).then((res) => {
         setProducts(res);
         console.log(res);
@@ -78,6 +77,7 @@ function BuisnessProducts(props) {
 
   return (
     <>
+      <h1 className="personal">Products</h1>
       <Button onClick={() => createProduct()}>Create Product</Button>
       <Table>
         <thead>
@@ -89,25 +89,32 @@ function BuisnessProducts(props) {
           </tr>
         </thead>
         <tbody>
-          {products.map((item, index) => (
-            <tr key={item.title}>
-              <td>{index}</td>
-              <td key={index}>{item.title}</td>
-              <td key={index}>{item.isbn}</td>
-              <td key={index}>{item.category}</td>
-              <td key={index}>{item.Price}</td>
-              <td key={index}>
-                <ButtonGroup>
-                  <Button variant="light" onClick={() => editProduct(index)}>
-                    <BsWrench color="black"></BsWrench>
-                  </Button>
-                  <Button variant="light" onClick={() => deleteProduct(index)}>
-                    <BsTrashFill color="black"></BsTrashFill>
-                  </Button>
-                </ButtonGroup>
-              </td>
-            </tr>
-          ))}
+          {products.map((item, index) =>
+            item ? (
+              <tr key={item.title}>
+                <td>{index}</td>
+                <td key={index}>{item.title}</td>
+                <td key={index}>{item.isbn}</td>
+                <td key={index}>{item.category}</td>
+                <td key={index}>{item.Price}</td>
+                <td key={index}>
+                  <ButtonGroup>
+                    <Button variant="light" onClick={() => editProduct(index)}>
+                      <BsWrench color="black"></BsWrench>
+                    </Button>
+                    <Button
+                      variant="light"
+                      onClick={() => deleteProduct(index)}
+                    >
+                      <BsTrashFill color="black"></BsTrashFill>
+                    </Button>
+                  </ButtonGroup>
+                </td>
+              </tr>
+            ) : (
+              ""
+            )
+          )}
         </tbody>
       </Table>
       <CreateEditProduct

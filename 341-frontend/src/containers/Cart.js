@@ -52,7 +52,7 @@ function Cart(prods) {
 
   return (
     <div>
-      <h1 className="cart-header">My Cart</h1>
+      <h1 className="personal">My Cart</h1>
       <hr />
       <CartTopRow></CartTopRow>
       {cart.map((testObject) => {
