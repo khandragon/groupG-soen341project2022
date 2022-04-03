@@ -39,7 +39,6 @@ async function createNewProduct(product, username) {
       username: username,
       productISBN: result.data.id,
     };
-    console.log(data);
     addBusinessProduct(data);
   });
 }

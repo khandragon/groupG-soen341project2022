@@ -21,6 +21,11 @@
   cursor: pointer;
 }
 
+.alert-holder{
+  width: 50%;
+  margin: auto;
+}
+
 #checkout {
   background: linear-gradient(to right, #fdd65d, white) !important;
   text-align: center;

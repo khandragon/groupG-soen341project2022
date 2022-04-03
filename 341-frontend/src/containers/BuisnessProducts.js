@@ -56,7 +56,6 @@ function BuisnessProducts(props) {
       const isbnList = res.map((item) => item.productISBN);
       getMultipleProductsByIsbn(isbnList).then((res) => {
         setProducts(res);
-        console.log(res);
       });
     });
   }
@@ -66,7 +65,6 @@ function BuisnessProducts(props) {
     handleShow();
   }
   function editProduct(index) {
-    console.log(products[index]);
     setModalType("edit");
     setProduct(products[index]);
     handleShow();

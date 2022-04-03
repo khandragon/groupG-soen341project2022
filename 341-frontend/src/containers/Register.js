@@ -20,8 +20,6 @@ function Register(props) {
   const navigate = useNavigate();
   let { registerType } = useParams();
 
-  console.log(registerType);
-
   function checkEmpty() {
     if (
       username !== "" &&

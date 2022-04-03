@@ -45,7 +45,6 @@ function Header(props) {
 
   if (loggedIn && account.business) {
     items.unshift("My Products");
-    console.log(items);
   }
 
   function logoutUser() {
