@@ -4,8 +4,10 @@ import { BsTrashFill, BsWrench } from "react-icons/bs";
 import { getBusinessProducts } from "../api/BusinessProducts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
+import { useNavigate } from "react-router-dom";
 
 function BuisnessProducts(props) {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState(false);
   const [product, setProduct] = useState({
@@ -92,11 +94,40 @@ function BuisnessProducts(props) {
           {products.map((item, index) =>
             item ? (
               <tr key={item.title}>
-                <td>{index}</td>
-                <td key={index}>{item.title}</td>
-                <td key={index}>{item.isbn}</td>
-                <td key={index}>{item.category}</td>
-                <td key={index}>{item.Price}</td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {index}
+                </td>
+                <td
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.title}
+                </td>
+                <td
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.isbn}
+                </td>
+                <td
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.category}
+                </td>
+                <td
+                  key={index}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.Price}
+                </td>
                 <td key={index}>
                   <ButtonGroup>
                     <Button variant="light" onClick={() => editProduct(index)}>
