@@ -64,7 +64,7 @@ function Login(props) {
         <></>
       )}
       <div className="signLink">
-        <a href="/Register">Register</a>
+        <a href="/ProfileType">Register</a>
       </div>
       <Button className="loginBtn" type="button" onClick={loginUser}>
         <h4>Login</h4>

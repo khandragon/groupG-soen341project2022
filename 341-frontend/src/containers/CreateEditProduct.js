@@ -68,7 +68,11 @@ function CreateEditProduct(props) {
   return (
     <>
       {props.pageType === "create" ? (
-        <Modal show={props.show} onHide={() => props.handleClose()}>
+        <Modal
+          dialogClassName="my-modal"
+          show={props.show}
+          onHide={() => props.handleClose()}
+        >
           <Modal.Header closeButton>
             <Modal.Title style={{ textAlign: "center" }}>
               Create Product
@@ -190,7 +194,11 @@ function CreateEditProduct(props) {
           </Modal.Footer>
         </Modal>
       ) : (
-        <Modal show={props.show} onHide={() => props.handleClose()}>
+        <Modal
+          dialogClassName="my-modal"
+          show={props.show}
+          onHide={() => props.handleClose()}
+        >
           <Modal.Header closeButton>
             <Modal.Title style={{ textAlign: "center" }}>
               Edit Product
