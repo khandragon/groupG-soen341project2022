@@ -22,7 +22,7 @@ const App = () => {
     { path: "/", element: <Home /> },
     { path: "/About", element: <About /> },
     { path: "/Login", element: <Login /> },
-    { path: "/Register", element: <Register /> },
+    { path: "/Register/:registerType", element: <Register /> },
     { path: "/Products", element: <Inventory /> },
     { path: "/Products/:productID", element: <Product /> },
     { path: "/Profile", element: <Profile /> },

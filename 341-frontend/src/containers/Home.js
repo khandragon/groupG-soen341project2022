@@ -47,7 +47,6 @@ function Home(props) {
     });
   }, []);
 
-  console.log(choiceMonth);
   return (
     <div>
       <h3 className="rectangle2">
@@ -84,7 +83,6 @@ function Home(props) {
         <h3>CUSTOMER CHOICE OF THE MONTH</h3>
         <Row xs={1} md={2} className="g-4 card-holder">
           {choiceMonth.map((value) => {
-            console.log(value);
             return (
               <Col key={value.title}>
                 <ProductCard
