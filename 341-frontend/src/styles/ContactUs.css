@@ -1,5 +1,4 @@
 .contact-title {
-  font-family: Saira;
   align-items: center;
   text-decoration: underline;
 }
@@ -20,7 +19,6 @@
   background: linear-gradient(to right, #fdd65d, white) !important;
   text-align: center;
   width: 250px;
-  font-family: Saira;
   font-weight: bold;
   color: black;
   border: 1px solid #000000;
