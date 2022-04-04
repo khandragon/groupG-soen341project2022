@@ -5,7 +5,7 @@ const { deleteBusinessLink } = require("./businessProducts-ctrl");
 getProductsCategory = async (req, res) => { 
     try {
       const products = await Products.find({
-        category: req.params.category, // in Products, finds all items from a given category
+        category: req.params.category, // in Products, find all items from a given category
       });
       return res.status(200).json({ success: true, data: products }); // returns all products from given category
     } catch (e) {
@@ -17,5 +17,5 @@ getProductsCategory = async (req, res) => {
   };
 
 module.exports = {
-    getProductsCategory,
+    getProductsCategory, 
 }
