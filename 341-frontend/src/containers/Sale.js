@@ -51,7 +51,7 @@ function Sale(prods) {
     <div className="text-truncate">
       <Row xs={3} md={3} id="hash">
         <Col id="title">
-          <h1 className="inventory-title">OUR PRODUCTS</h1>
+          <h1 className="inventory-title">OUR PRODUCTS ON SALE</h1>
         </Col>
         <Col id="search">
           <SearchBarProducts
