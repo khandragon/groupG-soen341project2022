@@ -23,6 +23,7 @@ function ProductCard(props) {
         <Card.Title>{props.title}</Card.Title>
         <Card.Text>{props.text}</Card.Text>
         <Card.Header>{props.header}</Card.Header>
+        <Card.Footer>{props.sale}</Card.Footer>
       </Card.Body>
     </Card>
   ) : (
@@ -38,6 +39,7 @@ function ProductCard(props) {
         <Card.Title>{props.title}</Card.Title>
         <Card.Text>{props.text}</Card.Text>
         <Card.Header>{props.header}</Card.Header>
+        <Card.Footer>{props.sale}</Card.Footer>
       </Card.Body>
     </Card>
   );
