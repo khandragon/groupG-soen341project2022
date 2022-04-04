@@ -62,19 +62,23 @@ function Inventory(prods) {
         </Col>
       </Row>
       <Row id="cardsrow" xs={1} md={2} className="g-4 card-holder">
-        {displayInventory.map((value) => {
-          return (
-            <Col key={value.title}>
-              <ProductCard
-                title={value.title}
-                text={value.description}
-                header={value.sellerName}
-                imgUrl={value.imgUrl}
-                isbn={value.isbn}
-              ></ProductCard>
-            </Col>
-          );
-        })}
+        {displayInventory.length > 0 ? (
+          displayInventory.map((value) => {
+            return (
+              <Col key={value.title}>
+                <ProductCard
+                  title={value.title}
+                  text={value.description}
+                  header={value.sellerName}
+                  imgUrl={value.imgUrl}
+                  isbn={value.isbn}
+                ></ProductCard>
+              </Col>
+            );
+          })
+        ) : (
+          <h3>No Products Found</h3>
+        )}
       </Row>
       <InventoryPagination
         size={pageNb}

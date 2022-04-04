@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 function ProfileType(props) {
   const navigate = useNavigate();
   function onButtonClick() {
-    navigate("/Register");
+    navigate("/Register/Personal");
   }
 
   function onButtonClick2() {
-    navigate("/Register");
+    navigate("/Register/Buisness");
   }
   //This page includes a description of each type, and a button that leads to each page.
   return (
-    <div class="row">
+    <div className="row">
       <h1 style={{ textAlign: "center" }}>Select Profile Type</h1>
-      <div class="col-md-6 text-center">
+      <div className="col-md-6 text-center">
         <h2>Personal</h2>
         <p style={{ margin: "10px 100px 20px" }}>
           Personal accounts are for shoppers who want to skip having to re-enter
@@ -26,7 +26,7 @@ function ProfileType(props) {
         </p>
         <Button onClick={onButtonClick}>Register Personal Account</Button>
       </div>
-      <div class="col-md-6 text-center">
+      <div className="col-md-6 text-center">
         <h2>Business</h2>
         <p style={{ margin: "10px 100px 20px" }}>
           Business accounts are for businesses who wish to sell their products

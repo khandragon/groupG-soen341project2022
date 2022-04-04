@@ -33,7 +33,7 @@ function Header(props) {
     }
   }, [loggedIn]);
 
-  const items = [
+  let items = [
     "Home",
     "About",
     "Brands",
@@ -42,6 +42,10 @@ function Header(props) {
     "Profile",
     "Cart",
   ];
+
+  if (loggedIn && account.business) {
+    items.unshift("My Products");
+  }
 
   function logoutUser() {
     localStorage.removeItem("LoggedIn");
@@ -74,6 +78,12 @@ function Header(props) {
     } else if (item === "Home") {
       menuItems.push(
         <Nav.Link key={item} href={"/"}>
+          {item}
+        </Nav.Link>
+      );
+    } else if (item === "My Products") {
+      menuItems.push(
+        <Nav.Link key={item} href={"/BuisnessProducts"}>
           {item}
         </Nav.Link>
       );
