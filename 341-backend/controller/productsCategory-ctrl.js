@@ -1,12 +1,13 @@
 const Products = require("../schemas/products-model");
 const { deleteBusinessLink } = require("./businessProducts-ctrl");
 
-getProductsCategory = async (req, res) => {
+// returns all products belonging to a given category
+getProductsCategory = async (req, res) => { 
     try {
       const products = await Products.find({
-        category: req.params.category,
+        category: req.params.category, // in Products, finds all items from a given category
       });
-      return res.status(200).json({ success: true, data: products });
+      return res.status(200).json({ success: true, data: products }); // returns all products from given category
     } catch (e) {
       console.log(e);
       return res
