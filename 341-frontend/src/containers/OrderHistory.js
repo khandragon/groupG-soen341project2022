@@ -1,13 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { getOrders } from "../api/Orders-Api";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
+import { getMultipleProductsByIsbn } from "../api/Products-Api";
 
 //This page shows the order history, it receivs the info from the database and ppresents it to the user.
 //User must be logged in to access this page
 function OrderHistory(props) {
   const navigate = useNavigate();
 
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([
+    {
+      _id: "",
+      arrivalDate: "",
+      orderedDate: "",
+      payed: 0,
+      productISBN: "",
+      username: "",
+    },
+  ]);
+  const [products, setProducts] = useState([
+    {
+      _id: "",
+      title: "",
+      sellerName: "",
+      description: "",
+      category: "",
+      imgUrl: "",
+      Price: 0,
+      ShippingCost: "",
+      Sale: null,
+      isbn: "",
+      updatedAt: "",
+    },
+  ]);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
@@ -15,63 +41,56 @@ function OrderHistory(props) {
     if (loggedIn) {
       getOrders(loggedIn).then((res) => {
         setOrders(res);
+        const isbnList = res.map((item) => item.productISBN);
+        getMultipleProductsByIsbn(isbnList).then((res) => {
+          setProducts(res);
+        });
       });
     }
   }, []);
 
-  console.log(orders);
+  const tableFields = ["Title", "Isbn", "Price", "Ordered Date", "Arival Date"];
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col"></div>
-        <div className="col">
-          <p>Username</p>
-        </div>
-        <div className="col">
-          <p>Isbn</p>
-        </div>
-        <div className="col">
-          <p>Price(CAD)</p>
-        </div>
-        <div className="col">
-          <p>Ordered Date</p>
-        </div>
-        <div className="col">
-          <p>Arival Date</p>
-        </div>
-      </div>
-      {orders ? (
-        orders.map((order, index) => (
-          <div
-            className="row"
-            style={{ cursor: "pointer" }}
-            key={index + 1}
-            onClick={() => navigate("../Products/" + order.productISBN)}
-          >
-            <div className="col">{index + 1}</div>
-            <div className="col">
-              <p>{order.username}</p>
-            </div>
-            <div className="col">
-              <p>{order.productISBN}</p>
-            </div>
-            <div className="col">
-              <p>{order.payed}</p>
-            </div>
-            <div className="col">
-              <p>{order.orderedDate}</p>
-            </div>
-            <div className="col">
-              <p>{order.arrivalDate}</p>
-            </div>
-          </div>
-        ))
+    <>
+      <h1 className="personal">Order History</h1>
+      {orders[0] ? (
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              {Array.from(tableFields).map((_, index) => (
+                <th key={index}>{_}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((item, index) =>
+              item && products ? (
+                <tr
+                  key={index._id}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  <td>{index}</td>
+                  <td>{item.title}</td>
+                  <td>{item.isbn}</td>
+                  <td>{orders[index].payed}</td>
+                  <td>{orders[index].orderedDate}</td>
+                  <td>{orders[index].arrivalDate}</td>
+                </tr>
+              ) : (
+                ""
+              )
+            )}
+          </tbody>
+        </Table>
       ) : (
-        <p>Empty, No Orders</p>
+        <div style={{ textAlign: "center", marginTop: "5%" }}>
+          <h3>Sorry no orders found</h3>
+        </div>
       )}
-    </div>
-    //There is also a setup to ensure that there are orders that exist, if none it displays a short message.
+    </>
   );
 }
 

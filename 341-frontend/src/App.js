@@ -17,13 +17,14 @@ import Cart from "./containers/Cart";
 import OrderHistory from "./containers/OrderHistory";
 import BuisnessProducts from "./containers/BuisnessProducts";
 import ContactUs from "./containers/ContactUs";
+import Sale from "./containers/Sale";
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "/About", element: <About /> },
     { path: "/Login", element: <Login /> },
-    { path: "/Register", element: <Register /> },
+    { path: "/Register/:registerType", element: <Register /> },
     { path: "/Products", element: <Inventory /> },
     { path: "/Products/:productID", element: <Product /> },
     { path: "/Profile", element: <Profile /> },
@@ -34,6 +35,7 @@ const App = () => {
     { path: "/Cart", element: <Cart /> },
     { path: "/OrderHistory", element: <OrderHistory /> },
     { path: "/ContactUs", element: <ContactUs /> },
+    { path: "/Sale", element: <Sale /> },
   ]);
   return routes;
 };

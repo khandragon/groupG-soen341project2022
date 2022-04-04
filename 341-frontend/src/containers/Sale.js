@@ -7,7 +7,7 @@ import ProductCard from "../components/ProductCard";
 import { getAllProducts } from "../api/Products-Api";
 import InventoryPagination from "../components/InventoryPagination";
 
-function Inventory(prods) {
+function Sale(prods) {
   const [inventory, setInventory] = useState([
     {
       _id: "",
@@ -72,6 +72,7 @@ function Inventory(prods) {
                   header={value.sellerName}
                   imgUrl={value.imgUrl}
                   isbn={value.isbn}
+                  sale={value.sale}
                 ></ProductCard>
               </Col>
             );
@@ -89,4 +90,4 @@ function Inventory(prods) {
   );
 }
 
-export default Inventory;
+export default Sale;

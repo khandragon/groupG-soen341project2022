@@ -31,9 +31,6 @@ function Profile(props) {
   const [newPassword2, setNewPassword2] = useState("");
 
   function changePasswordClick(e) {
-    console.log(
-      currentPassword === user.password && newPassword2 === newPassword
-    );
     if (currentPassword === user.password && newPassword2 === newPassword) {
       updateUser(user.username, {
         username: user.username,
@@ -46,12 +43,10 @@ function Profile(props) {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
-      console.log(res);
     });
 
     getUserByUsername(loggedIn).then((res) => {
       setUser(res);
-      console.log(res);
     });
   }, []);
 
