@@ -73,6 +73,9 @@ createAccountInformation = async (req, res) => {
     return res.status(400).json({ success: false, error: err });
   }
 
+  account.cartID = createCart().cartID;
+
+
   account
     .save()
     .then(() => {
