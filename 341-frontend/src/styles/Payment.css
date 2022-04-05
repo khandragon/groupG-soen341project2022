@@ -1,0 +1,48 @@
+.h3 {
+  font-family: Saira;
+}
+
+.h4 {
+  font-family: Saira;
+  text-align: left;
+}
+
+.infoCol {
+  text-align: left;
+}
+
+#msgErr {
+  font-family: Saira;
+  color: red;
+  text-decoration: underline;
+}
+
+#place {
+  background: linear-gradient(to right, #fdd65d, white) !important;
+  text-align: center;
+  width: 250px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#back {
+  background: linear-gradient(to right, #fdd65d, white) !important;
+  text-align: center;
+  width: 250px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.form2 {
+  background: linear-gradient(to right, #fdd65d, white) !important;
+}
+
+#btnRow {
+  padding-top: 7.5%;
+}
