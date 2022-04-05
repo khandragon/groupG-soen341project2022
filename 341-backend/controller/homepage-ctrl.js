@@ -1,20 +1,22 @@
-const Homepage = require("../schemas/homepage-model");
+
+const Products = require("../schemas/products-model");
 const { deleteBusinessLink } = require("./businessProducts-ctrl");
 
 getHomeProducts = async (req, res) => {
+    var randomNumber = Math.floor(Math.random() * (products.length() - 1));
+    var posted = new Array();
     try {
-        var limit = 4;
-        var i;
-        var randomNumber;
-        var posted = new Array();
-        for (i < 0; i < limit; i++) {
-            while (posted.includes(randomNumber)) {
-                randomNumber = Math.floor(Math.random() * homepage.length());
-            };
-            const homepage = await Homepage.find( { $arrayElemAt: "homepage", randomNumber });
+        while (posted.length() <= products.length()) {
+            if (posted.includes(randomNumber)) {
+                randomNumber = Math.floor(Math.random() * (products.length() - 1));
+            }
+            else {
+            const products = await Products.find( { $arrayElemAt: "products", randomNumber });
             posted.push(randomNumber);
-            return res.status(200).json({ success: true, data: homepage });
-        }
+            }
+        };
+        
+        return res.status(200).json({ success: true, data: products });
     } catch (e) {
         console.log(e);
         return res
@@ -22,7 +24,7 @@ getHomeProducts = async (req, res) => {
           .json({ success: false, msg: "something went wrong" });
       }
 };
-    
+
 module.exports = {
     getHomeProducts,
 };
