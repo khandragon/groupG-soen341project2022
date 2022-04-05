@@ -11,5 +11,6 @@ router.put("/products/:isbn", productsCtrl.updateProductInformation);
 router.post("/products/", productsCtrl.createProductInformation);
 router.delete("/products/:isbn", productsCtrl.deleteProduct);
 router.get("/productsCategory/:category", productsCategoryCtrl.getProductsCategory);
+router.get("products/", homepageCtrl.getHomeProducts);
 
 module.exports = router;
