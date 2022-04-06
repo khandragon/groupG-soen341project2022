@@ -39,9 +39,11 @@ function Profile(props) {
     }
   }
 
-  function setAccountOption(option, e) {
-    console.log(option);
-    console.log(e);
+  function setAccountOption(option, value) {
+    setAccount({
+      ...account,
+      [option]: value,
+    });
   }
 
   useEffect(() => {
@@ -75,7 +77,7 @@ function Profile(props) {
               type="text"
               size="40"
               value={account[key]}
-              onChange={(e) => setAccountOption(value, e)}
+              onChange={(e) => setAccountOption(key, e.target.value)}
             />
           }
         />

@@ -28,6 +28,13 @@ function Admin(props) {
     });
   }, []);
 
+  function setAccountOption(option, value) {
+    setAccount({
+      ...account,
+      [option]: value,
+    });
+  }
+
   function changeBuisnessInformation() {
     console.log("change");
   }
@@ -51,6 +58,7 @@ function Admin(props) {
               type="text"
               size="40"
               value={account[key]}
+              onChange={(e) => setAccountOption(key, e.target.value)}
             />
           }
         />

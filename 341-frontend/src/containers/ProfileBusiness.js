@@ -24,6 +24,13 @@ function ProfileBusiness(props) {
     "Tell the customers about your business...."
   );
 
+  function setAccountOption(option, value) {
+    setAccount({
+      ...account,
+      [option]: value,
+    });
+  }
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
@@ -55,6 +62,7 @@ function ProfileBusiness(props) {
               type="text"
               size="40"
               value={account[key]}
+              onChange={(e) => setAccountOption(key, e.target.value)}
             />
           }
         />
