@@ -88,9 +88,8 @@ function Profile(props) {
 
   return (
     <div>
-      <p className="personal">
-        <h3>Your Personal Profile</h3>
-      </p>
+      <h3 className="personal">Your Personal Profile</h3>
+      <br />
       <form>
         {profItems.map((val, i) => {
           return val;
