@@ -3,35 +3,16 @@ import "../styles/Brands.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import { getAllCategories } from "../api/Category-Api";
 
 function Brands(props) {
-  const brands = [
-    "Historical Fiction",
-    "Biography",
-    "Fantasy",
-    "Science Fiction",
-    "Adventure",
-    "Literature",
-    "Young Adult",
-    "Academic",
-    "Dystopia",
-    "Health",
-    "Childrens",
-    "True Crime",
-    "Classics",
-    "Politics",
-    "Cultural",
-    "Mystery",
-    "Spirituality",
-    "Gothic",
-    "Fiction",
-    "Historical",
-    "Novels",
-    "Electronics",
-    "Sports",
-    "Toys and Games",
-    "Kitchen and Dining",
-  ];
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    getAllCategories().then((res) => {
+      setBrands(res);
+    });
+  });
 
   return (
     <div>
