@@ -39,6 +39,11 @@ function Profile(props) {
     }
   }
 
+  function setAccountOption(option, e) {
+    console.log(option);
+    console.log(e);
+  }
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
@@ -70,6 +75,7 @@ function Profile(props) {
               type="text"
               size="40"
               value={account[key]}
+              onChange={(e) => setAccountOption(value, e)}
             />
           }
         />
