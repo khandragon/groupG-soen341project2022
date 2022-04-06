@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { BsTrashFill, BsWrench } from "react-icons/bs";
 import { getBusinessProducts } from "../api/BusinessProducts-Api";
-import { getMultipleProductsByIsbn } from "../api/Products-Api";
+import { getAllProducts, getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function BuisnessProducts(props) {
   const navigate = useNavigate();
+  const productType = useLocation().state.type;
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState(false);
   const [product, setProduct] = useState({
@@ -46,19 +47,21 @@ function BuisnessProducts(props) {
   ]);
 
   useEffect(() => {
-    getBuisnessData();
-  }, []);
+    if (productType !== "admin") {
+      const loggedIn = localStorage.getItem("LoggedIn");
 
-  function getBuisnessData() {
-    const loggedIn = localStorage.getItem("LoggedIn");
-
-    getBusinessProducts(loggedIn).then((res) => {
-      const isbnList = res.map((item) => item.productISBN);
-      getMultipleProductsByIsbn(isbnList).then((res) => {
+      getBusinessProducts(loggedIn).then((res) => {
+        const isbnList = res.map((item) => item.productISBN);
+        getMultipleProductsByIsbn(isbnList).then((res) => {
+          setProducts(res);
+        });
+      });
+    } else {
+      getAllProducts().then((res) => {
         setProducts(res);
       });
-    });
-  }
+    }
+  }, [productType]);
 
   function createProduct() {
     setModalType("create");
@@ -77,14 +80,18 @@ function BuisnessProducts(props) {
 
   return (
     <>
-      <h1 className="personal">Products</h1>
+      {productType !== "admin" ? (
+        <h1 className="personal">Products</h1>
+      ) : (
+        <h1 className="personal">Admin: Products</h1>
+      )}
       <Button onClick={() => createProduct()}>Create Product</Button>
       <Table>
         <thead>
           <tr>
             <th>#</th>
             {Array.from(tableFields).map((_, index) => (
-              <th key={index}>{_}</th>
+              <th key={index + "th"}>{_}</th>
             ))}
           </tr>
         </thead>
@@ -99,34 +106,30 @@ function BuisnessProducts(props) {
                   {index}
                 </td>
                 <td
-                  key={index}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >
                   {item.title}
                 </td>
                 <td
-                  key={index}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >
                   {item.isbn}
                 </td>
                 <td
-                  key={index}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >
                   {item.category}
                 </td>
                 <td
-                  key={index}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >
                   {item.Price}
                 </td>
-                <td key={index}>
+                <td>
                   <ButtonGroup>
                     <Button variant="light" onClick={() => editProduct(index)}>
                       <BsWrench color="black"></BsWrench>
