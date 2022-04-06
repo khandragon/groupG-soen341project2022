@@ -16,6 +16,8 @@ import CreateEditProduct from "./containers/CreateEditProduct";
 import Cart from "./containers/Cart";
 import OrderHistory from "./containers/OrderHistory";
 import BuisnessProducts from "./containers/BuisnessProducts";
+import Payment from "./containers/Payment";
+import OrderConfirmation from "./containers/OrderConfirmation";
 
 const App = () => {
   let routes = useRoutes([
@@ -32,6 +34,8 @@ const App = () => {
     { path: "/CreateEditProduct", element: <CreateEditProduct /> },
     { path: "/Cart", element: <Cart /> },
     { path: "/OrderHistory", element: <OrderHistory /> },
+    { path: "/Payment", element: <Payment /> },
+    { path: "/OrderConfirmation", element: <OrderConfirmation /> },
   ]);
   return routes;
 };

@@ -6,9 +6,11 @@ import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate } from "react-router-dom";
 
+//This function display prfile bussiness page
 function ProfileBusiness(props) {
   const navigate = useNavigate();
 
+  // setAccount needed to modify the data
   const [account, setAccount] = useState({
     username: "",
     email: "",
@@ -24,6 +26,7 @@ function ProfileBusiness(props) {
     "Tell the customers about your business...."
   );
 
+  // useEffect is used to hadle data from database
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
@@ -42,6 +45,7 @@ function ProfileBusiness(props) {
     email: "Email",
   };
 
+  // Array profItems will be used in the return statement
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
@@ -63,6 +67,7 @@ function ProfileBusiness(props) {
     );
   });
 
+  // This return will display all required features and buttons
   return (
     <div>
       <h3 className="personal">Your Buisness Profile </h3>
