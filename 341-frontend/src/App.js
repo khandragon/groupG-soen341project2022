@@ -19,6 +19,7 @@ import BuisnessProducts from "./containers/BuisnessProducts";
 import ContactUs from "./containers/ContactUs";
 import Sale from "./containers/Sale";
 import Payment from "./containers/Payment";
+import Brands from "./containers/Brands";
 
 const App = () => {
   let routes = useRoutes([
@@ -38,6 +39,7 @@ const App = () => {
     { path: "/ContactUs", element: <ContactUs /> },
     { path: "/Sale", element: <Sale /> },
     { path: "/Payment", element: <Payment /> },
+    { path: "/Brands", element: <Brands /> },
   ]);
   return routes;
 };
