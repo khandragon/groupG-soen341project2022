@@ -1,9 +1,4 @@
-.h3 {
-  font-family: Saira;
-}
-
 .h4 {
-  font-family: Saira;
   text-align: left;
 }
 
@@ -12,7 +7,6 @@
 }
 
 #msgErr {
-  font-family: Saira;
   color: red;
   text-decoration: underline;
 }
