@@ -24,12 +24,13 @@ function Shipping(props) {
   const navigate = useNavigate();
 
   function checkEmpty() {
+    console.log(shipping.address);
     if (
-      shipping[0] !== "" &&
-      shipping[1] !== "" &&
-      shipping[2] !== "" &&
-      shipping[3] !== "" &&
-      shipping[4] !== ""
+      shipping.address !== "" &&
+      shipping.city !== "" &&
+      shipping.province !== "" &&
+      shipping.country !== "" &&
+      shipping.recipient !== ""
     ) {
       setEmptyError(false);
       return true;
@@ -41,6 +42,9 @@ function Shipping(props) {
     if (checkEmpty()) {
       console.log("navigate(/PayementInfo)");
     }
+  }
+  function move() {
+    console.log("navigate(/OrderInfo)");
   }
 
   let shipItems = [];
@@ -57,6 +61,7 @@ function Shipping(props) {
               type="text"
               size="40"
               value={shipping[key]}
+              onChange={(e) => setShipping(e.target.value)}
             />
           }
         />
@@ -75,11 +80,7 @@ function Shipping(props) {
       <Button className="rightButton" type="button" onClick={changeShipping}>
         <h4>Procede to Payment</h4>
       </Button>
-      <Button
-        className="leftButton"
-        type="button"
-        onClick={console.log("navigate(/OrderInfo)")}
-      >
+      <Button className="leftButton" type="button" onClick={move}>
         <h4>Back to Order Info</h4>
       </Button>
       {emptyError ? (
