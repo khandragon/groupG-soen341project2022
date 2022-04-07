@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -17,7 +17,7 @@ function Payment(props) {
     <div>
       <Row>
         <Col>
-          <h3>Shipping Information</h3>
+          <h1 className="personal">Payment Information</h1>
         </Col>
       </Row>
       <hr />

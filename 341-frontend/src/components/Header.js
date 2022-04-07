@@ -36,7 +36,7 @@ function Header(props) {
   let items = [
     "Home",
     "About",
-    "Brands",
+    "Categories",
     "Products",
     "Sale",
     "Profile",
