@@ -1,3 +1,4 @@
+import "../styles/About.css";
 import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
@@ -6,7 +7,7 @@ import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate } from "react-router-dom";
 
-function ProfileBusiness(props) {
+function Admin(props) {
   const navigate = useNavigate();
 
   const [account, setAccount] = useState({
@@ -20,9 +21,12 @@ function ProfileBusiness(props) {
     cartID: 0,
   });
 
-  const [description, setDescription] = useState(
-    "Tell the customers about your business...."
-  );
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("LoggedIn");
+    getAccountInformation(loggedIn).then((res) => {
+      setAccount(res);
+    });
+  }, []);
 
   function setAccountOption(option, value) {
     setAccount({
@@ -31,21 +35,13 @@ function ProfileBusiness(props) {
     });
   }
 
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("LoggedIn");
-    getAccountInformation(loggedIn).then((res) => {
-      setAccount(res);
-    });
-  }, []);
-
   function changeBuisnessInformation() {
     console.log("change");
   }
 
   const profInfo = {
     full_name: "Name",
-    phone_number: "Phone Number",
-    address: "Address",
+    username: "Username",
     email: "Email",
   };
 
@@ -73,18 +69,16 @@ function ProfileBusiness(props) {
 
   return (
     <div>
-      <h3 className="personal">Your Buisness Profile </h3>
+      <h3 className="personal">Admin </h3>
       <form>
         {profItems.map((val, i) => {
           return val;
         })}
-        ;<h4 className="profText">Description</h4>
+        <div style={{ textAlign: "center" }}>
+          <h4>Please contact the administrator to change the password</h4>
+        </div>
+
         <br />
-        <br />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
         <br />
         <div className="profile-buttons">
           <Button
@@ -92,19 +86,13 @@ function ProfileBusiness(props) {
             type="button"
             onClick={() =>
               navigate("/BuisnessProducts", {
-                state: { type: "buisness" },
+                state: { type: "admin" },
               })
             }
           >
             <h4>Products</h4>
           </Button>
-          <Button
-            className="leftButton"
-            type="button"
-            onClick={() => navigate("/OrderHistory")}
-          >
-            <h4>Order History</h4>
-          </Button>
+
           <Button
             className="rightButton"
             type="button"
@@ -118,4 +106,4 @@ function ProfileBusiness(props) {
   );
 }
 
-export default ProfileBusiness;
+export default Admin;

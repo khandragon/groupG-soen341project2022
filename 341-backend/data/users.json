@@ -1,6 +1,6 @@
 [
   { "username": "Localize", "password": "test" },
-  { "username": "mbugge0", "password": "q2bIgHIueI" },
+  { "username": "mbugge0", "password": "test" },
   { "username": "graye1", "password": "JYcAGTGO" },
   { "username": "ilundie2", "password": "KlzJPEF" },
   { "username": "lthomson3", "password": "fjxQQWxyD" },
@@ -9,5 +9,6 @@
   { "username": "gsalliss6", "password": "2fi5yPvkez7" },
   { "username": "dtellett7", "password": "wYe3jHeKdVuD" },
   { "username": "mkirkbright8", "password": "eAKG8Aww" },
+  { "username": "admin", "password": "admin" },
   { "username": "paust9", "password": "PheqH9" }
 ]

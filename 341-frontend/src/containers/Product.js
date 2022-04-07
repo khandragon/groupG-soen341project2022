@@ -37,9 +37,7 @@ function Product(props) {
     cartID: 0,
   });
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
+  const loggedIn = localStorage.getItem("LoggedIn");
 
   useEffect(() => {
     if (loggedIn) {
@@ -49,9 +47,8 @@ function Product(props) {
     }
     getProductByIsbn(urlIsbn).then((res) => {
       setProduct(res);
-      console.log(res);
     });
-  }, [urlIsbn]);
+  }, [urlIsbn, loggedIn]);
 
   return (
     <div>

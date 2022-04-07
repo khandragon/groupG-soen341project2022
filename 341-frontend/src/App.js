@@ -17,13 +17,18 @@ import Cart from "./containers/Cart";
 import OrderHistory from "./containers/OrderHistory";
 import BuisnessProducts from "./containers/BuisnessProducts";
 import Shipping from "./containers/Shipping";
+import ContactUs from "./containers/ContactUs";
+import Sale from "./containers/Sale";
+import Payment from "./containers/Payment";
+import Admin from "./containers/Admin";
+import Brands from "./containers/Brands";
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "/About", element: <About /> },
     { path: "/Login", element: <Login /> },
-    { path: "/Register", element: <Register /> },
+    { path: "/Register/:registerType", element: <Register /> },
     { path: "/Products", element: <Inventory /> },
     { path: "/Products/:productID", element: <Product /> },
     { path: "/Profile", element: <Profile /> },
@@ -34,6 +39,11 @@ const App = () => {
     { path: "/Cart", element: <Cart /> },
     { path: "/OrderHistory", element: <OrderHistory /> },
     { path: "/Shipping", element: <Shipping /> },
+    { path: "/ContactUs", element: <ContactUs /> },
+    { path: "/Sale", element: <Sale /> },
+    { path: "/Payment", element: <Payment /> },
+    { path: "/Admin", element: <Admin /> },
+    { path: "/Brands", element: <Brands /> },
   ]);
   return routes;
 };

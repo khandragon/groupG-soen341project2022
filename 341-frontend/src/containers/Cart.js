@@ -3,12 +3,14 @@ import CartRow from "../components/CartRow";
 import CartBottomRow from "../components/CartBottomRow";
 import CartTopRow from "../components/CartTopRow";
 import "../styles/Cart.css";
-import { getCart } from "../api/Carts-Api";
+import { getCart, removeFromCart } from "../api/Carts-Api";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
+import { Alert } from "react-bootstrap";
 
 function Cart(prods) {
   const [cart, setCart] = useState([]);
+  const [show, setShow] = useState(false);
 
   const [account, setAccount] = useState({
     username: "",
@@ -40,8 +42,11 @@ function Cart(prods) {
     }
   }, [loggedIn, loadData]);
 
-  function onDelete() {
-    loadData().then(() => window.location.reload());
+  function onDelete(removeIsbn) {
+    setShow(true);
+    removeFromCart(account.cartID, removeIsbn).then((res) => {
+      loadData();
+    });
   }
 
   var sum = 0;
@@ -52,21 +57,32 @@ function Cart(prods) {
 
   return (
     <div>
-      <h1 className="cart-header">My Cart</h1>
+      <h1 className="personal">My Cart</h1>
       <hr />
       <CartTopRow></CartTopRow>
-      {cart.map((testObject) => {
+      {cart.map((item) => {
         return (
           <CartRow
             onDelete={onDelete}
             cartID={account.cartID}
-            key={testObject.title}
-            name={testObject.title}
-            isbn={testObject.isbn}
-            unit_price={testObject.Price}
+            key={item.title}
+            name={item.title}
+            isbn={item.isbn}
+            unit_price={item.Price}
           ></CartRow>
         );
       })}
+      <div className="alert-holder">
+        <Alert
+          show={show}
+          onClose={() => setShow(false)}
+          dismissible
+          transition
+          variant="danger"
+        >
+          <Alert.Heading>Deleted from Cart</Alert.Heading>
+        </Alert>
+      </div>
       <CartBottomRow sum={sum}></CartBottomRow>
     </div>
   );

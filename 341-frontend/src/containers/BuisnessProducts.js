@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { BsTrashFill, BsWrench } from "react-icons/bs";
 import { getBusinessProducts } from "../api/BusinessProducts-Api";
-import { getMultipleProductsByIsbn } from "../api/Products-Api";
+import { getAllProducts, getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function BuisnessProducts(props) {
+  const navigate = useNavigate();
+  const productType = useLocation().state.type;
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState(false);
   const [product, setProduct] = useState({
@@ -44,28 +47,27 @@ function BuisnessProducts(props) {
   ]);
 
   useEffect(() => {
-    getBuisnessData();
-  }, []);
+    if (productType !== "admin") {
+      const loggedIn = localStorage.getItem("LoggedIn");
 
-  function getBuisnessData() {
-    const loggedIn = localStorage.getItem("LoggedIn");
-
-    getBusinessProducts(loggedIn).then((res) => {
-      const isbnList = res.map((item) => item.productISBN);
-      console.log(isbnList);
-      getMultipleProductsByIsbn(isbnList).then((res) => {
-        setProducts(res);
-        console.log(res);
+      getBusinessProducts(loggedIn).then((res) => {
+        const isbnList = res.map((item) => item.productISBN);
+        getMultipleProductsByIsbn(isbnList).then((res) => {
+          setProducts(res);
+        });
       });
-    });
-  }
+    } else {
+      getAllProducts().then((res) => {
+        setProducts(res);
+      });
+    }
+  }, [productType]);
 
   function createProduct() {
     setModalType("create");
     handleShow();
   }
   function editProduct(index) {
-    console.log(products[index]);
     setModalType("edit");
     setProduct(products[index]);
     handleShow();
@@ -78,36 +80,73 @@ function BuisnessProducts(props) {
 
   return (
     <>
+      {productType !== "admin" ? (
+        <h1 className="personal">Products</h1>
+      ) : (
+        <h1 className="personal">Admin: Products</h1>
+      )}
       <Button onClick={() => createProduct()}>Create Product</Button>
       <Table>
         <thead>
           <tr>
             <th>#</th>
             {Array.from(tableFields).map((_, index) => (
-              <th key={index}>{_}</th>
+              <th key={index + "th"}>{_}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {products.map((item, index) => (
-            <tr key={item.title}>
-              <td>{index}</td>
-              <td key={index}>{item.title}</td>
-              <td key={index}>{item.isbn}</td>
-              <td key={index}>{item.category}</td>
-              <td key={index}>{item.Price}</td>
-              <td key={index}>
-                <ButtonGroup>
-                  <Button variant="light" onClick={() => editProduct(index)}>
-                    <BsWrench color="black"></BsWrench>
-                  </Button>
-                  <Button variant="light" onClick={() => deleteProduct(index)}>
-                    <BsTrashFill color="black"></BsTrashFill>
-                  </Button>
-                </ButtonGroup>
-              </td>
-            </tr>
-          ))}
+          {products.map((item, index) =>
+            item ? (
+              <tr key={item.title}>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {index}
+                </td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.title}
+                </td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.isbn}
+                </td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.category}
+                </td>
+                <td
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("../Products/" + item.isbn)}
+                >
+                  {item.Price}
+                </td>
+                <td>
+                  <ButtonGroup>
+                    <Button variant="light" onClick={() => editProduct(index)}>
+                      <BsWrench color="black"></BsWrench>
+                    </Button>
+                    <Button
+                      variant="light"
+                      onClick={() => deleteProduct(index)}
+                    >
+                      <BsTrashFill color="black"></BsTrashFill>
+                    </Button>
+                  </ButtonGroup>
+                </td>
+              </tr>
+            ) : (
+              ""
+            )
+          )}
         </tbody>
       </Table>
       <CreateEditProduct

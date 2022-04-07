@@ -22,7 +22,6 @@
 }
 
 .inventory-title {
-  font-family: Saira;
   padding-right: 20%;
 }
 .card {
@@ -41,17 +40,12 @@
 }
 
 .card-title {
-  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
-.card-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-.card-header {
-  font-family: Arial, Helvetica, sans-serif;
-}
+
+
 
 .col {
   text-align: center;
