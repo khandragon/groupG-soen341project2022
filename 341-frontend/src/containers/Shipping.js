@@ -40,8 +40,14 @@ function Shipping(props) {
   }
   function changeShipping() {
     if (checkEmpty()) {
-      console.log("navigate(/PayementInfo)");
+      navigate("/Payment");
     }
+  }
+  function setShippingOption(option, value) {
+    setShipping({
+      ...shipping,
+      [option]: value,
+    });
   }
   function move() {
     console.log("navigate(/OrderInfo)");
@@ -61,7 +67,7 @@ function Shipping(props) {
               type="text"
               size="40"
               value={shipping[key]}
-              onChange={(e) => setShipping(e.target.value)}
+              onChange={(e) => setShippingOption(key, e.target.value)}
             />
           }
         />
