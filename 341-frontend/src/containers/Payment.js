@@ -1,56 +1,110 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import "../styles/Payment.css";
-import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import "../styles/About.css";
+import "../styles/components/Profile.css";
+import ProfileStyle from "../components/ProfileStyle";
+import { Alert, Button } from "react-bootstrap";
+import { getAccountInformation } from "../api/Accounts-Api";
+import { getUserByUsername, updateUser } from "../api/Users-Api";
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
+// This function collects payment information and modifying it by using useState
 function Payment(props) {
-  const paymentArr = [
-    "Credit Card Holder Name",
-    "Card Number",
-    "Expiration Date (MM/YY)",
-    "CVV",
-  ];
+  const navigate = useNavigate();
 
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [ccv, setccv] = useState("");
+  const [paymentError, setPaymentError] = useState(false);
+
+  // This function will signal alert if any fields are not filled
+  function changePaymentClick(e) {
+    if (cardName == "" || cardNumber == "" || expDate == "" || ccv == "") {
+      setPaymentError(true);
+    } else {
+      updateUser(cardName, cardNumber, expDate, ccv);
+      setPaymentError(false);
+    }
+  }
+
+  // This return display all the required fields and alert if any of the fields are missed
   return (
     <div>
-      <Row>
-        <Col>
-          <h1 className="personal">Payment Information</h1>
-        </Col>
-      </Row>
-      <hr />
-      {paymentArr.map((value) => {
-        return (
-          <Row className="infoRow">
-            <Col className="infoCol">
-              <h4 className="paymentInfo">{value}</h4>
-            </Col>
-            <Col>
-              <Form>
-                <Form.Group controlId="contactForm">
-                  <Form.Control className="form2" size="lg" type="text-area" />
-                </Form.Group>
-              </Form>
-            </Col>
-          </Row>
-        );
-      })}
-      <Row>
-        <h3 id="msgErr" hidden>
-          ERROR: PLEASE DOUBLE CHECK THE FIELDS FOR MISSING OR WRONG INFORMATION
-        </h3>
-      </Row>
-      <Row id="btnRow">
-        <Col>
-          <Button id="back">Back</Button>
-        </Col>
-        <Col></Col>
-        <Col>
-          <Button id="place">Place the Order</Button>
-        </Col>
-      </Row>
+      <h3 className="pay">Shipping information</h3>
+      <p className="lineP"></p>
+      <form>
+        <br />
+        <ProfileStyle
+          val={"Credit Card Holder Name"}
+          inp={
+            <input
+              className={"row1pay"}
+              type="text"
+              size="40"
+              onChange={(e) => setCardName(e.target.value)}
+            />
+          }
+        />
+        <br />
+        <ProfileStyle
+          val={"Card Number"}
+          inp={
+            <input
+              className={"row2pay"}
+              type="text"
+              size="40"
+              onChange={(e) => setCardNumber(e.target.value)}
+            />
+          }
+        />
+        <br />
+        <ProfileStyle
+          val={"Expiration Date(MM/YY)"}
+          inp={
+            <input
+              className={"row3pay"}
+              type="text"
+              size="40"
+              onChange={(e) => setExpDate(e.target.value)}
+            />
+          }
+        />
+        <br />
+        <ProfileStyle
+          val={"CCV"}
+          inp={
+            <input
+              className={"row4pay"}
+              type="text"
+              size="40"
+              onChange={(e) => setccv(e.target.value)}
+            />
+          }
+        />
+        {paymentError ? (
+          <Alert className="loginError" variant={"danger"}>
+            ERROR: PLEASE DOUBLE CHECK THE FIELDS FOR TYPOS OR MISSING
+            INFORMATION
+          </Alert>
+        ) : (
+          <></>
+        )}
+        <br />
+        <hr />
+        <div className="profile-buttons">
+          <Button className="leftButton" type="button">
+            <h4>Back</h4>
+          </Button>
+          <Button
+            className="rightButtonPay"
+            type="button"
+            onClick={changePaymentClick}
+          >
+            <h4>Place the Order</h4>
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }
