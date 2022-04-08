@@ -17,6 +17,7 @@ import Cart from "./containers/Cart";
 import OrderHistory from "./containers/OrderHistory";
 import BuisnessProducts from "./containers/BuisnessProducts";
 import Shipping from "./containers/Shipping";
+import OrderConfirmation from "./containers/OrderConfirmation";
 import ContactUs from "./containers/ContactUs";
 import Sale from "./containers/Sale";
 import Payment from "./containers/Payment";
@@ -39,6 +40,7 @@ const App = () => {
     { path: "/Cart", element: <Cart /> },
     { path: "/OrderHistory", element: <OrderHistory /> },
     { path: "/Shipping", element: <Shipping /> },
+    { path: "/OrderConfirmation", element: <OrderConfirmation /> },
     { path: "/ContactUs", element: <ContactUs /> },
     { path: "/Sale", element: <Sale /> },
     { path: "/Payment", element: <Payment /> },
