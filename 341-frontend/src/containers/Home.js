@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import "../styles/components/Home.css";
 import { getAllProducts } from "../api/Products-Api";
 
+// This function display home page.
 function Home(props) {
   const [inventory, setInventory] = useState([
     {
@@ -21,6 +22,8 @@ function Home(props) {
       updatedAt: "",
     },
   ]);
+  // useEffect uses getAllProducts to handle data and setInventory to change it
+
 
   const [choiceMonth, setChoiceMonth] = useState([
     {
@@ -37,6 +40,7 @@ function Home(props) {
       updatedAt: "",
     },
   ]);
+
   useEffect(() => {
     getAllProducts().then((res) => {
       setInventory(res.slice(0, 4));
@@ -47,6 +51,7 @@ function Home(props) {
     });
   }, []);
 
+  // This return displays all required features including items
   return (
     <div>
       <h3 className="rectangle2">

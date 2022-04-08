@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/components/Profile.css";
 
+// This function is for the style of the fields
 function ProfileStyle(props) {
   return (
     <div>

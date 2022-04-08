@@ -41,7 +41,7 @@ function Admin(props) {
 
   const profInfo = {
     full_name: "Name",
-    phone_number: "Phone Number",
+    username: "Username",
     email: "Email",
   };
 
@@ -74,6 +74,10 @@ function Admin(props) {
         {profItems.map((val, i) => {
           return val;
         })}
+        <div style={{ textAlign: "center" }}>
+          <h4>Please contact the administrator to change the password</h4>
+        </div>
+
         <br />
         <br />
         <div className="profile-buttons">
