@@ -5,7 +5,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/ContactUs.css";
 
-function ContactUs(prods) {
+/*
+Function ContactUs, displays a page where the user can enter text to contact staff members. Does not use any written components.
+@param properties
+*/
+function ContactUs(props) {
   return (
     <div>
       <Row>

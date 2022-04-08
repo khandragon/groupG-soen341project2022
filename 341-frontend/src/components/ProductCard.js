@@ -3,6 +3,11 @@ import Card from "react-bootstrap/Card";
 import "../styles/Inventory.css";
 import { useNavigate } from "react-router-dom";
 
+/*
+Function ProductCard implemented in Home.js, Sale.js, and Inventory.js; displays the multiple products available as cards
+with proper attributes title, text, header, and image. 
+@param properties
+*/
 function ProductCard(props) {
   const navigate = useNavigate();
 

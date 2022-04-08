@@ -8,7 +8,12 @@ import { getAccountInformation } from "../api/Accounts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
 import { Alert } from "react-bootstrap";
 
-function Cart(prods) {
+/*
+Function Cart, implements components CartRow, CartBottomRow, CartTopRow. Displays a table with the products the user selected
+with the proper attributes. Is linked to OrderInfo.js
+@param properties
+*/
+function Cart(props) {
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState(false);
 

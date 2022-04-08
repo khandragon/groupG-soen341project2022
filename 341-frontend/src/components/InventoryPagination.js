@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import "../styles/components/InvPagination.css";
 
+/*
+Function InventoryPagination, implemented only in Inventory.js; displays a pagination component at the bottom of the page
+that can go through the products array through different indexes depending on which pagination item was clicked.
+@param properties
+*/
 function InventoryPagination(props) {
   const [activePage, setActivePage] = useState(0);
 

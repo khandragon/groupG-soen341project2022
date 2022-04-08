@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.alert-holder{
+.alert-holder {
   width: 50%;
   margin: auto;
 }
@@ -38,6 +38,36 @@
 }
 
 #checkout:hover {
+  background: linear-gradient(to left, #fdd65d, white) !important;
+}
+
+#backToCart {
+  background: linear-gradient(to right, #fdd65d, white) !important;
+  text-align: center;
+  width: 250px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#backToCart:hover {
+  background: linear-gradient(to left, #fdd65d, white) !important;
+}
+
+#procToShip {
+  background: linear-gradient(to right, #fdd65d, white) !important;
+  text-align: center;
+  width: 250px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#procToShip:hover {
   background: linear-gradient(to left, #fdd65d, white) !important;
 }
 

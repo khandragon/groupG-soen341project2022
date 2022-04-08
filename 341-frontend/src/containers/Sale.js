@@ -7,7 +7,11 @@ import ProductCard from "../components/ProductCard";
 import { getAllProducts } from "../api/Products-Api";
 import InventoryPagination from "../components/InventoryPagination";
 
-function Sale(prods) {
+/*
+Function Sale, shows the inventory of products and displays it in a page. Implements the same components the Inventory.js page
+@param properties
+*/
+function Sale(props) {
   const [inventory, setInventory] = useState([
     {
       _id: "",
