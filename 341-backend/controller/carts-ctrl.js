@@ -1,9 +1,11 @@
 const Carts = require("../schemas/carts-model");
 
 createCart = async (req, res) => {
-  do{
   var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
   let match = await Carts.findOne({ cartID: cartIdRnd });
+  do{
+  var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
+  match = await Carts.findOne({ cartID: cartIdRnd });
   }while (!(match == null));
   
   var cart = new Carts();
