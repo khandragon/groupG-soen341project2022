@@ -7,6 +7,7 @@ import { getAccountInformation } from "../api/Accounts-Api";
 import { getUserByUsername, updateUser } from "../api/Users-Api";
 import { useNavigate } from "react-router-dom";
 
+// This function collects personal information and sets the password
 function Profile(props) {
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ function Profile(props) {
   const [newPassword, setNewPassword] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
 
+  // This function checks if the password is setted properly
   function changePasswordClick(e) {
     if (currentPassword === user.password && newPassword2 === newPassword) {
       updateUser(user.username, {
@@ -38,6 +40,8 @@ function Profile(props) {
       });
     }
   }
+
+  // useEffect is used to hadle data from database
 
   function setAccountOption(option, value) {
     setAccount({
@@ -64,6 +68,7 @@ function Profile(props) {
     email: "Email",
   };
 
+  // Array profItems will be used in the return statement
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
@@ -86,6 +91,7 @@ function Profile(props) {
     );
   });
 
+  // This return will display all required features and buttons
   return (
     <div>
       <h3 className="personal">Your Personal Profile</h3>
