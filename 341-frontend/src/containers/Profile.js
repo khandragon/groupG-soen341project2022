@@ -33,9 +33,6 @@ function Profile(props) {
 
   // This function checks if the password is setted properly
   function changePasswordClick(e) {
-    console.log(
-      currentPassword === user.password && newPassword2 === newPassword
-    );
     if (currentPassword === user.password && newPassword2 === newPassword) {
       updateUser(user.username, {
         username: user.username,
@@ -45,16 +42,22 @@ function Profile(props) {
   }
 
   // useEffect is used to hadle data from database
+
+  function setAccountOption(option, value) {
+    setAccount({
+      ...account,
+      [option]: value,
+    });
+  }
+
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
-      console.log(res);
     });
 
     getUserByUsername(loggedIn).then((res) => {
       setUser(res);
-      console.log(res);
     });
   }, []);
 
@@ -79,6 +82,7 @@ function Profile(props) {
               type="text"
               size="40"
               value={account[key]}
+              onChange={(e) => setAccountOption(key, e.target.value)}
             />
           }
         />
@@ -90,9 +94,8 @@ function Profile(props) {
   // This return will display all required features and buttons
   return (
     <div>
-      <p className="personal">
-        <h3>Your Personal Profile</h3>
-      </p>
+      <h3 className="personal">Your Personal Profile</h3>
+      <br />
       <form>
         {profItems.map((val, i) => {
           return val;

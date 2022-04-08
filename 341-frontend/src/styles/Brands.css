@@ -1,0 +1,44 @@
+.card-title {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.col:nth-of-type(1) > .brand-card {
+  background: linear-gradient(to left, #f3b592, white) !important;
+}
+.col:nth-of-type(4) > .brand-card {
+  background: linear-gradient(to right, #e5e5e5, white) !important;
+}
+.col:nth-of-type(5) > .brand-card {
+  background: linear-gradient(to left, #fdd65d, white) !important;
+}
+.col:nth-of-type(8) > .brand-card {
+  background: linear-gradient(to right, #0db4be, white) !important;
+}
+.col:nth-of-type(9) > .brand-card {
+  background: linear-gradient(to left, #f3b592, white) !important;
+}
+.col:nth-of-type(12) > .brand-card {
+  background: linear-gradient(to right, #e5e5e5, white) !important;
+}
+.col:nth-of-type(13) > .brand-card {
+  background: linear-gradient(to left, #fdd65d, white) !important;
+}
+.col:nth-of-type(16) > .brand-card {
+  background: linear-gradient(to right, #0db4be, white) !important;
+}
+.col:nth-of-type(17) > .brand-card {
+  background: linear-gradient(to left, #f3b592, white) !important;
+}
+.col:nth-of-type(20) > .brand-card {
+  background: linear-gradient(to right, #e5e5e5, white) !important;
+}
+.col:nth-of-type(21) > .brand-card {
+  background: linear-gradient(to left, #fdd65d, white) !important;
+}
+.col:nth-of-type(24) > .brand-card {
+  background: linear-gradient(to right, #0db4be, white) !important;
+}
+.col:nth-of-type(25) > .brand-card {
+  background: linear-gradient(to left, #f3b592, white) !important;
+}

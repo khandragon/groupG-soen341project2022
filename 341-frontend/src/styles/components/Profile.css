@@ -32,6 +32,10 @@ input[type="password"] {
   border: 1px;
 }
 
+.my-modal{
+  min-width: 600px !important;
+}
+
 .row1 {
   background-color: #fdd65d33;
 }

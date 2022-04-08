@@ -7,7 +7,7 @@ import ProductCard from "../components/ProductCard";
 import { getAllProducts } from "../api/Products-Api";
 import InventoryPagination from "../components/InventoryPagination";
 
-function Inventory(prods) {
+function Sale(prods) {
   const [inventory, setInventory] = useState([
     {
       _id: "",
@@ -51,7 +51,7 @@ function Inventory(prods) {
     <div className="text-truncate">
       <Row xs={3} md={3} id="hash">
         <Col id="title">
-          <h1 className="inventory-title">OUR PRODUCTS</h1>
+          <h1 className="inventory-title">OUR PRODUCTS ON SALE</h1>
         </Col>
         <Col id="search">
           <SearchBarProducts
@@ -72,6 +72,7 @@ function Inventory(prods) {
                   header={value.sellerName}
                   imgUrl={value.imgUrl}
                   isbn={value.isbn}
+                  sale={value.sale}
                 ></ProductCard>
               </Col>
             );
@@ -89,4 +90,4 @@ function Inventory(prods) {
   );
 }
 
-export default Inventory;
+export default Sale;

@@ -1,68 +1,70 @@
 .cart-header {
-    font-family: Saira;
-    text-align: center;
-    padding-bottom: 2.5%;
+  text-align: center;
+  padding-bottom: 2.5%;
 }
 
 .hr {
-    border: 3px dashed black;
+  border: 3px dashed black;
 }
 
 .h2 {
-    font-family: Saira;
-    text-align: center; 
+  text-align: center;
 }
 
 .column-titles {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #garbage {
-    max-width: 10%;
-    max-height: 10%;
+  max-width: 10%;
+  max-height: 10%;
+  cursor: pointer;
+}
+
+.alert-holder{
+  width: 50%;
+  margin: auto;
 }
 
 #checkout {
-    background: linear-gradient(to right, #fdd65d, white) !important;
-    text-align: center;
-    width: 250px;
-    font-family: Saira;
-    font-weight: bold;
-    color:black;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background: linear-gradient(to right, #fdd65d, white) !important;
+  text-align: center;
+  width: 250px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #checkout:hover {
-    background: linear-gradient(to left, #fdd65d, white) !important;
+  background: linear-gradient(to left, #fdd65d, white) !important;
 }
 
 .row {
-    padding-bottom: 2.5%;
+  padding-bottom: 2.5%;
 }
 
 #bottom-row {
-    padding-top: 2.5%;
+  padding-top: 2.5%;
 }
 
 @media (min-width: 400px) {
-    .row {
-      max-width: 100%;
-      padding-right: 5%;
-      padding-left: 5%;
-      align-items: center;
-      align-content: center;
-    }
+  .row {
+    max-width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    align-items: center;
+    align-content: center;
   }
-  
-  @media (min-width: 576px) {
-    .row {
-      max-width: 100%;
-      padding-right: 5%;
-      padding-left: 5%;
-      align-items: center;
-      align-content: center;
-    }
+}
+
+@media (min-width: 576px) {
+  .row {
+    max-width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    align-items: center;
+    align-content: center;
   }
-  
+}

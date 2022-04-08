@@ -1,3 +1,4 @@
+import "../styles/About.css";
 import React, { useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
@@ -6,11 +7,9 @@ import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate } from "react-router-dom";
 
-//This function display prfile bussiness page
-function ProfileBusiness(props) {
+function Admin(props) {
   const navigate = useNavigate();
 
-  // setAccount needed to modify the data
   const [account, setAccount] = useState({
     username: "",
     email: "",
@@ -22,18 +21,6 @@ function ProfileBusiness(props) {
     cartID: 0,
   });
 
-  const [description, setDescription] = useState(
-    "Tell the customers about your business...."
-  );
-
-  function setAccountOption(option, value) {
-    setAccount({
-      ...account,
-      [option]: value,
-    });
-  }
-  
-  // useEffect is used to hadle data from database
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
@@ -41,18 +28,23 @@ function ProfileBusiness(props) {
     });
   }, []);
 
+  function setAccountOption(option, value) {
+    setAccount({
+      ...account,
+      [option]: value,
+    });
+  }
+
   function changeBuisnessInformation() {
     console.log("change");
   }
 
   const profInfo = {
     full_name: "Name",
-    phone_number: "Phone Number",
-    address: "Address",
+    username: "Username",
     email: "Email",
   };
 
-  // Array profItems will be used in the return statement
   let profItems = [];
   Object.entries(profInfo).forEach(([key, value], i) => {
     profItems.push(
@@ -75,21 +67,18 @@ function ProfileBusiness(props) {
     );
   });
 
-  // This return will display all required features and buttons
   return (
     <div>
-      <h3 className="personal">Your Buisness Profile </h3>
+      <h3 className="personal">Admin </h3>
       <form>
         {profItems.map((val, i) => {
           return val;
         })}
-        ;<h4 className="profText">Description</h4>
+        <div style={{ textAlign: "center" }}>
+          <h4>Please contact the administrator to change the password</h4>
+        </div>
+
         <br />
-        <br />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
         <br />
         <div className="profile-buttons">
           <Button
@@ -97,19 +86,13 @@ function ProfileBusiness(props) {
             type="button"
             onClick={() =>
               navigate("/BuisnessProducts", {
-                state: { type: "buisness" },
+                state: { type: "admin" },
               })
             }
           >
             <h4>Products</h4>
           </Button>
-          <Button
-            className="leftButton"
-            type="button"
-            onClick={() => navigate("/OrderHistory")}
-          >
-            <h4>Order History</h4>
-          </Button>
+
           <Button
             className="rightButton"
             type="button"
@@ -123,4 +106,4 @@ function ProfileBusiness(props) {
   );
 }
 
-export default ProfileBusiness;
+export default Admin;
