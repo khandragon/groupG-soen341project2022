@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ProfileStyle from "../components/ProfileStyle";
-
+//This page allows the user to input their shipping information with which their product will be shipped.
 function Shipping(props) {
   var shipInfo = {
     address: "Address",
@@ -19,7 +19,7 @@ function Shipping(props) {
     country: "",
     recipient: "",
   });
-
+  //The following boolean is used to detect whether the error message should display. Then the following function checks all inputs to see if any are empty.
   const [emptyError, setEmptyError] = useState(false);
   const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ function Shipping(props) {
   function move() {
     console.log("navigate(/OrderInfo)");
   }
-
+  //This is the main code which displays the input fields using a loop.
   let shipItems = [];
   Object.entries(shipInfo).forEach(([key, value], i) => {
     shipItems.push(
@@ -75,7 +75,7 @@ function Shipping(props) {
       </div>
     );
   });
-
+  //This displays the full page.
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Shipping Information</h1>
