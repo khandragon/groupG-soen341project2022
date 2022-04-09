@@ -18,9 +18,10 @@ securePassword = async (req, res) => {
             return res.status(201).json({
               success: false,
               err,
-              message: "User does not exist, password cannot be secured.",
+              message: "Username does not exist, password cannot be secured.",
             });
         }
+        
         user.password = hashPassword; // if user exists change password to hashed password
         user.save() // save user with hashed password
         .then(() => {
@@ -45,14 +46,22 @@ authenticatePassword = async (req, res) => {
     try {
         const user = await Users.findOne({ username: req.body.username });  // find user with username given
          if (await bcrypt.compare(req.body.password, user.password)) { // if password given matches password of user, password is authenticated
-             return res.status(201).json({ success: true, username: user.username, password: req.body.password, msg: "Password is authenticated."})
+             return res.status(201).json({ 
+                 success: true, 
+                 username: user.username, 
+                 password: req.body.password, 
+                 msg: "Password is authenticated."
+                })
          }
          else {
              return res.status(400).json({ success: false, error: err });
          }
     } catch(error) {
         console.log(error);
-        return res.status(500).json( { success: false, msg: "Username or password is incorrect. Try again."} ) // if user or password incorrect, authentication failed
+        return res.status(500).json({ 
+            success: false, 
+            msg: "Username or password is incorrect. Try again."
+        }) // if user or password incorrect, authentication failed
     }
 }
 
