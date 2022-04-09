@@ -7,7 +7,12 @@ import ProductCard from "../components/ProductCard";
 import { getAllProducts } from "../api/Products-Api";
 import InventoryPagination from "../components/InventoryPagination";
 
-function Inventory(prods) {
+/*
+Function Inventory, displays all the products available to the user in a page. Uses components ProductCard, SearchBarProducts,
+and InventoryPagination. Parses through the database of products.
+@param properties
+*/
+function Inventory(props) {
   const [inventory, setInventory] = useState([
     {
       _id: "",

@@ -1,6 +1,11 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 
+/*
+Function products search bar, implements a search bar inside the products page for the user to search through
+the products page. Uses BsSearch component from the react icons as the magnifying glass icon.
+@param properties
+*/
 function SearchBarProducts(props) {
   return (
     <div className="input-group rounded">

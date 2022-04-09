@@ -22,9 +22,6 @@
   text-align: center;
 }
 
-
-
-
 .col {
   text-align: center;
   align-items: center;
@@ -41,6 +38,9 @@
   justify-content: center;
 }
 
+/*
+Changes the color of the 1st, 4th, 5th, and 8th cards inside the page to gradients
+*/
 .col:nth-of-type(1) > .card-color {
   background: linear-gradient(to left, #f3b592, white) !important;
 }
@@ -54,6 +54,9 @@
   background: linear-gradient(to right, #0db4be, white) !important;
 }
 
+/*
+Changes media properties for better resizing depending on the screen size
+*/
 @media (min-width: 400px) {
   .row {
     max-width: 100%;

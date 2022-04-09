@@ -5,6 +5,10 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { getAllCategories } from "../api/Category-Api";
 
+/*
+Function Brands, displays the different categories available as cards, made of products. Does not use written components.
+@param properties
+*/
 function Brands(props) {
   const [brands, setBrands] = useState([]);
 
