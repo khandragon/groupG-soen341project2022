@@ -50,7 +50,7 @@ function Shipping(props) {
     });
   }
   function move() {
-    console.log("navigate(/OrderInfo)");
+    navigate("/OrderInfo");
   }
   //This is the main code which displays the input fields using a loop.
   let shipItems = [];
