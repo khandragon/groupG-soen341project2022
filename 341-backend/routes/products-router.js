@@ -2,6 +2,7 @@ const express = require("express");
 
 const productsCtrl = require("../controller/product-ctrl");
 const productsCategoryCtrl = require("../controller/productsCategory-ctrl");
+const homepageCtrl = require("../controller/homepage-ctrl");
 
 const router = express.Router();
 
@@ -15,5 +16,7 @@ router.get(
   productsCategoryCtrl.getProductsCategory
 );
 router.get("/productsCategory/", productsCategoryCtrl.getAllProductsCategory);
+router.get("/products/homepage/:homeAmount", homepageCtrl.getHomeProducts);
+
 
 module.exports = router;

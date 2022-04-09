@@ -43,6 +43,11 @@ async function createNewProduct(product, username) {
   });
 }
 
+async function getHomeProducts(homeAmount) {
+  const response = await axios.get(api + "homepage/" + homeAmount);
+  return response.data.data;
+}
+
 // async function deleteProduct(isbn){
 //   let response = await axios.delete(api + isbn).then(function (result) {
 //     return result;
@@ -57,4 +62,5 @@ export {
   getMultipleProductsByIsbn,
   updateProductByIsbn,
   createNewProduct,
+  getHomeProducts,
 };
