@@ -57,7 +57,9 @@ function Header(props) {
   items.forEach((item) => {
     if (item === "Profile") {
       let status = loggedIn ? item : "Login";
-      if (loggedIn && account.business) {
+      if (loggedIn && account.admin) {
+        status = "Admin";
+      } else if (loggedIn && account.business) {
         status = "ProfileBusiness";
       }
       menuItems.push(
