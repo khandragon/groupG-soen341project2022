@@ -47,6 +47,10 @@ function Header(props) {
     items.unshift("My Products");
   }
 
+  if (!loggedIn || account.admin) {
+    items.pop();
+  }
+
   function logoutUser() {
     localStorage.removeItem("LoggedIn");
     setUserLoggedIn(false);

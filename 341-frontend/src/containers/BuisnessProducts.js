@@ -90,7 +90,11 @@ function BuisnessProducts(props) {
       ) : (
         <h1 className="personal">Admin: Products</h1>
       )}
-      <Button onClick={() => createProduct()}>Create Product</Button>
+      {productType !== "admin" ? (
+        <Button onClick={() => createProduct()}>Create Product</Button>
+      ) : (
+        ""
+      )}
       <Table>
         <thead>
           <tr>
