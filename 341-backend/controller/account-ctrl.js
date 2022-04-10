@@ -1,4 +1,5 @@
 const Accounts = require("../schemas/account-model");
+const Carts = require("../schemas/carts-model");
 
 getAccountInformation = async (req, res) => {
   try {
