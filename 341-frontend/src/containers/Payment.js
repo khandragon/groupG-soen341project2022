@@ -3,15 +3,11 @@ import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Alert, Button } from "react-bootstrap";
-import { getAccountInformation } from "../api/Accounts-Api";
-import { getUserByUsername, updateUser } from "../api/Users-Api";
-import { useNavigate } from "react-router-dom";
+import { updateUser } from "../api/Users-Api";
 import "../styles/Login.css";
 
 // This function collects payment information and modifying it by using useState
 function Payment(props) {
-  const navigate = useNavigate();
-
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expDate, setExpDate] = useState("");
@@ -20,7 +16,7 @@ function Payment(props) {
 
   // This function will signal alert if any fields are not filled
   function changePaymentClick(e) {
-    if (cardName == "" || cardNumber == "" || expDate == "" || ccv == "") {
+    if (cardName === "" || cardNumber === "" || expDate === "" || ccv === "") {
       setPaymentError(true);
     } else {
       updateUser(cardName, cardNumber, expDate, ccv);

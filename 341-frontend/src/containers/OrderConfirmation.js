@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
-import ProfileStyle from "../components/ProfileStyle";
 import { Alert, Button } from "react-bootstrap";
-import { getAccountInformation } from "../api/Accounts-Api";
-import { getUserByUsername, updateUser } from "../api/Users-Api";
-import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
 // This function displays oredr confirmation
 function OrderConfirmation(props) {
-  const navigate = useNavigate();
-
   const [order, setOrder] = useState("");
   const [confirmationError, setConfirmationError] = useState(false);
 
   // useEffect automatically decides if there is order confirmation or not by implementing conditions
   useEffect(() => {
     setOrder("45643");
-    if (order != "") {
+    if (order !== "") {
       setConfirmationError(false);
     } else {
       setConfirmationError(true);
     }
-  }, []); // <-- empty dependency array
+  }, [order]); // <-- empty dependency array
 
   // If there is no confirmation number alert will display the message, otherwise it will print the confirmation number
   return (
