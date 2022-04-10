@@ -74,6 +74,16 @@ async function getHomeProducts(homeAmount) {
 //   //deleteBusinessLink(isbn);
 //   return response;
 // }
+async function deleteProduct(isbn) {
+  try {
+    await axios.delete(api + isbn).then(function (result) {
+      return result;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+  deleteBusinessLink(isbn);
+}
 
 export {
   getAllProducts,
