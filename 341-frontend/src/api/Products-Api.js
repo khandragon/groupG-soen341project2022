@@ -1,3 +1,4 @@
+import { addBusinessProduct } from "./BusinessProducts-Api";
 const axios = require("axios");
 const api = "http://localhost:8000/api/products/";
 /**
