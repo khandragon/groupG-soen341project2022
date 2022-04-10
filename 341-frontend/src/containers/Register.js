@@ -61,7 +61,7 @@ function Register(props) {
 
   return (
     <div>
-      <h1>
+      <h1 className="personal">
         <u>Register {registerType}</u>
       </h1>
       <div>

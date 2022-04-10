@@ -32,7 +32,7 @@ function ProfileBusiness(props) {
       [option]: value,
     });
   }
-  
+
   // useEffect is used to hadle data from database
   useEffect(() => {
     const loggedIn = localStorage.getItem("LoggedIn");
@@ -97,7 +97,7 @@ function ProfileBusiness(props) {
             type="button"
             onClick={() =>
               navigate("/BuisnessProducts", {
-                state: { type: "buisness" },
+                state: { type: "buisness", creator: account.full_name },
               })
             }
           >
