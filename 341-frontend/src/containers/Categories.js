@@ -6,10 +6,10 @@ import Card from "react-bootstrap/Card";
 import { getAllCategories } from "../api/Category-Api";
 
 /*
-Function Brands, displays the different categories available as cards, made of products. Does not use written components.
+Function Categories, displays the different categories available as cards, made of products. Does not use written components.
 @param properties
 */
-function Brands(props) {
+function Categories(props) {
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ function Brands(props) {
   );
 }
 
-export default Brands;
+export default Categories;
