@@ -3,7 +3,7 @@ import "../../styles/components/Button.css";
 
 function IconButton(props) {
   return (
-    <div className="iconBtn">
+    <div data-testid={props["data-testid"]} className="iconBtn">
       <a href={props.link}>{props.btn}</a>
     </div>
   );

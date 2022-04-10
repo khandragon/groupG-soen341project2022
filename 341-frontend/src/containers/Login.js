@@ -30,7 +30,9 @@ function Login(props) {
 
   return (
     <div>
-      <h1 className="personal">Login</h1>
+      <h1 data-testid="LoginHeader" className="personal">
+        Login
+      </h1>
 
       <ProfileStyle
         val={"Username"}

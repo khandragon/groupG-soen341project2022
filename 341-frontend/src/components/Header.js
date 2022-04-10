@@ -68,6 +68,7 @@ function Header(props) {
       }
       menuItems.push(
         <IconButton
+          data-testid="PersonalBtn"
           key={status}
           link={"/" + status}
           btn={<BsFillPersonFill size={30} />}
@@ -76,6 +77,7 @@ function Header(props) {
     } else if (item === "Cart") {
       menuItems.push(
         <IconButton
+          data-testid="CartBtn"
           key={item}
           link={"/" + item}
           btn={<BsFillCartFill size={30} />}
