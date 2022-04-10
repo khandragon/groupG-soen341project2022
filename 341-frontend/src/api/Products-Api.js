@@ -87,6 +87,7 @@ async function deleteProduct(isbn) {
 
 export {
   getAllProducts,
+  deleteProduct,
   getProductByIsbn,
   getMultipleProductsByIsbn,
   updateProductByIsbn,
