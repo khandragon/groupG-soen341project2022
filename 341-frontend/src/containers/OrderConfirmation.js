@@ -28,7 +28,7 @@ function OrderConfirmation(props) {
             <Alert className="loginError" variant={"danger"}>
               Failed to place your order. Please go back and review your
               information.
-            </Alert>{" "}
+            </Alert>
             <br></br>
             <br></br>
             <div className="profile-buttons">
@@ -40,13 +40,12 @@ function OrderConfirmation(props) {
           </>
         ) : (
           <>
-            {" "}
             <h3 className="pay">Your Order Has Been Successfully Placed!</h3>
             <p className="lineP"></p>
             <br></br>
             <h3 className="pay">
               Your order number is {order}, a confirmation number has been sent
-              to your email!{" "}
+              to your email!
             </h3>
           </>
         )}

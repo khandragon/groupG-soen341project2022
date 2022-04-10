@@ -24,7 +24,6 @@ function Home(props) {
   ]);
   // useEffect uses getAllProducts to handle data and setInventory to change it
 
-
   const [choiceMonth, setChoiceMonth] = useState([
     {
       _id: "",
@@ -55,7 +54,7 @@ function Home(props) {
   return (
     <div>
       <h3 className="rectangle2">
-        Thank You for Shopping Local{" "}
+        Thank You for Shopping Local
         <img
           className="Quebec"
           src="https://cdn.discordapp.com/attachments/933173968683274342/953462886058066020/clipart186698.png"
