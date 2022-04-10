@@ -44,7 +44,7 @@ function Header(props) {
   ];
 
   if (loggedIn && account.business) {
-    items.unshift("My Products");
+    items.unshift("My Store");
   }
 
   if (!loggedIn || account.admin) {
