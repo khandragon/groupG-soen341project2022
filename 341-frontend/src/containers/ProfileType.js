@@ -15,7 +15,7 @@ function ProfileType(props) {
   //This page includes a description of each type, and a button that leads to each page.
   return (
     <div className="row">
-      <h1 style={{ textAlign: "center" }}>Select Profile Type</h1>
+      <h1 className="personal">Select Profile Type</h1>
       <div className="col-md-6 text-center">
         <h2>Personal</h2>
         <p style={{ margin: "10px 100px 20px" }}>

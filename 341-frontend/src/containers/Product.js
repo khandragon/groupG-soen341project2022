@@ -5,6 +5,7 @@ import { getProductByIsbn } from "../api/Products-Api";
 import AddCartButton from "../components/Buttons/AddCartButton";
 import { useNavigate } from "react-router-dom";
 import "../styles/components/CenterImage.css";
+import DeleteCartButton from "../components/Buttons/DeleteCartButton";
 
 function Product(props) {
   const urlIsbn = window.location.href.split("/").pop();
@@ -50,6 +51,26 @@ function Product(props) {
     });
   }, [urlIsbn, loggedIn]);
 
+  let productBtn;
+
+  if (loggedIn && account.admin) {
+    productBtn = (
+      <DeleteCartButton isbn={product.isbn} cartID={account.cartID} />
+    );
+  } else if (loggedIn) {
+    productBtn = <AddCartButton isbn={product.isbn} cartID={account.cartID} />;
+  } else {
+    productBtn = (
+      <Button
+        className="sideButton"
+        type="button"
+        onClick={() => navigate("/Login")}
+      >
+        <h4>Login</h4>
+      </Button>
+    );
+  }
+
   return (
     <div>
       <h1 className="title" style={{ textAlign: "center" }}>
@@ -72,7 +93,8 @@ function Product(props) {
           {product.description}
         </p>
       </div>
-      {loggedIn ? (
+      {productBtn}
+      {/* {loggedIn ? (
         <AddCartButton isbn={product.isbn} cartID={account.cartID} />
       ) : (
         <Button
@@ -82,7 +104,7 @@ function Product(props) {
         >
           <h4>Login</h4>
         </Button>
-      )}
+      )} */}
     </div>
   );
 }

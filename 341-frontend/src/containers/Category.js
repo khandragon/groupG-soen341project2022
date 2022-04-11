@@ -3,22 +3,25 @@ import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import ProductCard from "../components/ProductCard";
 import { getAllProductsByCategories } from "../api/Category-Api";
+import { useLocation } from "react-router-dom";
 
 function Category(props) {
-  const category = window.location.href.split("/").pop();
+  const categoryName = useLocation().state.categoryName;
 
-  console.log(category);
-  const [products, setCategory] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getAllProductsByCategories(category).then((res) => {
+    getAllProductsByCategories(categoryName).then((res) => {
       const items = res;
-      setCategory(items);
+      setProducts(items);
     });
-  });
+  }, [categoryName]);
 
   return (
     <div>
+      <h1 className="personal">
+        <u>{categoryName}</u>
+      </h1>
       <Row id="cardsrow" xs={1} md={2} className="g-4 card-holder">
         {products.length > 0 ? (
           products.map((value) => {

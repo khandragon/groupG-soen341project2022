@@ -58,13 +58,22 @@ updateProductInformation = async (req, res) => {
       .json({ success: false, msg: "something went wrong" });
   }
 };
+
 createProductInformation = async (req, res) => {
   const body = req.body;
-
   if (!body) {
     return res.status(400).json({
       success: false,
       error: "You must provide product information",
+    });
+  }
+
+  const duplicateProduct = await Products.findOne({ title: body.title });
+
+  if (duplicateProduct) {
+    return res.status(401).json({
+      success: false,
+      error: "Product already exists.",
     });
   }
 
