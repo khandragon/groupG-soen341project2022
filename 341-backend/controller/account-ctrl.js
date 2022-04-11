@@ -1,4 +1,5 @@
 const Accounts = require("../schemas/account-model");
+const Carts = require("../schemas/carts-model");
 
 getAccountInformation = async (req, res) => {
   try {
@@ -56,8 +57,7 @@ updateAccountInformation = async (req, res) => {
       .status(500)
       .json({ success: false, msg: "something went wrong" });
   }
-};
-createAccountInformation = async (req, res) => {
+};createAccountInformation = async (req, res) => {
   const body = req.body;
 
   if (!body) {
@@ -67,11 +67,35 @@ createAccountInformation = async (req, res) => {
     });
   }
 
-  const account = new Accounts(body);
+  var account = new Accounts(body);
 
   if (!account) {
     return res.status(400).json({ success: false, error: err });
   }
+
+  var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
+  let match = await Carts.findOne({ cartID: cartIdRnd });
+  do{
+  var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
+  match = await Carts.findOne({ cartID: cartIdRnd });
+  }while (!(match == null));
+  
+  //create the cart
+  var cart = new Carts();
+
+  cart.cartID = cartIdRnd;
+  cart.productsByIsbn = [];
+
+  cart
+    .save()
+    .catch((error) => {
+      return res.status(400).json({
+        error,
+        message: "Cart not created!",
+      });
+    });
+  //assignt cartID to user
+  account.cartID = cartIdRnd;
 
   account
     .save()

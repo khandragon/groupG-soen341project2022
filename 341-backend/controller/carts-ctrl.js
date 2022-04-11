@@ -1,5 +1,37 @@
 const Carts = require("../schemas/carts-model");
 
+createCart = async (req, res) => {
+  var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
+  let match = await Carts.findOne({ cartID: cartIdRnd });
+  do{
+  var cartIdRnd = Math.floor(10000 + Math.random() * 90000);
+  match = await Carts.findOne({ cartID: cartIdRnd });
+  }while (!(match == null));
+  
+  var cart = new Carts();
+
+  cart.cartID = cartIdRnd;
+  cart.productsByIsbn = [];
+
+  cart
+    .save()
+    .then( () => {
+      return res.status(201).json({
+        success: true,
+        cartID: cart.cartID,
+        message: "Cart created!",
+      });
+    })
+    .catch((error) => {
+      return res.status(400).json({
+        error,
+        message: "Cart not created!",
+      });
+    });
+
+
+};
+
 getCart = async (req, res) => {
   try {
     const cart = await Carts.findOne({ cartID: req.params.cartID });
