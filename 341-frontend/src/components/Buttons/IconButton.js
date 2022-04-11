@@ -4,8 +4,10 @@ import "../../styles/components/Button.css";
 
 function IconButton(props) {
   return (
-    <div data-testid={props["data-testid"]} className="iconBtn">
-      <Link to={props.link}>{props.btn}</Link>
+    <div className="iconBtn">
+      <Link data-testid={props["data-testid"]} to={props.link}>
+        {props.btn}
+      </Link>
     </div>
   );
 }

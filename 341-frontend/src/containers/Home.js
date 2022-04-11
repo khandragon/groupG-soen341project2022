@@ -41,13 +41,20 @@ function Home(props) {
   ]);
 
   useEffect(() => {
+    let isCancelled = false;
+
     getAllProducts().then((res) => {
+      if (isCancelled) return;
       setInventory(res.slice(0, 4));
       setChoiceMonth([
         res[Math.floor(Math.random() * res.length + 1)],
         res[Math.floor(Math.random() * res.length + 1)],
       ]);
     });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   // This return displays all required features including items

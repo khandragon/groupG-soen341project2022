@@ -34,12 +34,19 @@ function Inventory(props) {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    let isCancelled = false;
+
     getAllProducts().then((res) => {
+      if (isCancelled) return;
       const items = res;
       setInventory(items);
       setDisplayInventory(items.slice(0, 8));
       setPageNb(Math.ceil(items.length / 8.0));
     });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   function searchItems() {

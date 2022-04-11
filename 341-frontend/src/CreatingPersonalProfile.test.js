@@ -91,22 +91,22 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-// test("loads and displays greeting", async () => {
-//   renderWithRouter(<Header />);
-
-//   fireEvent.click(screen.getByTestId("PersonalBtn"));
-
-//   await waitFor(() => screen.getByTestId("LoginHeader"));
-
-//   expect(screen.getByTestId("LoginHeader")).toHaveTextContent("Login");
-// });
+test("loads and displays greeting", async () => {
+  render(<App />);
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  await waitFor(() => {
+    expect(screen.getByTestId("LoginHeader")).toHaveTextContent(/login/i);
+  });
+});
 
 test("click Prods", async () => {
-  renderWithRouter(<Header />);
+  render(<App />);
 
   fireEvent.click(screen.getByText("Products"));
 
-  await waitFor(() => screen.getByText("Our Products"));
-
-  expect(screen.getByText("Our Products")).toHaveTextContent("Our Products");
+  await waitFor(() => {
+    expect(screen.getByText(/our products/i)).toHaveTextContent(
+      /our products/i
+    );
+  });
 });

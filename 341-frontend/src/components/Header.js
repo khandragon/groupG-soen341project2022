@@ -5,7 +5,7 @@ import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
 import { getAccountInformation } from "../api/Accounts-Api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ function Header(props) {
       );
     } else if (item === "Home") {
       menuItems.push(
-        <Nav.Link key={item} href={"/"}>
+        <Nav.Link key={item} as={Link} to={`/${item}`}>
           {item}
         </Nav.Link>
       );
@@ -93,6 +93,7 @@ function Header(props) {
       menuItems.push(
         <Nav.Link
           key={item}
+          as={Link}
           onClick={() =>
             navigate("/BuisnessProducts", {
               state: { type: "buisness", creator: account.full_name },
@@ -104,7 +105,7 @@ function Header(props) {
       );
     } else {
       menuItems.push(
-        <Nav.Link key={item} href={"/" + item}>
+        <Nav.Link key={item} as={Link} to={`/${item}`}>
           {item}
         </Nav.Link>
       );
