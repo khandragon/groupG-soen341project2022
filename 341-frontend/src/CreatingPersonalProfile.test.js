@@ -4,20 +4,7 @@ import { setupServer } from "msw/node";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "../src/App";
-
-import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import Header from "./components/Header";
-
-// test utils file
-const renderWithRouter = (ui, { route = "/" } = {}) => {
-  window.history.pushState({}, "Test page", route);
-
-  return {
-    user: userEvent.setup(),
-    ...render(ui, { wrapper: BrowserRouter }),
-  };
-};
 
 const server = setupServer(
   rest.get("http://localhost:8000/api/products/", (req, res, ctx) => {
@@ -84,6 +71,26 @@ const server = setupServer(
         ],
       })
     );
+  }),
+  rest.post("http://localhost:8000/api/user/", (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        id: "tester",
+        message: "User created!",
+      })
+    );
+  }),
+  rest.post("http://localhost:8000/api/products/", (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        success: true,
+        id: "tester",
+        message: "Account created!",
+      })
+    );
   })
 );
 
@@ -91,7 +98,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test("loads and displays greeting", async () => {
+test("Loads The Webpage", async () => {
   render(<App />);
   fireEvent.click(screen.getByTestId("PersonalBtn"));
   await waitFor(() => {
@@ -99,7 +106,7 @@ test("loads and displays greeting", async () => {
   });
 });
 
-test("click Prods", async () => {
+test("Click and Display Products", async () => {
   render(<App />);
 
   fireEvent.click(screen.getByText("Products"));
@@ -108,5 +115,38 @@ test("click Prods", async () => {
     expect(screen.getByText(/our products/i)).toHaveTextContent(
       /our products/i
     );
+  });
+});
+
+test("Register Account", async () => {
+  render(<App />);
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  fireEvent.click(screen.getByTestId("RegisterLinkBtn"));
+  fireEvent.click(screen.getByTestId("PersonalRegisterBtn"));
+
+  userEvent.type(screen.getByTestId("UsernameIn"), "tester");
+  userEvent.type(screen.getByTestId("FirstNameIn"), "tester");
+  userEvent.type(screen.getByTestId("LastNameIn"), "tester");
+  userEvent.type(screen.getByTestId("EmailIn"), "tester");
+  userEvent.type(screen.getByTestId("AddressIn"), "tester");
+  userEvent.type(screen.getByTestId("PhoneIn"), "1111111111");
+  userEvent.type(screen.getByTestId("PasswordIn"), "tester");
+
+  fireEvent.click(screen.getByTestId("RegisterAccBtn"));
+
+  userEvent.type(screen.getByTestId("LoginUserIn"), "tester");
+  userEvent.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  await waitFor(() => {
+    expect(screen.getByTestId(loginStatus).toHaveTextContent("Hello tester"));
+  });
+});
+
+test("Loads The Webpage", async () => {
+  render(<App />);
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  await waitFor(() => {
+    expect(screen.getByTestId("LoginHeader")).toHaveTextContent(/login/i);
   });
 });
