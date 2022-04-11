@@ -61,6 +61,15 @@ updateProductInformation = async (req, res) => {
 createProductInformation = async (req, res) => {
   const body = req.body;
 
+  Products.findOne({ title: body.title }, (err, product) => {
+    if (product) {
+      return res.status(401).json({
+        success: false,
+        error: "Product already exists.",
+      });
+    }
+  });
+
   if (!body) {
     return res.status(400).json({
       success: false,
