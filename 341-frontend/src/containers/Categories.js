@@ -15,7 +15,9 @@ function Categories(props) {
   const [brands, setBrands] = useState([]);
 
   function clickCategory(category) {
-    navigate("/Categories/" + category);
+    navigate("/Categories/" + category, {
+      state: { categoryName: category },
+    });
   }
 
   useEffect(() => {
