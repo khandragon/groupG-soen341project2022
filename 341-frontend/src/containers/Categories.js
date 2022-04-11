@@ -5,7 +5,6 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { getAllCategories } from "../api/Category-Api";
 import { useNavigate } from "react-router-dom";
-import Category from "./Category";
 
 /*
 Function Categories, displays the different categories available as cards, made of products. Does not use written components.
@@ -23,7 +22,7 @@ function Categories(props) {
     getAllCategories().then((res) => {
       setBrands(res);
     });
-  });
+  }, []);
 
   return (
     <div>

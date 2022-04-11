@@ -13,7 +13,7 @@ async function getBusinessProducts(username) {
 
 async function addBusinessProduct(link) {
   try {
-    const response = await axios.post(api, link).then(function (result) {
+    await axios.post(api, link).then(function (result) {
       return result;
     });
   } catch (error) {
