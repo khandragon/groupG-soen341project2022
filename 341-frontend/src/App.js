@@ -24,6 +24,7 @@ import Payment from "./containers/Payment";
 import Admin from "./containers/Admin";
 import OrderInfo from "./containers/OrderInfo";
 import Categories from "./containers/Categories";
+import Category from "./containers/Category";
 
 const App = () => {
   let routes = useRoutes([
@@ -47,6 +48,7 @@ const App = () => {
     { path: "/Payment", element: <Payment /> },
     { path: "/Admin", element: <Admin /> },
     { path: "/Categories", element: <Categories /> },
+    { path: "/Categories/:category", element: <Category /> },
     { path: "/OrderInfo", element: <OrderInfo /> },
   ]);
   return routes;
