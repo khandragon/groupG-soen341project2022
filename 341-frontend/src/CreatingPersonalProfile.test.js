@@ -143,7 +143,7 @@ test("Register Account", async () => {
   });
 });
 
-test("Loads The Webpage", async () => {
+test("Access Order History", async () => {
   render(<App />);
   fireEvent.click(screen.getByTestId("PersonalBtn"));
   await waitFor(() => {

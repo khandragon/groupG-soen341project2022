@@ -5,7 +5,7 @@ import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
 import { getAccountInformation } from "../api/Accounts-Api";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ function Header(props) {
       );
     } else if (item === "Home") {
       menuItems.push(
-        <Nav.Link key={item} as={Link} to={`/${item}`}>
+        <Nav.Link key={item} as={Link} to={"/"}>
           {item}
         </Nav.Link>
       );
@@ -93,7 +93,6 @@ function Header(props) {
       menuItems.push(
         <Nav.Link
           key={item}
-          as={Link}
           onClick={() =>
             navigate("/BuisnessProducts", {
               state: { type: "buisness", creator: account.full_name },
@@ -114,7 +113,11 @@ function Header(props) {
 
   return (
     <div className="main-header">
-      {loggedIn ? <p>Hello {loggedIn}</p> : <a href="/Login">Login</a>}
+      {loggedIn ? (
+        <p data-testid="loginStatus">Hello {loggedIn}</p>
+      ) : (
+        <a href="/Login">Login</a>
+      )}
       {loggedIn ? <Button onClick={logoutUser}>Logout</Button> : <></>}
 
       <Nav.Link href={"/"}>

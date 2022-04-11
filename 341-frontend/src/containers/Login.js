@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../styles/Login.css";
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Nav } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
 import { getUserByUsername } from "../api/Users-Api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -43,6 +43,7 @@ function Login(props) {
             type="text"
             size="40"
             value={username}
+            data-testid="LoginUserIn"
             onChange={(e) => setUsername(e.target.value)}
           />
         }
@@ -55,6 +56,7 @@ function Login(props) {
             className={"row4"}
             type="text"
             size="40"
+            data-testid="LoginPassIn"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -68,9 +70,22 @@ function Login(props) {
         <></>
       )}
       <div className="signLink">
-        <a href="/ProfileType">Register</a>
+        <Nav.Link
+          data-testid="RegisterLinkBtn"
+          key={"RegisterLinkBtn"}
+          as={Link}
+          to={"/ProfileType"}
+        >
+          <u>Register</u>
+        </Nav.Link>
       </div>
-      <Button className="loginBtn" type="button" onClick={loginUser}>
+
+      <Button
+        data-testid="LoginAccBtn"
+        className="loginBtn"
+        type="button"
+        onClick={loginUser}
+      >
         <h4>Login</h4>
       </Button>
     </div>
