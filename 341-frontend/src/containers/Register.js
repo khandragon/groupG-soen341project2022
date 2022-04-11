@@ -16,6 +16,7 @@ function Register(props) {
   const [password, setPassword] = useState("");
   const [registerError, setRegisterError] = useState(false);
   const [emptyError, setEmptyError] = useState(false);
+  const [oldAccountError, setOldAccountError] = useState(false);
 
   const navigate = useNavigate();
   let { registerType } = useParams();
@@ -28,6 +29,7 @@ function Register(props) {
       phone !== "" &&
       password !== ""
     ) {
+      setOldAccountError(false);
       setEmptyError(false);
       return true;
     }
@@ -38,21 +40,26 @@ function Register(props) {
   function RegisterUser() {
     try {
       if (checkEmpty()) {
-        createNewUserAccount({
+        createUser({
           username: username,
-          email: email,
-          business: registerType === "Buisness",
-          full_name: firstname + " " + lastname,
-          address: address,
-          phone: phone,
-        }).then((res) => {
-          createUser({
-            username: username,
-            password: password,
+          password: password,
+        })
+          .then((res) => {
+            createNewUserAccount({
+              username: username,
+              email: email,
+              business: registerType === "Buisness",
+              full_name: firstname + " " + lastname,
+              address: address,
+              phone: phone,
+            }).then((res) => {
+              setRegisterError(false);
+              navigate("/Login");
+            });
+          })
+          .catch((error) => {
+            setOldAccountError(true);
           });
-        });
-        setRegisterError(false);
-        navigate("/Login");
       }
     } catch {
       setRegisterError(true);
@@ -167,6 +174,13 @@ function Register(props) {
         {emptyError ? (
           <Alert className="loginError" variant={"danger"}>
             ERROR: PLEASE MAKE SURE REQUIRED FIELDS ARE ALL FILLED OUT
+          </Alert>
+        ) : (
+          <></>
+        )}
+        {oldAccountError ? (
+          <Alert className="loginError" variant={"danger"}>
+            This Account Already Exists
           </Alert>
         ) : (
           <></>

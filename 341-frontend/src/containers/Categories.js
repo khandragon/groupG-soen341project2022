@@ -4,19 +4,27 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { getAllCategories } from "../api/Category-Api";
+import { useNavigate } from "react-router-dom";
 
 /*
-Function Brands, displays the different categories available as cards, made of products. Does not use written components.
+Function Categories, displays the different categories available as cards, made of products. Does not use written components.
 @param properties
 */
-function Brands(props) {
+function Categories(props) {
+  const navigate = useNavigate();
   const [brands, setBrands] = useState([]);
+
+  function clickCategory(category) {
+    navigate("/Categories/" + category, {
+      state: { categoryName: category },
+    });
+  }
 
   useEffect(() => {
     getAllCategories().then((res) => {
       setBrands(res);
     });
-  });
+  }, []);
 
   return (
     <div>
@@ -30,7 +38,7 @@ function Brands(props) {
                 border="red"
                 tag="a"
                 style={{ cursor: "pointer" }}
-                // onClick=
+                onClick={() => clickCategory(value)}
               >
                 <Card.Body>
                   <Card.Title>{value}</Card.Title>
@@ -44,4 +52,4 @@ function Brands(props) {
   );
 }
 
-export default Brands;
+export default Categories;

@@ -127,9 +127,7 @@ function BuisnessProducts(props) {
                   >
                     {item.sellerName}
                   </td>
-                ) : (
-                  ""
-                )}
+                ) : null}
                 <td
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
@@ -162,9 +160,7 @@ function BuisnessProducts(props) {
                   </ButtonGroup>
                 </td>
               </tr>
-            ) : (
-              ""
-            )
+            ) : null
           )}
         </tbody>
       </Table>

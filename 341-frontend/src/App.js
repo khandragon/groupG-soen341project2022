@@ -22,8 +22,9 @@ import ContactUs from "./containers/ContactUs";
 import Sale from "./containers/Sale";
 import Payment from "./containers/Payment";
 import Admin from "./containers/Admin";
-import Brands from "./containers/Brands";
 import OrderInfo from "./containers/OrderInfo";
+import Categories from "./containers/Categories";
+import Category from "./containers/Category";
 
 const App = () => {
   let routes = useRoutes([
@@ -46,7 +47,8 @@ const App = () => {
     { path: "/Sale", element: <Sale /> },
     { path: "/Payment", element: <Payment /> },
     { path: "/Admin", element: <Admin /> },
-    { path: "/Brands", element: <Brands /> },
+    { path: "/Categories", element: <Categories /> },
+    { path: "/Categories/:category", element: <Category /> },
     { path: "/OrderInfo", element: <OrderInfo /> },
   ]);
   return routes;

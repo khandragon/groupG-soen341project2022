@@ -44,7 +44,7 @@ function Header(props) {
   ];
 
   if (loggedIn && account.business) {
-    items.unshift("My Products");
+    items.unshift("My Store");
   }
 
   if (!loggedIn || account.admin) {
@@ -89,9 +89,16 @@ function Header(props) {
           {item}
         </Nav.Link>
       );
-    } else if (item === "My Products") {
+    } else if (item === "My Store") {
       menuItems.push(
-        <Nav.Link key={item} href={"/BuisnessProducts"}>
+        <Nav.Link
+          key={item}
+          onClick={() =>
+            navigate("/BuisnessProducts", {
+              state: { type: "buisness", creator: account.full_name },
+            })
+          }
+        >
           {item}
         </Nav.Link>
       );

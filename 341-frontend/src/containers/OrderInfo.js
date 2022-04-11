@@ -12,17 +12,12 @@ Function OrderInfo, serves as a confirmation page for the user before they go to
 @param properties
 */
 function OrderInfo(props) {
-  const [account, setAccount] = useState({
-    username: "",
-  });
-
   const [order, setOrder] = useState([]);
 
   const loggedIn = localStorage.getItem("LoggedIn");
 
   const loadData = useCallback(() => {
     getAccountInformation(loggedIn).then((res) => {
-      setAccount(res);
       getCart(res.cartID).then((res) => {
         getMultipleProductsByIsbn(res.productsByIsbn).then((res) => {
           setOrder(res);
