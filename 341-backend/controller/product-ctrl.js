@@ -126,7 +126,15 @@ createProductInformation = async (req, res) => {
 
 deleteProduct = async (req, res) => {
   try {
-    Products.deleteOne({ isbn: req.params.isbn });
+    if(await Products.findOne({ isbn: req.params.isbn }) != null ){
+      await Products.deleteOne({ isbn: req.params.isbn });
+      return res
+      .status(201)
+      .json({ success: true, msg: "product deleted" });
+    }
+    return res
+      .status(500)
+      .json({ success: false, msg: "product not found" });
   } catch (e) {
     console.log(e);
     return res
