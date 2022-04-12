@@ -109,6 +109,7 @@ function BuisnessProducts(props) {
             item ? (
               <tr key={item.title}>
                 <td
+                  data-testid={"ProductList-" + index}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >
