@@ -5,9 +5,12 @@ import ProfileStyle from "../components/ProfileStyle";
 import { Alert, Button } from "react-bootstrap";
 import { updateUser } from "../api/Users-Api";
 import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 // This function collects payment information and modifying it by using useState
 function Payment(props) {
+  const navigate = useNavigate();
+
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expDate, setExpDate] = useState("");
@@ -19,15 +22,20 @@ function Payment(props) {
     if (cardName === "" || cardNumber === "" || expDate === "" || ccv === "") {
       setPaymentError(true);
     } else {
-      updateUser(cardName, cardNumber, expDate, ccv);
+      // updateUser(cardName, cardNumber, expDate, ccv);
       setPaymentError(false);
+      navigate("/OrderConfirmation");
     }
+  }
+
+  function move() {
+    navigate("/Shipping");
   }
 
   // This return display all the required fields and alert if any of the fields are missed
   return (
     <div>
-      <h3 className="pay">Shipping information</h3>
+      <h3 className="pay">Payment information</h3>
       <p className="lineP"></p>
       <form>
         <br />
@@ -89,7 +97,7 @@ function Payment(props) {
         <br />
         <hr />
         <div className="profile-buttons">
-          <Button className="leftButton" type="button">
+          <Button className="leftButton" type="button" onClick={move}>
             <h4>Back</h4>
           </Button>
           <Button

@@ -105,7 +105,12 @@ function Header(props) {
       );
     } else {
       menuItems.push(
-        <Nav.Link key={item} as={Link} to={`/${item}`}>
+        <Nav.Link
+          key={item}
+          as={Link}
+          to={`/${item}`}
+          data-testid={`${item}-Header`}
+        >
           {item}
         </Nav.Link>
       );

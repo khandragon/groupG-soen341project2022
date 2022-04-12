@@ -16,6 +16,7 @@ function SearchBarProducts(props) {
         aria-label="Search"
         aria-describedby="search-addon"
         value={props.search}
+        data-testid="SearchIn"
         onChange={(e) => props.onType(e.target.value)}
       />
       <span

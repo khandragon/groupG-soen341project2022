@@ -89,6 +89,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"TitleIn"}
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -103,6 +104,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"CategoryIn"}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 />
@@ -116,6 +118,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"DescriptionIn"}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -129,6 +132,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"PriceIn"}
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -142,6 +146,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"ImgUrlIn"}
                   value={imgUrl}
                   onChange={(e) => setImgUrl(e.target.value)}
                 />
@@ -155,6 +160,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"ShippingIn"}
                   value={shippingCost}
                   onChange={(e) => setShippingCost(e.target.value)}
                 />
@@ -168,6 +174,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"SaleIn"}
                   value={sale}
                   onChange={(e) => setSale(e.target.value)}
                 />
@@ -304,7 +311,11 @@ function CreateEditProduct(props) {
             <Button variant="secondary" onClick={props.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={() => EditItem()}>
+            <Button
+              data-testid={"SaveChanges"}
+              variant="primary"
+              onClick={() => EditItem()}
+            >
               Save Changes
             </Button>
           </Modal.Footer>

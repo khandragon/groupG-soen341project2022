@@ -220,10 +220,145 @@ test("Seller Modify Product", async () => {
 
   fireEvent.click(screen.getByTestId("PersonalBtn"));
   fireEvent.click(screen.getByTestId("ProductsListBtn"));
+  fireEvent.click(screen.getByTestId("ProductList-0"));
+  fireEvent.click(screen.getByTestId("EditProductBtn"));
+  await user.type(screen.getByTestId("TitleIn"), "test123");
+  fireEvent.click(screen.getByTestId("SaveChanges"));
 
   await waitFor(() => {
-    expect(screen.getByTestId("OrderHistoryTitle")).toHaveTextContent(
-      /Order History/i
-    );
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Seller Creates New Product", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  fireEvent.click(screen.getByTestId("ProductsListBtn"));
+
+  fireEvent.click(screen.getByTestId("CreateProductBtn"));
+  await user.type(screen.getByTestId("TitleIn"), "test123");
+  await user.type(screen.getByTestId("CategoryIn"), "test123");
+  await user.type(screen.getByTestId("DescriptionIn"), "test123");
+  await user.type(screen.getByTestId("PriceIn"), "test123");
+  await user.type(screen.getByTestId("ImgUrlIn"), "test123");
+  await user.type(screen.getByTestId("ShippingIn"), "test123");
+  await user.type(screen.getByTestId("SaleIn"), "test123");
+  fireEvent.click(screen.getByTestId("SaveChanges"));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("View Products", async () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("Products-Header"));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Search Products", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  fireEvent.click(screen.getByTestId("Products-Header"));
+  await user.type(screen.getByTestId("SearchIn"), "Harry");
+
+  //click then
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Check Cart", async () => {
+  render(<App />);
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("CartBtn"));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Delete Item Cart", async () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("ProductCard-0"));
+  fireEvent.click(screen.getByTestId("AddCartBtn"));
+  fireEvent.click(screen.getByTestId("CartBtn"));
+  fireEvent.click(screen.getByTestId("DeleteCartItemBtn "));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Add Item Cart", async () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("ProductCard-0"));
+  fireEvent.click(screen.getByTestId("AddCartBtn"));
+  fireEvent.click(screen.getByTestId("CartBtn"));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
+  });
+});
+
+test("Checkout Item Cart", async () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("ProductCard-0"));
+  fireEvent.click(screen.getByTestId("AddCartBtn"));
+  fireEvent.click(screen.getByTestId("CartBtn"));
+
+  fireEvent.click(screen.getByTestId("procToShip"));
+  fireEvent.click(screen.getByTestId("CartBtn"));
+  fireEvent.click(screen.getByTestId("procToShip"));
+
+  await waitFor(() => {
+    expect(screen.getByText("test123")).toHaveTextContent("test123");
   });
 });
