@@ -5,6 +5,7 @@ import { getBusinessProducts } from "../api/BusinessProducts-Api";
 import { getAllProducts, getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
 import { useLocation, useNavigate } from "react-router-dom";
+import { deleteProduct } from "../api/Products-Api";
 
 function BuisnessProducts(props) {
   const navigate = useNavigate();
@@ -73,8 +74,8 @@ function BuisnessProducts(props) {
     setProduct(products[index]);
     handleShow();
   }
-  function deleteProduct(index) {
-    console.log(products[index]);
+  function deleteProductFromList(index) {
+    deleteProduct(products[index].isbn);
   }
 
   const tableFields = ["Product Name", "ID", "Category", "Price", "Options"];
@@ -154,7 +155,7 @@ function BuisnessProducts(props) {
                     </Button>
                     <Button
                       variant="light"
-                      onClick={() => deleteProduct(index)}
+                      onClick={() => deleteProductFromList(index)}
                     >
                       <BsTrashFill color="black"></BsTrashFill>
                     </Button>
@@ -170,6 +171,11 @@ function BuisnessProducts(props) {
         pageType={modalType}
         show={show}
         creator={creator}
+        origin={() =>
+          navigate("/BuisnessProducts", {
+            state: { type: productType, creator: creator },
+          })
+        }
         handleClose={() => handleClose()}
       />
     </>
