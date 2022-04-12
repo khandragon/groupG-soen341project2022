@@ -75,7 +75,7 @@ function BuisnessProducts(props) {
     handleShow();
   }
   function deleteProductFromList(index) {
-    deleteProduct(products[index]);
+    deleteProduct(products[index].isbn);
   }
 
   const tableFields = ["Product Name", "ID", "Category", "Price", "Options"];
@@ -170,6 +170,11 @@ function BuisnessProducts(props) {
         pageType={modalType}
         show={show}
         creator={creator}
+        origin={() =>
+          navigate("/BuisnessProducts", {
+            state: { type: productType, creator: creator },
+          })
+        }
         handleClose={() => handleClose()}
       />
     </>

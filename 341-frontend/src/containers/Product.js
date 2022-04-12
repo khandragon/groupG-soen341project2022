@@ -6,11 +6,13 @@ import AddCartButton from "../components/Buttons/AddCartButton";
 import { useNavigate } from "react-router-dom";
 import "../styles/components/CenterImage.css";
 import DeleteCartButton from "../components/Buttons/DeleteCartButton";
+import CreateEditProduct from "./CreateEditProduct";
 
 function Product(props) {
   const urlIsbn = window.location.href.split("/").pop();
   const navigate = useNavigate();
-
+  const [show, setShow] = useState(false);
+  const [creator, setCreator] = useState(false);
   const [product, setProduct] = useState([
     {
       _id: "",
@@ -31,12 +33,18 @@ function Product(props) {
     username: "",
     email: "",
     business: false,
+    admin: false,
     full_name: "",
     business_name: null,
     address: "",
     phone_number: "",
     cartID: 0,
   });
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => setShow(true);
 
   const loggedIn = localStorage.getItem("LoggedIn");
 
@@ -48,8 +56,13 @@ function Product(props) {
     }
     getProductByIsbn(urlIsbn).then((res) => {
       setProduct(res);
+      setCreator(res.sellerName === account.full_name);
     });
-  }, [urlIsbn, loggedIn]);
+  }, [urlIsbn, loggedIn, account]);
+
+  function editProduct() {
+    handleShow();
+  }
 
   let productBtn;
 
@@ -94,17 +107,28 @@ function Product(props) {
         </p>
       </div>
       {productBtn}
-      {/* {loggedIn ? (
-        <AddCartButton isbn={product.isbn} cartID={account.cartID} />
+      {creator ? (
+        <>
+          <Button
+            className="sideButton"
+            color="orange"
+            size="lg"
+            onClick={() => editProduct()}
+          >
+            Edit Product
+          </Button>
+          <CreateEditProduct
+            itemInfo={product}
+            pageType={"edit"}
+            show={show}
+            origin={() => navigate("/Products/" + product.isbn)}
+            creator={account.full_name}
+            handleClose={() => handleClose()}
+          />
+        </>
       ) : (
-        <Button
-          className="sideButton"
-          type="button"
-          onClick={() => navigate("/Login")}
-        >
-          <h4>Login</h4>
-        </Button>
-      )} */}
+        <></>
+      )}
     </div>
   );
 }
