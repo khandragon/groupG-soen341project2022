@@ -1,4 +1,6 @@
-import { addBusinessProduct, deleteBusinessLink } from "./BusinessProducts-Api";
+import { addBusinessProduct } from "./BusinessProducts-Api";
+import { deleteBusinessLink } from "./BusinessProducts-Api";
+
 const axios = require("axios");
 const api = "http://localhost:8000/api/products/";
 /**
