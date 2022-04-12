@@ -86,7 +86,7 @@ function Admin(props) {
             type="button"
             onClick={() =>
               navigate("/BuisnessProducts", {
-                state: { type: "admin" },
+                state: { type: "admin", creator: account.full_name },
               })
             }
           >

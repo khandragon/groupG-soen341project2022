@@ -6,7 +6,7 @@ import { createNewProduct, updateProductByIsbn } from "../api/Products-Api";
 //This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
   const [title, setTitle] = useState("");
-  const [sellerName, setSellerName] = useState("");
+  const [sellerName, setSellerName] = useState(props.creator);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -19,16 +19,18 @@ function CreateEditProduct(props) {
 
   useEffect(() => {
     setTitle(props.itemInfo.title);
-    setSellerName(props.itemInfo.sellerName);
+    setSellerName(props.creator);
     setDescription(props.itemInfo.description);
     setCategory(props.itemInfo.category);
     setImgUrl(props.itemInfo.imgUrl);
     setPrice(props.itemInfo.Price);
     setShippingCost(props.itemInfo.ShippingCost);
     setSale(props.itemInfo.Sale ? props.itemInfo.Sale : 0);
-  }, [props.itemInfo]);
+  }, [props]);
+
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
+    console.log(props.creator);
     const createdData = {
       title: title,
       sellerName: sellerName,
@@ -92,19 +94,7 @@ function CreateEditProduct(props) {
                 />
               }
             />
-            <ProfileStyle
-              val={"Seller Name"}
-              key={"Seller Name"}
-              inp={
-                <input
-                  className={"row4"}
-                  type="text"
-                  size="20"
-                  value={sellerName}
-                  onChange={(e) => setSellerName(e.target.value)}
-                />
-              }
-            />
+
             <ProfileStyle
               val={"Category"}
               key={"Category"}

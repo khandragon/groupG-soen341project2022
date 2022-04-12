@@ -21,29 +21,35 @@ async function getBusinessProducts(username) {
 /**
  * add the link between between a product, using its id, and a user, using the
  * usernsmr
- * @param {*} link a body containing the product ID and username of seller 
+ * @param {*} link a body containing the product ID and username of seller
  */
 async function addBusinessProduct(link) {
   try {
-    const response = await axios.post(api,link).then(function (result) {
+    await axios.post(api, link).then(function (result) {
       return result;
     });
-    console.log(response);
   } catch (error) {
     console.error(error);
   }
 }
 /**
- * remove the link between a seller and a product being sold (use this when 
+ * remove the link between a seller and a product being sold (use this when
  * deleting a product)
- * @param {*} productISBN the isbn of the product's link to remove 
+ * @param {*} productISBN the isbn of the product's link to remove
  * @returns the success of this method
  */
-async function deleteBusinessLink(productISBN){
-  const response = await axios.delete(api + productISBN).then(function (result) {
-    return result;
-  });
+async function deleteBusinessLink(productISBN) {
+  const response = await axios
+    .delete(api + productISBN)
+    .then(function (result) {
+      return result;
+    });
   return response;
 }
 
-export { getProductSeller, getBusinessProducts, addBusinessProduct, deleteBusinessLink };
+export {
+  getProductSeller,
+  getBusinessProducts,
+  addBusinessProduct,
+  deleteBusinessLink,
+};

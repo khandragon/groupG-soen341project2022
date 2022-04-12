@@ -2,7 +2,6 @@ const Users = require("../schemas/user-model");
 
 createUser = (req, res) => {
   const body = req.body;
-
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -10,27 +9,36 @@ createUser = (req, res) => {
     });
   }
 
-  const user = new Users(body);
-
-  if (!user) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  user
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: user.username,
-        message: "User created!",
-      });
-    })
-    .catch((error) => {
+  Users.findOne({ username: req.body.username }, (err, user) => {
+    if (user) {
       return res.status(400).json({
-        error,
-        message: "User not created!",
+        success: false,
+        error: "User already exists.",
       });
-    });
+    } else {
+      const user = new Users(body);
+
+      if (!user) {
+        return res.status(401).json({ success: false, error: err });
+      }
+
+      user
+        .save()
+        .then(() => {
+          return res.status(201).json({
+            success: true,
+            id: user.username,
+            message: "User created!",
+          });
+        })
+        .catch((error) => {
+          return res.status(400).json({
+            error,
+            message: "User not created!",
+          });
+        });
+    }
+  });
 };
 
 updateUser = async (req, res) => {
