@@ -53,7 +53,9 @@ function OrderHistory(props) {
 
   return (
     <>
-      <h1 className="personal">Order History</h1>
+      <h1 data-testid="OrderHistoryTitle" className="personal">
+        Order History
+      </h1>
       {orders[0] ? (
         <Table>
           <thead>
@@ -68,7 +70,7 @@ function OrderHistory(props) {
             {products.map((item, index) =>
               item && products ? (
                 <tr
-                  key={index._id}
+                  key={item.title}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >

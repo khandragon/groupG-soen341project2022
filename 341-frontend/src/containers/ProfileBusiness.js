@@ -95,6 +95,7 @@ function ProfileBusiness(props) {
           <Button
             className="leftButton"
             type="button"
+            data-testid="ProductsListBtn"
             onClick={() =>
               navigate("/BuisnessProducts", {
                 state: { type: "buisness", creator: account.full_name },
@@ -107,6 +108,7 @@ function ProfileBusiness(props) {
             className="leftButton"
             type="button"
             onClick={() => navigate("/OrderHistory")}
+            data-testid="OrderHistoryBtn"
           >
             <h4>Order History</h4>
           </Button>

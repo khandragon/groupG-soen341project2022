@@ -91,6 +91,22 @@ const server = setupServer(
         message: "Account created!",
       })
     );
+  }),
+  rest.get("http://localhost:8000/api/user/", (req, res, ctx) => {
+    return res(
+      ctx.status(304),
+      ctx.json({
+        success: true,
+        data: {
+          _id: "62547d275d16bc9946b64677",
+          username: "tester",
+          password: "tester",
+          createdAt: "2022-04-11T19:10:31.463Z",
+          updatedAt: "2022-04-11T19:10:31.463Z",
+          __v: 0,
+        },
+      })
+    );
   })
 );
 
@@ -118,35 +134,96 @@ test("Click and Display Products", async () => {
   });
 });
 
-test("Register Account", async () => {
+test("Register Personal Account", async () => {
+  const user = userEvent.setup();
   render(<App />);
+
   fireEvent.click(screen.getByTestId("PersonalBtn"));
   fireEvent.click(screen.getByTestId("RegisterLinkBtn"));
   fireEvent.click(screen.getByTestId("PersonalRegisterBtn"));
 
-  userEvent.type(screen.getByTestId("UsernameIn"), "tester");
-  userEvent.type(screen.getByTestId("FirstNameIn"), "tester");
-  userEvent.type(screen.getByTestId("LastNameIn"), "tester");
-  userEvent.type(screen.getByTestId("EmailIn"), "tester");
-  userEvent.type(screen.getByTestId("AddressIn"), "tester");
-  userEvent.type(screen.getByTestId("PhoneIn"), "1111111111");
-  userEvent.type(screen.getByTestId("PasswordIn"), "tester");
-
+  await user.type(screen.getByTestId("UsernameIn"), "tester");
+  await user.type(screen.getByTestId("FirstNameIn"), "tester");
+  await user.type(screen.getByTestId("LastNameIn"), "tester");
+  await user.type(screen.getByTestId("EmailIn"), "tester");
+  await user.type(screen.getByTestId("AddressIn"), "tester");
+  await user.type(screen.getByTestId("PhoneIn"), "1111111111");
+  await user.type(screen.getByTestId("PasswordIn"), "tester");
   fireEvent.click(screen.getByTestId("RegisterAccBtn"));
 
-  userEvent.type(screen.getByTestId("LoginUserIn"), "tester");
-  userEvent.type(screen.getByTestId("LoginPassIn"), "tester");
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
   fireEvent.click(screen.getByTestId("LoginAccBtn"));
 
-  await waitFor(() => {
-    expect(screen.getByTestId(loginStatus).toHaveTextContent("Hello tester"));
-  });
+  const status = await screen.findByTestId("loginStatus");
+  expect(status).toHaveTextContent(/hello tester/i);
+});
+
+test("Register Buisness Account", async () => {
+  const user = userEvent.setup();
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  fireEvent.click(screen.getByTestId("RegisterLinkBtn"));
+  fireEvent.click(screen.getByTestId("BusinessRegisterBtn"));
+
+  await user.type(screen.getByTestId("UsernameIn"), "testerB");
+  await user.type(screen.getByTestId("FirstNameIn"), "testerB");
+  await user.type(screen.getByTestId("LastNameIn"), "testerB");
+  await user.type(screen.getByTestId("EmailIn"), "testerB");
+  await user.type(screen.getByTestId("AddressIn"), "testerB");
+  await user.type(screen.getByTestId("PhoneIn"), "1111111121");
+  await user.type(screen.getByTestId("PasswordIn"), "testerB");
+  fireEvent.click(screen.getByTestId("RegisterAccBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  const status = await screen.findByTestId("loginStatus");
+  expect(status).toHaveTextContent(/hello testerB/i);
 });
 
 test("Access Order History", async () => {
   render(<App />);
+  const user = userEvent.setup();
+
   fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  fireEvent.click(screen.getByTestId("OrderHistoryBtn"));
+
   await waitFor(() => {
-    expect(screen.getByTestId("LoginHeader")).toHaveTextContent(/login/i);
+    expect(screen.getByTestId("OrderHistoryTitle")).toHaveTextContent(
+      /Order History/i
+    );
+  });
+});
+
+test("Seller Modify Product", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+
+  await screen.findByTestId("LoginUserIn");
+  await user.type(screen.getByTestId("LoginUserIn"), "tester");
+  await user.type(screen.getByTestId("LoginPassIn"), "tester");
+  fireEvent.click(screen.getByTestId("LoginAccBtn"));
+
+  fireEvent.click(screen.getByTestId("PersonalBtn"));
+  fireEvent.click(screen.getByTestId("ProductsListBtn"));
+
+  await waitFor(() => {
+    expect(screen.getByTestId("OrderHistoryTitle")).toHaveTextContent(
+      /Order History/i
+    );
   });
 });

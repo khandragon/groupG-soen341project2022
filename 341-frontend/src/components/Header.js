@@ -93,6 +93,7 @@ function Header(props) {
       menuItems.push(
         <Nav.Link
           key={item}
+          data-testid="StoreBtn"
           onClick={() =>
             navigate("/BuisnessProducts", {
               state: { type: "buisness", creator: account.full_name },

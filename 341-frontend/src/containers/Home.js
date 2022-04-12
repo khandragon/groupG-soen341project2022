@@ -60,7 +60,7 @@ function Home(props) {
   // This return displays all required features including items
   return (
     <div>
-      <h3 className="rectangle2">
+      <h3 data-testid="mainPage" className="rectangle2">
         Thank You for Shopping Local
         <img
           className="Quebec"

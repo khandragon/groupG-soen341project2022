@@ -38,6 +38,7 @@ function Register(props) {
   }
 
   function RegisterUser() {
+    console.log("here?");
     try {
       if (checkEmpty()) {
         createUser({
@@ -53,6 +54,7 @@ function Register(props) {
               address: address,
               phone: phone,
             }).then((res) => {
+              console.log("here!");
               setRegisterError(false);
               navigate("/Login");
             });
@@ -82,7 +84,10 @@ function Register(props) {
               size="40"
               data-testid="UsernameIn"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                console.log(e.target.value);
+              }}
             />
           }
         />

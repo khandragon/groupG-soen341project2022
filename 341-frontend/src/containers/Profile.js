@@ -145,6 +145,7 @@ function Profile(props) {
             className="leftButton"
             type="button"
             onClick={() => navigate("/OrderHistory")}
+            data-testid="OrderHistoryBtn"
           >
             <h4>Order History</h4>
           </Button>
