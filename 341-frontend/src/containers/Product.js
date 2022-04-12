@@ -49,6 +49,7 @@ function Product(props) {
   const loggedIn = localStorage.getItem("LoggedIn");
 
   useEffect(() => {
+    console.log("called?");
     if (loggedIn) {
       getAccountInformation(loggedIn).then((res) => {
         setAccount(res);
@@ -58,7 +59,7 @@ function Product(props) {
       setProduct(res);
       setCreator(res.sellerName === account.full_name);
     });
-  }, [urlIsbn, loggedIn, account]);
+  }, [urlIsbn, loggedIn, account.full_name]);
 
   function editProduct() {
     handleShow();
