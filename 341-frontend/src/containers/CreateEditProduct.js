@@ -17,6 +17,7 @@ function CreateEditProduct(props) {
   //var today = new Date();
   // var updatedAt =
   //   today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
+  const [loggedIn] = useContext(LoginContext);
 
   useEffect(() => {
     setTitle(props.itemInfo.title);
@@ -24,8 +25,10 @@ function CreateEditProduct(props) {
     setDescription(props.itemInfo.description);
     setCategory(props.itemInfo.category);
     setImgUrl(props.itemInfo.imgUrl);
-    setPrice(props.itemInfo.Price);
-    setShippingCost(props.itemInfo.ShippingCost);
+    setPrice(props.itemInfo.Price ? props.itemInfo.Price : 1);
+    setShippingCost(
+      props.itemInfo.ShippingCost ? props.itemInfo.ShippingCost : 0
+    );
     setSale(props.itemInfo.Sale ? props.itemInfo.Sale : 0);
   }, [props]);
 
@@ -41,7 +44,6 @@ function CreateEditProduct(props) {
       ShippingCost: shippingCost,
       Sale: sale,
     };
-    const [loggedIn] = useContext(LoginContext);
 
     const username = loggedIn;
 
@@ -50,6 +52,7 @@ function CreateEditProduct(props) {
       window.location.reload();
     });
   }
+
   function EditItem() {
     const editedData = {
       title: title,

@@ -3,14 +3,14 @@ import { Button, Image } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getProductByIsbn } from "../api/Products-Api";
 import AddCartButton from "../components/Buttons/AddCartButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/components/CenterImage.css";
-import DeleteCartButton from "../components/Buttons/DeleteCartButton";
+import DeleteProductButton from "../components/Buttons/DeleteProductButton";
 import CreateEditProduct from "./CreateEditProduct";
 import { LoginContext } from "./LoginContext";
 
 function Product(props) {
-  const urlIsbn = window.location.href.split("/").pop();
+  const urlIsbn = useParams().productID;
   const navigate = useNavigate();
   const [loggedIn] = useContext(LoginContext);
 
@@ -69,7 +69,7 @@ function Product(props) {
 
   if (loggedIn && account.admin) {
     productBtn = (
-      <DeleteCartButton isbn={product.isbn} cartID={account.cartID} />
+      <DeleteProductButton isbn={product.isbn} cartID={account.cartID} />
     );
   } else if (loggedIn) {
     productBtn = (
