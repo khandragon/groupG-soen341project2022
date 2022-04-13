@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import Home from "./containers/Home.js";
 import About from "./containers/About.js";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
@@ -25,6 +25,7 @@ import Admin from "./containers/Admin";
 import OrderInfo from "./containers/OrderInfo";
 import Categories from "./containers/Categories";
 import Category from "./containers/Category";
+import { LoginContext } from "./containers/LoginContext";
 
 const App = () => {
   let routes = useRoutes([
@@ -55,12 +56,18 @@ const App = () => {
 };
 
 const AppWrapper = () => {
+  const [loggedIn, setUserLoggedIn] = useState(
+    localStorage.getItem("LoggedIn")
+  );
+
   return (
-    <Router>
-      <Header />
-      <App />
-      <Footer />
-    </Router>
+    <LoginContext.Provider value={[loggedIn, setUserLoggedIn]}>
+      <Router>
+        <Header />
+        <App />
+        <Footer />
+      </Router>
+    </LoginContext.Provider>
   );
 };
 

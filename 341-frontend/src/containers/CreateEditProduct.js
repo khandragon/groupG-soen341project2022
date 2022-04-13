@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button, Modal } from "react-bootstrap";
 import { createNewProduct, updateProductByIsbn } from "../api/Products-Api";
+import { LoginContext } from "./LoginContext";
 
 //This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
@@ -10,7 +11,7 @@ function CreateEditProduct(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(1);
   const [shippingCost, setShippingCost] = useState(0);
   const [sale, setSale] = useState(0);
   //var today = new Date();
@@ -30,7 +31,6 @@ function CreateEditProduct(props) {
 
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
-    console.log(props.creator);
     const createdData = {
       title: title,
       sellerName: sellerName,
@@ -41,7 +41,9 @@ function CreateEditProduct(props) {
       ShippingCost: shippingCost,
       Sale: sale,
     };
-    const username = localStorage.getItem("LoggedIn");
+    const [loggedIn] = useContext(LoginContext);
+
+    const username = loggedIn;
 
     createNewProduct(createdData, username).then(() => {
       props.handleClose();

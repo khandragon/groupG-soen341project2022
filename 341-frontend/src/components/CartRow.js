@@ -34,7 +34,7 @@ function CartRow(props) {
         <Col>
           <Image
             id="garbage"
-            data-testId="DeleteCartItemBtn"
+            data-testid="DeleteCartItemBtn"
             src="https://www.freeiconspng.com/uploads/recycle-bin-garbage-bin-png-22.png"
             onClick={removeItem}
           ></Image>

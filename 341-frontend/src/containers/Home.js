@@ -47,8 +47,10 @@ function Home(props) {
       if (isCancelled) return;
       setInventory(res.slice(0, 4));
       setChoiceMonth([
-        res[Math.floor(Math.random() * res.length + 1)],
-        res[Math.floor(Math.random() * res.length + 1)],
+        res[0],
+        res[1],
+        // res[Math.floor(Math.random() * res.length + 1)],
+        // res[Math.floor(Math.random() * res.length + 1)],
       ]);
     });
 

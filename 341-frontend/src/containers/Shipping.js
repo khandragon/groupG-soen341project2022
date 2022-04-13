@@ -24,7 +24,6 @@ function Shipping(props) {
   const navigate = useNavigate();
 
   function checkEmpty() {
-    console.log(shipping.address);
     if (
       shipping.address !== "" &&
       shipping.city !== "" &&
@@ -87,7 +86,7 @@ function Shipping(props) {
           <h4>Procede to Payment</h4>
         </Button>
         <Button
-          data-testId="OrderInfoBtn"
+          data-testid="OrderInfoBtn"
           className="leftButton"
           type="button"
           onClick={move}

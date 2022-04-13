@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/Login.css";
 import { Alert, Button, Nav } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
 import { getUserByUsername } from "../api/Users-Api";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginContext } from "./LoginContext";
 
 function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
+  const [, setUserLoggedIn] = useContext(LoginContext);
+
   const navigate = useNavigate();
 
   function loginUser() {
+    let isCancelled = false;
+
     getUserByUsername(username)
       .then((res) => {
+        if (isCancelled) return;
+
         if (res.password === password) {
           setLoginError(false);
           localStorage.setItem("LoggedIn", res.username);
+          setUserLoggedIn(res.username);
           navigate("/");
-          window.location.reload();
+          // window.location.reload();
         } else {
           setLoginError(true);
         }
       })
       .catch((e) => {
+        console.log(e);
         setLoginError(true);
       });
+    return () => {
+      isCancelled = true;
+    };
   }
 
   return (

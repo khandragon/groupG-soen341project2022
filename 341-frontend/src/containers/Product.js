@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getProductByIsbn } from "../api/Products-Api";
@@ -7,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 import "../styles/components/CenterImage.css";
 import DeleteCartButton from "../components/Buttons/DeleteCartButton";
 import CreateEditProduct from "./CreateEditProduct";
+import { LoginContext } from "./LoginContext";
 
 function Product(props) {
   const urlIsbn = window.location.href.split("/").pop();
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
+
   const [show, setShow] = useState(false);
   const [creator, setCreator] = useState(false);
   const [product, setProduct] = useState([
@@ -46,10 +49,7 @@ function Product(props) {
   };
   const handleShow = () => setShow(true);
 
-  const loggedIn = localStorage.getItem("LoggedIn");
-
   useEffect(() => {
-    console.log(creator);
     if (loggedIn) {
       getAccountInformation(loggedIn).then((res) => {
         setAccount(res);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Col, Row, Image, Button } from "react-bootstrap";
 import "../styles/components/Header.css";
 import logo from "../images/image1.png";
@@ -6,13 +6,12 @@ import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate, Link } from "react-router-dom";
+import { LoginContext } from "../containers/LoginContext";
 
 function Header(props) {
   const navigate = useNavigate();
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
+  const [loggedIn, setUserLoggedIn] = useContext(LoginContext);
 
   const [account, setAccount] = useState({
     username: "",
@@ -26,11 +25,19 @@ function Header(props) {
   });
 
   useEffect(() => {
+    let isCancelled = false;
+
     if (loggedIn) {
       getAccountInformation(loggedIn).then((res) => {
+        if (isCancelled) return;
+
         setAccount(res);
       });
     }
+
+    return () => {
+      isCancelled = true;
+    };
   }, [loggedIn]);
 
   let items = [
@@ -53,7 +60,7 @@ function Header(props) {
 
   function logoutUser() {
     localStorage.removeItem("LoggedIn");
-    setUserLoggedIn(false);
+    setUserLoggedIn(null);
     navigate("/");
   }
 

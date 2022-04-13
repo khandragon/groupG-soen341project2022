@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { BsTrashFill, BsWrench } from "react-icons/bs";
 import { getBusinessProducts } from "../api/BusinessProducts-Api";
@@ -6,11 +6,14 @@ import { getAllProducts, getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteProduct } from "../api/Products-Api";
+import { LoginContext } from "./LoginContext";
 
 function BuisnessProducts(props) {
   const navigate = useNavigate();
   const productType = useLocation().state.type;
   const creator = useLocation().state.creator;
+  const [loggedIn] = useContext(LoginContext);
+
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState(false);
   const [product, setProduct] = useState({
@@ -50,8 +53,6 @@ function BuisnessProducts(props) {
 
   useEffect(() => {
     if (productType !== "admin") {
-      const loggedIn = localStorage.getItem("LoggedIn");
-
       getBusinessProducts(loggedIn).then((res) => {
         const isbnList = res.map((item) => item.productISBN);
         getMultipleProductsByIsbn(isbnList).then((res) => {
@@ -63,7 +64,7 @@ function BuisnessProducts(props) {
         setProducts(res);
       });
     }
-  }, [productType]);
+  }, [productType, loggedIn]);
 
   function createProduct() {
     setModalType("create");

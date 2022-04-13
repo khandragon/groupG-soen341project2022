@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import { getCart } from "../api/Carts-Api";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
@@ -6,6 +6,7 @@ import CartRow from "../components/CartRow";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import CartBottomRow from "../components/CartBottomRow";
+import { LoginContext } from "./LoginContext";
 
 /*
 Function OrderInfo, serves as a confirmation page for the user before they go to the shipping page.
@@ -14,7 +15,7 @@ Function OrderInfo, serves as a confirmation page for the user before they go to
 function OrderInfo(props) {
   const [order, setOrder] = useState([]);
 
-  const loggedIn = localStorage.getItem("LoggedIn");
+  const [loggedIn] = useContext(LoginContext);
 
   const loadData = useCallback(() => {
     getAccountInformation(loggedIn).then((res) => {
@@ -53,7 +54,6 @@ function OrderInfo(props) {
           );
         })}
       </Row>
-      {console.log(order)}
       {order.map((item) => {
         return (
           <CartRow

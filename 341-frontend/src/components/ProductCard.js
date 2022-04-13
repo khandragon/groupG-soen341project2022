@@ -22,7 +22,7 @@ function ProductCard(props) {
       tag="a"
       style={{ cursor: "pointer" }}
       onClick={clickItem}
-      data-testId={"ProductCard-" + props.index}
+      data-testid={"ProductCard-" + props.index}
     >
       <Card.Img variant="top" src={props.imgUrl} />
       <Card.Body>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import CartRow from "../components/CartRow";
 import CartBottomRow from "../components/CartBottomRow";
 import CartTopRow from "../components/CartTopRow";
@@ -7,6 +7,7 @@ import { getCart, removeFromCart } from "../api/Carts-Api";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
 import { Alert } from "react-bootstrap";
+import { LoginContext } from "./LoginContext";
 
 /*
 Function Cart, implements components CartRow, CartBottomRow, CartTopRow. Displays a table with the products the user selected
@@ -16,6 +17,7 @@ with the proper attributes. Is linked to OrderInfo.js
 function Cart(props) {
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState(false);
+  const [loggedIn] = useContext(LoginContext);
 
   const [account, setAccount] = useState({
     username: "",
@@ -27,8 +29,6 @@ function Cart(props) {
     phone_number: "",
     cartID: 0,
   });
-
-  const loggedIn = localStorage.getItem("LoggedIn");
 
   const loadData = useCallback(() => {
     getAccountInformation(loggedIn).then((res) => {

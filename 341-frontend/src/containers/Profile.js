@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
@@ -6,10 +6,12 @@ import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getUserByUsername, updateUser } from "../api/Users-Api";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "./LoginContext";
 
 // This function collects personal information and sets the password
 function Profile(props) {
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
 
   const [user, setUser] = useState({
     username: "",
@@ -51,15 +53,23 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem("LoggedIn");
+    let isCancelled = false;
+
     getAccountInformation(loggedIn).then((res) => {
+      if (isCancelled) return;
+
       setAccount(res);
     });
 
     getUserByUsername(loggedIn).then((res) => {
+      if (isCancelled) return;
+
       setUser(res);
     });
-  }, []);
+    return () => {
+      isCancelled = true;
+    };
+  }, [loggedIn]);
 
   const profInfo = {
     full_name: "Full Name",
