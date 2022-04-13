@@ -5,10 +5,12 @@ import { getBusinessProducts } from "../api/BusinessProducts-Api";
 import { getAllProducts, getMultipleProductsByIsbn } from "../api/Products-Api";
 import CreateEditProduct from "./CreateEditProduct";
 import { useLocation, useNavigate } from "react-router-dom";
+import { deleteProduct } from "../api/Products-Api";
 
 function BuisnessProducts(props) {
   const navigate = useNavigate();
   const productType = useLocation().state.type;
+  const creator = useLocation().state.creator;
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState(false);
   const [product, setProduct] = useState({
@@ -72,11 +74,15 @@ function BuisnessProducts(props) {
     setProduct(products[index]);
     handleShow();
   }
-  function deleteProduct(index) {
-    console.log(products[index]);
+  function deleteProductFromList(index) {
+    deleteProduct(products[index]);
   }
 
   const tableFields = ["Product Name", "ID", "Category", "Price", "Options"];
+
+  if (productType === "admin") {
+    tableFields.splice(1, 0, "Seller");
+  }
 
   return (
     <>
@@ -85,7 +91,11 @@ function BuisnessProducts(props) {
       ) : (
         <h1 className="personal">Admin: Products</h1>
       )}
-      <Button onClick={() => createProduct()}>Create Product</Button>
+      {productType !== "admin" ? (
+        <Button onClick={() => createProduct()}>Create Product</Button>
+      ) : (
+        ""
+      )}
       <Table>
         <thead>
           <tr>
@@ -111,6 +121,14 @@ function BuisnessProducts(props) {
                 >
                   {item.title}
                 </td>
+                {productType === "admin" ? (
+                  <td
+                    style={{ cursor: "pointer" }}
+                    onClick={() => navigate("../Products/" + item.isbn)}
+                  >
+                    {item.sellerName}
+                  </td>
+                ) : null}
                 <td
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
@@ -136,16 +154,14 @@ function BuisnessProducts(props) {
                     </Button>
                     <Button
                       variant="light"
-                      onClick={() => deleteProduct(index)}
+                      onClick={() => deleteProductFromList(index)}
                     >
                       <BsTrashFill color="black"></BsTrashFill>
                     </Button>
                   </ButtonGroup>
                 </td>
               </tr>
-            ) : (
-              ""
-            )
+            ) : null
           )}
         </tbody>
       </Table>
@@ -153,6 +169,7 @@ function BuisnessProducts(props) {
         itemInfo={product}
         pageType={modalType}
         show={show}
+        creator={creator}
         handleClose={() => handleClose()}
       />
     </>

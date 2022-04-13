@@ -1,4 +1,6 @@
 import { addBusinessProduct } from "./BusinessProducts-Api";
+import { deleteBusinessLink } from "./BusinessProducts-Api";
+
 const axios = require("axios");
 const api = "http://localhost:8000/api/products/";
 /**
@@ -10,8 +12,8 @@ async function getAllProducts() {
   return response.data.data;
 }
 /**
- * get a specific product 
- * @param {*} isbn isbn of the product to get 
+ * get a specific product
+ * @param {*} isbn isbn of the product to get
  * @returns body of the product found, if any
  */
 async function getProductByIsbn(isbn) {
@@ -19,7 +21,7 @@ async function getProductByIsbn(isbn) {
   return response.data.data;
 }
 /**
- * get multipple products 
+ * get multipple products
  * @param {*} isbnList list of the isbns of the products to get
  * @returns list of the products
  */

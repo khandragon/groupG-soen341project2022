@@ -58,13 +58,22 @@ updateProductInformation = async (req, res) => {
       .json({ success: false, msg: "something went wrong" });
   }
 };
+
 createProductInformation = async (req, res) => {
   const body = req.body;
-
   if (!body) {
     return res.status(400).json({
       success: false,
       error: "You must provide product information",
+    });
+  }
+
+  const duplicateProduct = await Products.findOne({ title: body.title });
+
+  if (duplicateProduct) {
+    return res.status(401).json({
+      success: false,
+      error: "Product already exists.",
     });
   }
 
@@ -126,7 +135,15 @@ createProductInformation = async (req, res) => {
 
 deleteProduct = async (req, res) => {
   try {
-    Products.deleteOne({ isbn: req.params.isbn });
+    if(await Products.findOne({ isbn: req.params.isbn }) != null ){
+      await Products.deleteOne({ isbn: req.params.isbn });
+      return res
+      .status(201)
+      .json({ success: true, msg: "product deleted" });
+    }
+    return res
+      .status(500)
+      .json({ success: false, msg: "product not found" });
   } catch (e) {
     console.log(e);
     return res
