@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Alert, Button } from "react-bootstrap";
-import { addToCart } from "../../api/Carts-Api";
+import { useNavigate } from "react-router-dom";
+import { deleteProduct } from "../../api/Products-Api";
 
-function DeleteCartButton(props) {
+function DeleteProductButton(props) {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   function onButtonClick() {
-    addToCart(props.cartID, props.isbn);
+    deleteProduct(props.isbn);
     setShow(true);
+    navigate("/");
   }
 
   return (
@@ -17,7 +20,7 @@ function DeleteCartButton(props) {
         onClose={() => setShow(false)}
         dismissible
         transition
-        variant="failure"
+        variant="danger"
       >
         <Alert.Heading>Delete Item</Alert.Heading>
       </Alert>
@@ -33,4 +36,4 @@ function DeleteCartButton(props) {
   );
 }
 
-export default DeleteCartButton;
+export default DeleteProductButton;

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getOrders } from "../api/Orders-Api";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { getMultipleProductsByIsbn } from "../api/Products-Api";
+import { LoginContext } from "./LoginContext";
 
 //This page shows the order history, it receivs the info from the database and ppresents it to the user.
 //User must be logged in to access this page
 function OrderHistory(props) {
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
 
   const [orders, setOrders] = useState([
     {
@@ -36,8 +38,6 @@ function OrderHistory(props) {
   ]);
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem("LoggedIn");
-
     if (loggedIn) {
       getOrders(loggedIn).then((res) => {
         setOrders(res);
@@ -47,13 +47,15 @@ function OrderHistory(props) {
         });
       });
     }
-  }, []);
+  }, [loggedIn]);
 
   const tableFields = ["Title", "Isbn", "Price", "Ordered Date", "Arival Date"];
 
   return (
     <>
-      <h1 className="personal">Order History</h1>
+      <h1 data-testid="OrderHistoryTitle" className="personal">
+        Order History
+      </h1>
       {orders[0] ? (
         <Table>
           <thead>
@@ -68,7 +70,7 @@ function OrderHistory(props) {
             {products.map((item, index) =>
               item && products ? (
                 <tr
-                  key={index._id}
+                  key={item.title}
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("../Products/" + item.isbn)}
                 >

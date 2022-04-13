@@ -24,7 +24,6 @@ function Shipping(props) {
   const navigate = useNavigate();
 
   function checkEmpty() {
-    console.log(shipping.address);
     if (
       shipping.address !== "" &&
       shipping.city !== "" &&
@@ -82,13 +81,19 @@ function Shipping(props) {
       {shipItems.map((val, i) => {
         return val;
       })}
-
-      <Button className="rightButton" type="button" onClick={changeShipping}>
-        <h4>Procede to Payment</h4>
-      </Button>
-      <Button className="leftButton" type="button" onClick={move}>
-        <h4>Back to Order Info</h4>
-      </Button>
+      <div className="profile-buttons">
+        <Button className="rightButton" type="button" onClick={changeShipping}>
+          <h4>Procede to Payment</h4>
+        </Button>
+        <Button
+          data-testid="OrderInfoBtn"
+          className="leftButton"
+          type="button"
+          onClick={move}
+        >
+          <h4>Back to Order Info</h4>
+        </Button>
+      </div>
       {emptyError ? (
         <Alert className="loginError" variant={"danger"}>
           ERROR: PLEASE MAKE SURE REQUIRED FIELDS ARE ALL FILLED OUT

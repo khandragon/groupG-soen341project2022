@@ -24,7 +24,9 @@ function ProfileType(props) {
           wishlist or order history features to better track what you'd like to
           buy later.
         </p>
-        <Button onClick={onButtonClick}>Register Personal Account</Button>
+        <Button data-testid="PersonalRegisterBtn" onClick={onButtonClick}>
+          Register Personal Account
+        </Button>
       </div>
       <div className="col-md-6 text-center">
         <h2>Business</h2>
@@ -37,7 +39,9 @@ function ProfileType(props) {
           sell can have their pricing and details changed to better suit the
           market.
         </p>
-        <Button onClick={onButtonClick2}>Register Business Account</Button>
+        <Button data-testid="BusinessRegisterBtn" onClick={onButtonClick2}>
+          Register Business Account
+        </Button>
       </div>
     </div>
   );

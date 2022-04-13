@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Col, Row, Image, Button } from "react-bootstrap";
 import "../styles/components/Header.css";
 import logo from "../images/image1.png";
 import { BsFillPersonFill, BsFillCartFill } from "react-icons/bs";
 import IconButton from "./Buttons/IconButton";
 import { getAccountInformation } from "../api/Accounts-Api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { LoginContext } from "../containers/LoginContext";
 
 function Header(props) {
   const navigate = useNavigate();
 
-  const [loggedIn, setUserLoggedIn] = useState(
-    localStorage.getItem("LoggedIn")
-  );
+  const [loggedIn, setUserLoggedIn] = useContext(LoginContext);
 
   const [account, setAccount] = useState({
     username: "",
@@ -26,11 +25,19 @@ function Header(props) {
   });
 
   useEffect(() => {
+    let isCancelled = false;
+
     if (loggedIn) {
       getAccountInformation(loggedIn).then((res) => {
+        if (isCancelled) return;
+
         setAccount(res);
       });
     }
+
+    return () => {
+      isCancelled = true;
+    };
   }, [loggedIn]);
 
   let items = [
@@ -53,7 +60,7 @@ function Header(props) {
 
   function logoutUser() {
     localStorage.removeItem("LoggedIn");
-    setUserLoggedIn(false);
+    setUserLoggedIn(null);
     navigate("/");
   }
 
@@ -68,6 +75,7 @@ function Header(props) {
       }
       menuItems.push(
         <IconButton
+          data-testid="PersonalBtn"
           key={status}
           link={"/" + status}
           btn={<BsFillPersonFill size={30} />}
@@ -76,6 +84,7 @@ function Header(props) {
     } else if (item === "Cart") {
       menuItems.push(
         <IconButton
+          data-testid="CartBtn"
           key={item}
           link={"/" + item}
           btn={<BsFillCartFill size={30} />}
@@ -83,7 +92,7 @@ function Header(props) {
       );
     } else if (item === "Home") {
       menuItems.push(
-        <Nav.Link key={item} href={"/"}>
+        <Nav.Link key={item} as={Link} to={"/"}>
           {item}
         </Nav.Link>
       );
@@ -91,6 +100,7 @@ function Header(props) {
       menuItems.push(
         <Nav.Link
           key={item}
+          data-testid="StoreBtn"
           onClick={() =>
             navigate("/BuisnessProducts", {
               state: { type: "buisness", creator: account.full_name },
@@ -102,7 +112,12 @@ function Header(props) {
       );
     } else {
       menuItems.push(
-        <Nav.Link key={item} href={"/" + item}>
+        <Nav.Link
+          key={item}
+          as={Link}
+          to={`/${item}`}
+          data-testid={`${item}-Header`}
+        >
           {item}
         </Nav.Link>
       );
@@ -111,7 +126,11 @@ function Header(props) {
 
   return (
     <div className="main-header">
-      {loggedIn ? <p>Hello {loggedIn}</p> : <a href="/Login">Login</a>}
+      {loggedIn ? (
+        <p data-testid="loginStatus">Hello {loggedIn}</p>
+      ) : (
+        <a href="/Login">Login</a>
+      )}
       {loggedIn ? <Button onClick={logoutUser}>Logout</Button> : <></>}
 
       <Nav.Link href={"/"}>

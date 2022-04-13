@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { getProductByIsbn } from "../api/Products-Api";
 import AddCartButton from "../components/Buttons/AddCartButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/components/CenterImage.css";
-import DeleteCartButton from "../components/Buttons/DeleteCartButton";
+import DeleteProductButton from "../components/Buttons/DeleteProductButton";
 import CreateEditProduct from "./CreateEditProduct";
+import { LoginContext } from "./LoginContext";
 
 function Product(props) {
-  const urlIsbn = window.location.href.split("/").pop();
+  const urlIsbn = useParams().productID;
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
+
   const [show, setShow] = useState(false);
   const [creator, setCreator] = useState(false);
   const [product, setProduct] = useState([
@@ -46,10 +49,7 @@ function Product(props) {
   };
   const handleShow = () => setShow(true);
 
-  const loggedIn = localStorage.getItem("LoggedIn");
-
   useEffect(() => {
-    console.log("called?");
     if (loggedIn) {
       getAccountInformation(loggedIn).then((res) => {
         setAccount(res);
@@ -59,7 +59,7 @@ function Product(props) {
       setProduct(res);
       setCreator(res.sellerName === account.full_name);
     });
-  }, [urlIsbn, loggedIn, account.full_name]);
+  }, [urlIsbn, loggedIn, account.full_name, creator]);
 
   function editProduct() {
     handleShow();
@@ -69,10 +69,16 @@ function Product(props) {
 
   if (loggedIn && account.admin) {
     productBtn = (
-      <DeleteCartButton isbn={product.isbn} cartID={account.cartID} />
+      <DeleteProductButton isbn={product.isbn} cartID={account.cartID} />
     );
   } else if (loggedIn) {
-    productBtn = <AddCartButton isbn={product.isbn} cartID={account.cartID} />;
+    productBtn = (
+      <AddCartButton
+        data-testid={"AddCartBtn"}
+        isbn={product.isbn}
+        cartID={account.cartID}
+      />
+    );
   } else {
     productBtn = (
       <Button
@@ -114,6 +120,7 @@ function Product(props) {
             className="sideButton"
             color="orange"
             size="lg"
+            data-testid={"EditProductBtn"}
             onClick={() => editProduct()}
           >
             Edit Product

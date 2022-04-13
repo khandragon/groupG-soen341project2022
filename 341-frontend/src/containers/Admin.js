@@ -1,14 +1,16 @@
 import "../styles/About.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "./LoginContext";
 
 function Admin(props) {
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
 
   const [account, setAccount] = useState({
     username: "",
@@ -22,11 +24,10 @@ function Admin(props) {
   });
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
     });
-  }, []);
+  }, [loggedIn]);
 
   function setAccountOption(option, value) {
     setAccount({
@@ -75,7 +76,7 @@ function Admin(props) {
           return val;
         })}
         <div style={{ textAlign: "center" }}>
-          <h4>Please contact the administrator to change the password</h4>
+          <h4>Please contact support to change the password</h4>
         </div>
 
         <br />

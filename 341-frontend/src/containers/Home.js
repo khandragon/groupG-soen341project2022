@@ -41,19 +41,28 @@ function Home(props) {
   ]);
 
   useEffect(() => {
+    let isCancelled = false;
+
     getAllProducts().then((res) => {
+      if (isCancelled) return;
       setInventory(res.slice(0, 4));
       setChoiceMonth([
-        res[Math.floor(Math.random() * res.length + 1)],
-        res[Math.floor(Math.random() * res.length + 1)],
+        res[0],
+        res[1],
+        // res[Math.floor(Math.random() * res.length + 1)],
+        // res[Math.floor(Math.random() * res.length + 1)],
       ]);
     });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   // This return displays all required features including items
   return (
     <div>
-      <h3 className="rectangle2">
+      <h3 data-testid="mainPage" className="rectangle2">
         Thank You for Shopping Local
         <img
           className="Quebec"
@@ -67,11 +76,12 @@ function Home(props) {
       <h2 className="OurFam">NEW IN OUR FAMILY</h2>
       <br></br>
       <Row xs={1} md={2} className="g-4 card-holder">
-        {inventory.map((value) => {
+        {inventory.map((value, index) => {
           return (
             <Col key={value.title}>
               <ProductCard
                 title={value.title}
+                index={index}
                 text={value.description}
                 header={value.sellerName}
                 imgUrl={value.imgUrl}

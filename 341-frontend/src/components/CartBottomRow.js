@@ -41,6 +41,7 @@ function CartBottomRow(props) {
               <Button
                 size="lg"
                 id="procToShip"
+                data-testid="procToShip"
                 onClick={() => navigate("../Shipping")}
               >
                 Proceed to Shipping

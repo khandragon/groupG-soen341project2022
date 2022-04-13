@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../styles/Register.css";
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Nav } from "react-bootstrap";
 import ProfileStyle from "../components/ProfileStyle";
 import { createNewUserAccount } from "../api/Accounts-Api";
 import { createUser } from "../api/Users-Api";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Register(props) {
   const [username, setUsername] = useState("");
@@ -80,8 +80,11 @@ function Register(props) {
               className={"row4"}
               type="text"
               size="40"
+              data-testid="UsernameIn"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
           }
         />
@@ -93,6 +96,7 @@ function Register(props) {
               className={"row4"}
               type="text"
               size="40"
+              data-testid="FirstNameIn"
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
@@ -106,6 +110,7 @@ function Register(props) {
               className={"row4"}
               type="text"
               size="40"
+              data-testid="LastNameIn"
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
@@ -120,6 +125,7 @@ function Register(props) {
               type="text"
               size="40"
               value={email}
+              data-testid="EmailIn"
               onChange={(e) => setEmail(e.target.value)}
             />
           }
@@ -133,6 +139,7 @@ function Register(props) {
               type="text"
               size="40"
               value={address}
+              data-testid="AddressIn"
               onChange={(e) => setAddress(e.target.value)}
             />
           }
@@ -146,6 +153,7 @@ function Register(props) {
               type="text"
               size="40"
               value={phone}
+              data-testid="PhoneIn"
               onChange={(e) => setPhone(e.target.value)}
             />
           }
@@ -159,6 +167,7 @@ function Register(props) {
               type="text"
               size="40"
               value={password}
+              data-testid="PasswordIn"
               onChange={(e) => setPassword(e.target.value)}
             />
           }
@@ -186,9 +195,21 @@ function Register(props) {
           <></>
         )}
         <div className="signLink">
-          <a href="/Login">Login</a>
+          <Nav.Link
+            data-testid="LoginLinkBtn"
+            key={"LoginLinkBtn"}
+            as={Link}
+            to={"/ProfileType"}
+          >
+            <u>Login</u>
+          </Nav.Link>
         </div>
-        <Button className="loginBtn" type="button" onClick={RegisterUser}>
+        <Button
+          data-testid="RegisterAccBtn"
+          className="loginBtn"
+          type="button"
+          onClick={RegisterUser}
+        >
           <h4>Register</h4>
         </Button>
       </div>

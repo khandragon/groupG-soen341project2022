@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button, Modal } from "react-bootstrap";
 import { createNewProduct, updateProductByIsbn } from "../api/Products-Api";
+import { LoginContext } from "./LoginContext";
 
 //This is the page the user is taken to when trying to edit or create a product.
 function CreateEditProduct(props) {
@@ -10,12 +11,13 @@ function CreateEditProduct(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(1);
   const [shippingCost, setShippingCost] = useState(0);
   const [sale, setSale] = useState(0);
   //var today = new Date();
   // var updatedAt =
   //   today.getMonth() + "-" + today.getDate() + "-" + today.getFullYear();
+  const [loggedIn] = useContext(LoginContext);
 
   useEffect(() => {
     setTitle(props.itemInfo.title);
@@ -23,14 +25,15 @@ function CreateEditProduct(props) {
     setDescription(props.itemInfo.description);
     setCategory(props.itemInfo.category);
     setImgUrl(props.itemInfo.imgUrl);
-    setPrice(props.itemInfo.Price);
-    setShippingCost(props.itemInfo.ShippingCost);
+    setPrice(props.itemInfo.Price ? props.itemInfo.Price : 1);
+    setShippingCost(
+      props.itemInfo.ShippingCost ? props.itemInfo.ShippingCost : 0
+    );
     setSale(props.itemInfo.Sale ? props.itemInfo.Sale : 0);
   }, [props]);
 
   //These functions add or edit the product in the database respectively.
   function CreateItem() {
-    console.log(props.creator);
     const createdData = {
       title: title,
       sellerName: sellerName,
@@ -41,13 +44,15 @@ function CreateEditProduct(props) {
       ShippingCost: shippingCost,
       Sale: sale,
     };
-    const username = localStorage.getItem("LoggedIn");
+
+    const username = loggedIn;
 
     createNewProduct(createdData, username).then(() => {
       props.handleClose();
       window.location.reload();
     });
   }
+
   function EditItem() {
     const editedData = {
       title: title,
@@ -89,6 +94,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"TitleIn"}
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -103,6 +109,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"CategoryIn"}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 />
@@ -116,6 +123,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"DescriptionIn"}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -129,6 +137,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"PriceIn"}
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -142,6 +151,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="text"
                   size="20"
+                  data-testid={"ImgUrlIn"}
                   value={imgUrl}
                   onChange={(e) => setImgUrl(e.target.value)}
                 />
@@ -155,6 +165,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"ShippingIn"}
                   value={shippingCost}
                   onChange={(e) => setShippingCost(e.target.value)}
                 />
@@ -168,6 +179,7 @@ function CreateEditProduct(props) {
                   className={"row4"}
                   type="number"
                   size="20"
+                  data-testid={"SaleIn"}
                   value={sale}
                   onChange={(e) => setSale(e.target.value)}
                 />
@@ -304,7 +316,11 @@ function CreateEditProduct(props) {
             <Button variant="secondary" onClick={props.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={() => EditItem()}>
+            <Button
+              data-testid={"SaveChanges"}
+              variant="primary"
+              onClick={() => EditItem()}
+            >
               Save Changes
             </Button>
           </Modal.Footer>

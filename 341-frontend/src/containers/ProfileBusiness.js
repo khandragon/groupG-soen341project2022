@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/About.css";
 import "../styles/components/Profile.css";
 import ProfileStyle from "../components/ProfileStyle";
 import { Button } from "react-bootstrap";
 import { getAccountInformation } from "../api/Accounts-Api";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "./LoginContext";
 
 //This function display prfile bussiness page
 function ProfileBusiness(props) {
   const navigate = useNavigate();
+  const [loggedIn] = useContext(LoginContext);
 
   // setAccount needed to modify the data
   const [account, setAccount] = useState({
@@ -35,11 +37,10 @@ function ProfileBusiness(props) {
 
   // useEffect is used to hadle data from database
   useEffect(() => {
-    const loggedIn = localStorage.getItem("LoggedIn");
     getAccountInformation(loggedIn).then((res) => {
       setAccount(res);
     });
-  }, []);
+  }, [loggedIn]);
 
   function changeBuisnessInformation() {
     console.log("change");
@@ -95,6 +96,7 @@ function ProfileBusiness(props) {
           <Button
             className="leftButton"
             type="button"
+            data-testid="ProductsListBtn"
             onClick={() =>
               navigate("/BuisnessProducts", {
                 state: { type: "buisness", creator: account.full_name },
@@ -107,6 +109,7 @@ function ProfileBusiness(props) {
             className="leftButton"
             type="button"
             onClick={() => navigate("/OrderHistory")}
+            data-testid="OrderHistoryBtn"
           >
             <h4>Order History</h4>
           </Button>
